@@ -73,6 +73,7 @@ function setup() {
 }
 
 function drawGrid(pixels) {
+    noStroke();
     for (i in pixels) {
         let x = i % l,
             y = Math.floor(i / l);
