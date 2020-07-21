@@ -5,7 +5,7 @@ console.log(l);
 let input, button
 
 let img;
-let imgname = 'mbdtf.png'
+let imgname = 'graduation.png'
 
 function preload() {
     img = loadImage(imgname);
@@ -32,8 +32,9 @@ function setup() {
 
     let pix = img.pixels;
     let pixels = [];
+    let correctRed = false;
     for (i = 0; i < pix.length; i += 4) {
-        if (pix[i] < 255 && pix[i] > 230) {
+        if (pix[i] < 255 && pix[i] > 230 && correctRed) {
             pixels.push([255,0,0]);
         } else {
             pixels.push([pix[i], pix[i + 1], pix[i + 2]]);
