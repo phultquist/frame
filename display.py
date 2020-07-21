@@ -15,6 +15,7 @@ j = 0
 step = 2
 while j < len(pixels):
     pixels[j - step:j] = mbdtf[j - step:j]
+    j += step
 
 # for i in range(len(mbdtf)):
 #     pixels[i] = mbdtf[i]
