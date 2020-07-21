@@ -7,7 +7,7 @@ seconds = 0
 
 pixels = neopixel.NeoPixel(board.D18, 256)
 
-pixels = mbdtf
+# pixels = mbdtf
 
 # pixels.fill((238, 37, 65))
 
