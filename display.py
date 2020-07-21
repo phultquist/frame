@@ -9,7 +9,7 @@ mbdtf = [(238, 37, 65),(239, 41, 68),(238, 42, 68),(236, 44, 69),(238, 47, 72),(
 
 seconds = 0
 
-pixels = neopixel.NeoPixel(board.D18, n)
+pixels = neopixel.NeoPixel(board.D18, len(mbdtf))
 
 for i in range(len(mbdtf)):
     pixels[i] = mbdtf[i]
