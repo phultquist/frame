@@ -5,7 +5,7 @@ from mbdtf import *
 
 seconds = 0
 
-pixels = neopixel.NeoPixel(board.D18, 256, brightness = 0.03)
+pixels = neopixel.NeoPixel(board.D18, 256, brightness = 0.05)
 
 # pixels = mbdtf
 
