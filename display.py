@@ -11,5 +11,5 @@ pixels = mbdtf
 
 # pixels.fill((238, 37, 65))
 
-# for i in range(len(mbdtf)):
-#     pixels[i] = mbdtf[i]
+for i in range(len(mbdtf)):
+    pixels[i] = mbdtf[i]
