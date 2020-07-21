@@ -32,7 +32,7 @@ function setup() {
 
     let pix = img.pixels;
     let pixels = [];
-    let correctRed = false;
+    let correctRed = true;
     for (i = 0; i < pix.length; i += 4) {
         if (pix[i] < 255 && pix[i] > 230 && correctRed) {
             pixels.push([255,0,0]);
