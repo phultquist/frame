@@ -5,7 +5,7 @@ console.log(l);
 let input, button
 
 let img;
-let imgname = 'lucy.png'
+let imgname = 'goodbye.png'
 
 function preload() {
     img = loadImage(imgname);
