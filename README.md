@@ -1,5 +1,8 @@
 # Smart-Album-Cover
-[In Progress]
+A Beautiful Display of Music
+
+#### A Note About the Code
+As of right now, the code contains both NodeJS files and Python files. Since I'm better in JS, I started by writing most in JS then switched to Python.
 
 ## About
 This is a repository dedicated to the smart album cover display.
