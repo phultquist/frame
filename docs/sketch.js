@@ -22,7 +22,7 @@ function setup() {
         } else if (input.value() > 150) {
             alert('why')
         } else {
-            window.location = 'smart-album-cover/?n=' + input.value();
+            window.location = '/smart-album-cover/?n=' + input.value();
         }
     });
 
