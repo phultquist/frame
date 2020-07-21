@@ -23,6 +23,3 @@ for ri in range(len(imgpx)):
         imgpx[ri] = imgpx[ri][::-1]  # flips every 2 rows
     for ci in range(len(imgpx[0])):
         finalpx.append((imgpx[ri][ci][0], imgpx[ri][ci][1], imgpx[ri][ci][2]))
-
-flipped = PIL.Image.fromarray(imgpx)
-flipped.show()
