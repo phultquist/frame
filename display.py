@@ -12,7 +12,7 @@ pixels = neopixel.NeoPixel(board.D18, 256)
 # pixels.fill((238, 37, 65))
 
 j = 0
-step = 64
+step = 128
 while j < len(pixels) + 1:
     pixels[j - step:j] = mbdtf[j - step:j]
     j += step
