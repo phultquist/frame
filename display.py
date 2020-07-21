@@ -13,7 +13,7 @@ pixels = neopixel.NeoPixel(board.D18, 256)
 
 j = 0
 step = 32
-while j < len(pixels):
+while j < len(pixels) + 1:
     pixels[j - step:j] = mbdtf[j - step:j]
     j += step
 
