@@ -9,7 +9,7 @@ import numpy as np
 from datetime import datetime
 
 startTime = datetime.now()
-
+brt = 0.07
 patrick=False
 
 if not patrick:
@@ -21,15 +21,15 @@ if not patrick:
 ### Record Audio ###
 ####################
 
-duration = 6  # seconds
+duration = 10  # seconds
 fs = 44100
-
+print('Started Recording')
 recorded = sd.rec(int(duration * fs), samplerate=fs, channels=1)
 sd.wait()
 
 write('output.mp3', fs, recorded)  # Save as WAV file 
 
-print('done recording')
+print('Done Recording')
 
 #####################
 ### Get Image URL ###
@@ -87,7 +87,7 @@ print('Total Time: ' + str(datetime.now() - startTime))
 #####################
 
 if not patrick:
-    pixels = neopixel.NeoPixel(board.D18, 256, brightness = 0.1)
+    pixels = neopixel.NeoPixel(board.D18, 256, brightness = brt)
 
     j = 0
     step = 256
