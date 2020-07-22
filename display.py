@@ -3,8 +3,6 @@ import board
 import neopixel
 from cover import finalpx
 
-seconds = 0
-
 pixels = neopixel.NeoPixel(board.D18, 256, brightness = 0.1)
 
 j = 0
