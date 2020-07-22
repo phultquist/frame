@@ -1,9 +1,9 @@
 # Smart-Album-Cover
 A Beautiful Display of Music -- A Summer of Making Project by Addison and Patrick. 
 
-Funded by GitHub through Hack Club.
+**Funded by GitHub through Hack Club.**
 
-#### A Note About the Code
+### A Note About the Code
 As of right now, the code contains both NodeJS files and Python files. Since I'm better in JS, I started by writing most in JS then switched to Python.
 
 The `./testscripts/` folder contains most individual components of the application to be tested all at once. It is no longer maintained.
@@ -17,6 +17,11 @@ Running on a Raspberry Pi, this recognizes the live music playing and displays i
 
 ### Usage
 Create an Audd.io API Key and place it in `key`. You can use "test" as the key for up to 10 instances.
+
+Run the following commmands. 
+```bash
+python3 index.py
+```
 
 ### The Software 
 
