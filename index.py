@@ -21,7 +21,7 @@ if not patrick:
 ### Record Audio ###
 ####################
 
-duration = 4  # seconds
+duration = 6  # seconds
 fs = 44100
 
 recorded = sd.rec(int(duration * fs), samplerate=fs, channels=1)
