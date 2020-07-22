@@ -63,7 +63,7 @@ imgresp = requests.get(imgurl)
 img = PIL.Image.open(BytesIO(imgresp.content))
 
 img = img.resize((16, 16))
-img.show()
+# img.show()
 imgpx = np.array(img)
 finalpx = []
 for ri in range(len(imgpx)):
