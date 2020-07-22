@@ -10,9 +10,11 @@ from datetime import datetime
 
 startTime = datetime.now()
 brt = 0.07
-patrick=False
 
-if not patrick:
+# 
+setLeds=False
+
+if setLeds:
     import board
     import neopixel
 
@@ -23,6 +25,7 @@ if not patrick:
 
 duration = 10  # seconds
 fs = 44100
+
 print('Recording...')
 recorded = sd.rec(int(duration * fs), samplerate=fs, channels=1)
 sd.wait()
@@ -68,7 +71,7 @@ img = PIL.Image.open(BytesIO(imgresp.content))
 
 img = img.resize((16, 16))
 
-if patrick:
+if not setLeds:
     img.show()
 
 imgpx = np.array(img)
@@ -86,7 +89,7 @@ print('Total Time: ' + str(datetime.now() - startTime))
 ### Update Pixels ###
 #####################
 
-if not patrick:
+if setLeds:
     pixels = neopixel.NeoPixel(board.D18, 256, brightness = brt)
 
     j = 0

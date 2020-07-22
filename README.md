@@ -6,6 +6,8 @@ A Summer of Making Project by Addison and Patrick. Sponsored by GitHub and Hack 
 #### A Note About the Code
 As of right now, the code contains both NodeJS files and Python files. Since I'm better in JS, I started by writing most in JS then switched to Python.
 
+The `./testscripts` folder contains most individual components of the application to be tested all at once. It is no longer maintained.
+
 ## About
 This is a repository dedicated to the smart album cover display. 
 
