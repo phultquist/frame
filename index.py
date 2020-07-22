@@ -23,7 +23,7 @@ if not patrick:
 
 duration = 10  # seconds
 fs = 44100
-print('Started Recording')
+print('Recording...')
 recorded = sd.rec(int(duration * fs), samplerate=fs, channels=1)
 sd.wait()
 
@@ -40,7 +40,7 @@ image_data_binary = image_file.read()
 image_data = (base64.b64encode(image_data_binary))
 
 data = {
-    'return': 'spotify',
+    'return': 'apple_music',
     'api_token': '0295a1c0139a030849dd81359d92122a',
     'audio': image_data
 }
