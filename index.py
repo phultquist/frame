@@ -42,11 +42,11 @@ image_file= open('./output.mp3',"rb")
 image_data_binary = image_file.read()
 image_data = (base64.b64encode(image_data_binary))
 
-api_token_file = f = open('key', 'r')
+api_token_file = open('key', 'r')
 
 data = {
     'return': 'spotify',
-    'api_token': f.read(),
+    'api_token': api_token_file.read(),
     'audio': image_data
 }
 
