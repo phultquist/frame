@@ -9,7 +9,7 @@ function getData() {
       console.log(resp);
       var data = {
         'return': 'spotify',
-        'api_token': '0295a1c0139a030849dd81359d92122a',
+        'api_token': 'your-api-token',
         'audio': resp,
       };
 
