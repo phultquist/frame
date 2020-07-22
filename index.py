@@ -7,10 +7,14 @@ import PIL.Image
 from io import BytesIO
 import numpy as np
 from datetime import datetime
+
 startTime = datetime.now()
 
-import board
-import neopixel
+patrick=True
+
+if not patrick:
+    import board
+    import neopixel
 
 
 ####################
@@ -48,7 +52,7 @@ response = json.loads(result.text)
 try:
     print(response['result']['title'])
     print(response['result']['artist'])
-    imgurl = response['result']['spotify']['album']['images'][0]['url']
+    imgurl = response['result']['spotify']['album']['images'][2]['url']
 except:
     print('### error 1 ###')
     print(response)
@@ -63,7 +67,10 @@ imgresp = requests.get(imgurl)
 img = PIL.Image.open(BytesIO(imgresp.content))
 
 img = img.resize((16, 16))
-# img.show()
+
+if patrick:
+    img.show()
+
 imgpx = np.array(img)
 finalpx = []
 for ri in range(len(imgpx)):
@@ -79,13 +86,13 @@ print('Total Time: ' + str(datetime.now() - startTime))
 ### Update Pixels ###
 #####################
 
+if not patrick:
+    pixels = neopixel.NeoPixel(board.D18, 256, brightness = 0.1)
 
-pixels = neopixel.NeoPixel(board.D18, 256, brightness = 0.1)
+    j = 0
+    step = 256
 
-j = 0
-step = 256
-
-# for the life of me, i have no idea why this has to be a loop. i tried pixels = mbdtf and every time it showed funky colors, so here we are
-while j < len(pixels) + 1:
-    pixels[j - step:j] = finalpx[j - step:j]
-    j += step
+    # for the life of me, i have no idea why this has to be a loop. i tried pixels = mbdtf and every time it showed funky colors, so here we are
+    while j < len(pixels) + 1:
+        pixels[j - step:j] = finalpx[j - step:j]
+        j += step
