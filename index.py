@@ -40,7 +40,7 @@ image_data_binary = image_file.read()
 image_data = (base64.b64encode(image_data_binary))
 
 data = {
-    'return': 'apple_music',
+    'return': 'spotify',
     'api_token': '0295a1c0139a030849dd81359d92122a',
     'audio': image_data
 }
