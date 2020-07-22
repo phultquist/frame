@@ -10,7 +10,7 @@ from datetime import datetime
 
 startTime = datetime.now()
 
-patrick=True
+patrick=False
 
 if not patrick:
     import board
