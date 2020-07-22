@@ -11,7 +11,7 @@ from datetime import datetime
 startTime = datetime.now()
 brt = 0.07
 
-# 
+# if the LED strip is not on you, that is okay, make sure this is set to false
 setLeds=False
 
 if setLeds:
