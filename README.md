@@ -8,6 +8,8 @@ As of right now, the code contains both NodeJS files and Python files. Since I'm
 
 The `./testscripts` folder contains most individual components of the application to be tested all at once. It is no longer maintained.
 
+The `./nodetest` folder is for the initial testing of the Audd.io API. It is no longer maintained.
+
 ## About
 This is a repository dedicated to the smart album cover display. 
 
