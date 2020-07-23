@@ -46,7 +46,7 @@ api_token_file = open('key', 'r')
 
 data = {
     'return': 'spotify',
-    'api_token': api_token_file.read(),
+    'api_token': api_token_file.read().split("\n")[0],
     'audio': image_data
 }
 
