@@ -18,7 +18,7 @@ Running on a Raspberry Pi, this recognizes the live music playing and displays i
 ### Usage
 Create an Audd.io API Key and place it in `key`. You can use "test" as the key for up to 10 instances.
 
-Run the following commmand. 
+After installing all packages, run the following commmand:
 ```bash
 python3 index.py
 ```
