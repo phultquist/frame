@@ -1,5 +1,5 @@
-# Smart-Album-Cover
-A Beautiful Display of Music -- A Summer of Making Project by Addison and Patrick. 
+# Smart Album Cover: A Beautiful Display of Music
+A Summer of Making Project by Addison and Patrick. 
 
 **Funded by GitHub through Hack Club.**
 
