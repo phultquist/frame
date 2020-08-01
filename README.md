@@ -20,11 +20,11 @@ Create an Audd.io API Key and place it in `key`. You can use "test" as the key f
 
 After installing all packages, run the following commmand:
 ```bash
-python3 index.py
+$ python3 index.py
 ```
 If that causes a permissions error, run
 ```bash
-sudo python3 index.py
+$ sudo python3 index.py
 ```
 
 ### The Software 
