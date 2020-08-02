@@ -19,7 +19,7 @@ token = util.prompt_for_user_token(loginUsername,
 
 sp = spotipy.Spotify(auth=token)
 
-print(sp.currently_playing())
+playing = sp.currently_playing()
 
 # spotify.currently_playing()
 # results = spotify.artist_albums(birdy_uri, album_type='album')
