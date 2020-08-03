@@ -21,6 +21,7 @@ setLeds=False
 if setLeds:
     import board
     import neopixel
+    pixels = neopixel.NeoPixel(board.D18, 256, brightness = brt)
 
 def get_image():
     try:
@@ -35,7 +36,6 @@ def get_image():
 ################################
 ### Get Image and Manipulate ###
 ################################
-
 
 def manipulate(imgurl):
     imgresp = requests.get(imgurl)
@@ -60,8 +60,6 @@ def manipulate(imgurl):
 
 def update_pixels(finalpx):
     if setLeds:
-        pixels = neopixel.NeoPixel(board.D18, 256, brightness = brt)
-
         j = 0
         step = 256
 
@@ -73,7 +71,6 @@ def update_pixels(finalpx):
         img.show()
 
 def main(last_image_url):
-    caching.clear_cache()
     imgurl = get_image()
     if (imgurl == last_image_url) or (imgurl == None):
         pass
