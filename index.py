@@ -7,7 +7,6 @@ import PIL.Image
 from io import BytesIO
 import numpy as np
 from datetime import datetime
-from streamlit import caching
 import spotify
 
 startTime = datetime.now()
