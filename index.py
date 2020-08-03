@@ -8,6 +8,7 @@ from io import BytesIO
 import numpy as np
 from datetime import datetime
 import spotify
+import time
 
 startTime = datetime.now()
 brt = 0.07
@@ -20,6 +21,7 @@ setLeds=True
 if setLeds:
     import board
     import neopixel
+    time.sleep(2)
     pixels = neopixel.NeoPixel(board.D18, 256, brightness = brt)
 
 def get_image():
