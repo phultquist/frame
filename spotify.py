@@ -28,7 +28,6 @@ def song():
     name = playing.get("item").get("name")
     if not (playing.get('is_playing')):
         return None
-    print(name)
     return image_url
 # spotify.currently_playing()
 # results = spotify.artist_albums(birdy_uri, album_type='album')
@@ -39,4 +38,3 @@ def song():
 
 # for album in albums:
 #     print(album['name'])
-song()
