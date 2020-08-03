@@ -7,6 +7,7 @@ import PIL.Image
 from io import BytesIO
 import numpy as np
 from datetime import datetime
+from streamlit import caching
 import spotify
 
 startTime = datetime.now()
@@ -72,6 +73,7 @@ def update_pixels(finalpx):
         img.show()
 
 def main(last_image_url):
+    caching.clear_cache()
     imgurl = get_image()
     if (imgurl == last_image_url) or (imgurl == None):
         pass
