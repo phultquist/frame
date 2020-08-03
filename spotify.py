@@ -1,5 +1,6 @@
 import spotipy
 import spotipy.util as util
+import json
 from secrets import SPOTIPY_CLIENT_ID, SPOTIPY_CLIENT_SECRET
 
 import os
@@ -19,8 +20,13 @@ token = util.prompt_for_user_token(loginUsername,
 
 sp = spotipy.Spotify(auth=token)
 
-playing = sp.currently_playing()
 
+def song():
+    playing = sp.currently_playing()
+
+    image_url = (playing.get("item").get("album").get("images")[2].get('url'))
+    name = playing.get("item").get("name")
+    return image_url
 # spotify.currently_playing()
 # results = spotify.artist_albums(birdy_uri, album_type='album')
 # albums = results['items']
