@@ -20,12 +20,15 @@ token = util.prompt_for_user_token(loginUsername,
 
 sp = spotipy.Spotify(auth=token)
 
-
 def song():
     playing = sp.currently_playing()
-
+    if playing == None:
+        return None
     image_url = (playing.get("item").get("album").get("images")[2].get('url'))
     name = playing.get("item").get("name")
+    if not (playing.get('is_playing')):
+        return None
+    print(name)
     return image_url
 # spotify.currently_playing()
 # results = spotify.artist_albums(birdy_uri, album_type='album')
@@ -36,3 +39,4 @@ def song():
 
 # for album in albums:
 #     print(album['name'])
+song()

@@ -73,7 +73,7 @@ def update_pixels(finalpx):
 
 def main(last_image_url):
     imgurl = get_image()
-    if (imgurl == last_image_url):
+    if (imgurl == last_image_url) or (imgurl == None):
         pass
     else:
         px = manipulate(imgurl)
