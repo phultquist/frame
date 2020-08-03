@@ -20,7 +20,6 @@ setLeds=False
 if setLeds:
     import board
     import neopixel
-    pixels = neopixel.NeoPixel(board.D18, 256, brightness = brt)
 
 def get_image():
     try:
@@ -59,6 +58,7 @@ def manipulate(imgurl):
 
 def update_pixels(finalpx):
     if setLeds:
+        pixels = neopixel.NeoPixel(board.D18, 256, brightness = brt)
         j = 0
         step = 256
 
