@@ -15,7 +15,7 @@ brt = 0.07
 img = None
 
 # if the LED strip is not on you, that is okay, make sure this is set to false
-setLeds=False
+setLeds=True
 
 if setLeds:
     import board

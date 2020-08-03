@@ -26,7 +26,7 @@ def song():
         return None
     image_url = (playing.get("item").get("album").get("images")[2].get('url'))
     name = playing.get("item").get("name")
-    print(name)
+    # print(name)
     return image_url
 # spotify.currently_playing()
 # results = spotify.artist_albums(birdy_uri, album_type='album')
