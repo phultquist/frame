@@ -15,11 +15,12 @@ brt = 0.07
 img = None
 
 # if the LED strip is not on you, that is okay, make sure this is set to false
-setLeds=False
+setLeds=True
 
 if setLeds:
     import board
     import neopixel
+    pixels = neopixel.NeoPixel(board.D18, 256, brightness = brt)
 
 def get_image():
     try:
@@ -58,7 +59,6 @@ def manipulate(imgurl):
 
 def update_pixels(finalpx):
     if setLeds:
-        pixels = neopixel.NeoPixel(board.D18, 256, brightness = brt)
         j = 0
         step = 256
 
