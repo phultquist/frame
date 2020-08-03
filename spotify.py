@@ -1,14 +1,14 @@
 import spotipy
 import spotipy.util as util
 import json
-from secrets import SPOTIPY_CLIENT_ID, SPOTIPY_CLIENT_SECRET
+from secrets import SPOTIPY_CLIENT_ID, SPOTIPY_CLIENT_SECRET, username
 
 import os
 
 os.environ["SPOTIPY_CLIENT_ID"] = SPOTIPY_CLIENT_ID
 os.environ["SPOTIPY_CLIENT_SECRET"] = SPOTIPY_CLIENT_SECRET
 
-loginUsername = "jdiaalhsw8zdhpcdv391bj5we"
+loginUsername = username
 scope = 'user-read-private user-read-playback-state user-modify-playback-state'  # what the program is allowed to modify
 
 birdy_uri = 'spotify:artist:2WX2uTcsvV5OnS0inACecP'
@@ -22,7 +22,6 @@ sp = spotipy.Spotify(auth=token)
 
 def song():
     playing = sp.currently_playing()
-    print(playing)
     if (playing == None) or (not (playing.get('is_playing'))):
         return None
     image_url = (playing.get("item").get("album").get("images")[2].get('url'))
