@@ -16,12 +16,12 @@ brt = 0.07
 img = None
 
 # if the LED strip is not on you, that is okay, make sure this is set to false
-setLeds=False
+setLeds=True
 
 if setLeds:
     import board
     import neopixel
-    time.sleep(2)
+    time.sleep(1)
     pixels = neopixel.NeoPixel(board.D18, 256, brightness = brt)
 
 def get_image():
@@ -55,7 +55,7 @@ def manipulate(imgurl):
                 finalpx.append((imgpx[ri][ci][0], imgpx[ri][ci][1], imgpx[ri][ci][2]))
     except:
         print('something is wrong with the image with url ' + imgurl)
-        
+
     return finalpx
 
 #####################
