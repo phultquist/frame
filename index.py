@@ -69,8 +69,7 @@ def manipulate(imgurl):
                 r = imgpx[ri][ci]
                 g = imgpx[ri][ci]
                 b = imgpx[ri][ci]
-            # print(imgpx[ri][ci][1])
-            # print(imgpx[ri][ci][2])
+
             finalpx.append((r, g, b))
         # print('something is wrong with the image with url ' + imgurl)
 
