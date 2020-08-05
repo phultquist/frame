@@ -22,9 +22,9 @@ except:
 if brt > 100:
     brt = 100
 
-if brt < 0
+if brt < 0:
     brt = 0
-    
+
 img = None
 
 # if the LED strip is not on you, that is okay, make sure this is set to false
