@@ -23,6 +23,7 @@ sp = spotipy.Spotify(auth=token)
 def song():
     playing = sp.currently_playing()
     if (playing == None) or (not (playing.get('is_playing'))):
+        print('paused or stopped')
         return "https://i.ibb.co/72zcBZR/Group-2.png"
     image_url = (playing.get("item").get("album").get("images")[0].get('url'))
     name = playing.get("item").get("name")

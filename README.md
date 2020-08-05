@@ -10,6 +10,10 @@ The `./testscripts/` folder contains most individual components of the applicati
 
 The `./nodetest/` folder is for the initial testing of the Audd.io API. It is no longer maintained.
 
+## Some milestones
+
+>Due to the data wire from the Raspberry Pi to the led strip acting as an antenna, and producing random, glitchy, flashing patterns, we decided to replace the  data line as well as the common ground wire with a shielded wire taken from a scrap usb cable, which completely eliminated the display errors, even with a slightly longer wire from the pi to the led strip.
+
 ## About
 This is a repository dedicated to the smart album cover display. 
 

@@ -16,7 +16,7 @@ brt = 0.07
 img = None
 
 # if the LED strip is not on you, that is okay, make sure this is set to false
-setLeds=True
+setLeds=False
 
 if setLeds:
     import board
@@ -47,14 +47,23 @@ def manipulate(imgurl):
 
     imgpx = np.array(img)
     finalpx = []
-    try:
-        for ri in range(len(imgpx)):
-            if ri % 2 == 1:
-                imgpx[ri] = imgpx[ri][::-1]  # flips every 2 rows
-            for ci in range(len(imgpx[0])):
-                finalpx.append((imgpx[ri][ci][0], imgpx[ri][ci][1], imgpx[ri][ci][2]))
-    except:
-        print('something is wrong with the image with url ' + imgurl)
+    for ri in range(len(imgpx)):
+        if ri % 2 == 1:
+            imgpx[ri] = imgpx[ri][::-1]  # flips every 2 rows
+        for ci in range(len(imgpx[0])):
+            # print(imgpx)
+            try:
+                r = imgpx[ri][ci][0]
+                g = imgpx[ri][ci][1]
+                b = imgpx[ri][ci][2]
+            except:
+                r = imgpx[ri][ci]
+                g = imgpx[ri][ci]
+                b = imgpx[ri][ci]
+            # print(imgpx[ri][ci][1])
+            # print(imgpx[ri][ci][2])
+            finalpx.append((r, g, b))
+        # print('something is wrong with the image with url ' + imgurl)
 
     return finalpx
 
@@ -72,7 +81,8 @@ def update_pixels(finalpx):
             pixels[j - step:j] = finalpx[j - step:j]
             j += step
     else:
-        img.show()
+        # img.show()
+        return
 
 def main(last_image_url):
     imgurl = get_image()
