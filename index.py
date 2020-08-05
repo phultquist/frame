@@ -28,7 +28,7 @@ if brt < 0:
 img = None
 
 # if the LED strip is not on you, that is okay, make sure this is set to false
-setLeds=True
+setLeds=False
 
 if setLeds:
     import board
@@ -92,7 +92,7 @@ def update_pixels(finalpx):
             pixels[j - step:j] = finalpx[j - step:j]
             j += step
     else:
-        # img.show()
+        img.show()
         return
 
 def main(last_image_url):

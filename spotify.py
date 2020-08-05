@@ -25,7 +25,9 @@ def song():
     if (playing == None) or (not (playing.get('is_playing'))):
         print('paused or stopped')
         return "https://i.ibb.co/72zcBZR/Group-2.png"
-    image_url = (playing.get("item").get("album").get("images")[0].get('url'))
+    images_returned = playing.get("item").get("album").get("images")
+    print(images_returned)
+    image_url = (images_returned[len(images_returned) - 1].get('url'))
     name = playing.get("item").get("name")
     print(name)
     return image_url
