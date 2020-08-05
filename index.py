@@ -47,12 +47,15 @@ def manipulate(imgurl):
 
     imgpx = np.array(img)
     finalpx = []
-    for ri in range(len(imgpx)):
-        if ri % 2 == 1:
-            imgpx[ri] = imgpx[ri][::-1]  # flips every 2 rows
-        for ci in range(len(imgpx[0])):
-            finalpx.append((imgpx[ri][ci][0], imgpx[ri][ci][1], imgpx[ri][ci][2]))
-
+    try:
+        for ri in range(len(imgpx)):
+            if ri % 2 == 1:
+                imgpx[ri] = imgpx[ri][::-1]  # flips every 2 rows
+            for ci in range(len(imgpx[0])):
+                finalpx.append((imgpx[ri][ci][0], imgpx[ri][ci][1], imgpx[ri][ci][2]))
+    except:
+        print('something is wrong with the image with url ' + imgurl)
+        
     return finalpx
 
 #####################
