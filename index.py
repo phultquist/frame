@@ -33,7 +33,6 @@ setLeds=True
 if setLeds:
     import board
     import neopixel
-    time.sleep(1)
     pixels = neopixel.NeoPixel(board.D18, 256, brightness = brt)
 
 def get_image():
