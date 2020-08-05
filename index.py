@@ -6,13 +6,10 @@ from scipy.io.wavfile import write
 import PIL.Image
 from io import BytesIO
 import numpy as np
-from datetime import datetime
 import spotify
 import time
 import sys
 import exceptions
-
-startTime = datetime.now()
 
 try:
     brt = int(sys.argv[1]) / 100
@@ -29,7 +26,7 @@ if brt < 0:
 img = None
 
 # if the LED strip is not on you, that is okay, make sure this is set to false
-setLeds=True
+setLeds=False
 
 if setLeds:
     import board
