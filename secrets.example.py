@@ -2,4 +2,8 @@
 
 SPOTIPY_CLIENT_ID = 'your-spotify-client-id'
 SPOTIPY_CLIENT_SECRET = 'your-spotify-client-secret'
-username = 'your-username'
+
+# want to see what patrick has been listening to? 
+#   set username to 'jdiaalhsw8zdhpcdv391bj5we'
+
+username = 'your-username' 

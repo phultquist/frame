@@ -26,17 +26,8 @@ def song():
         print('paused or stopped')
         return "https://i.ibb.co/72zcBZR/Group-2.png"
     images_returned = playing.get("item").get("album").get("images")
-    # print(images_returned)
     image_url = (images_returned[len(images_returned) - 1].get('url'))
     name = playing.get("item").get("name")
     print(name)
     return image_url
-# spotify.currently_playing()
-# results = spotify.artist_albums(birdy_uri, album_type='album')
-# albums = results['items']
-# while results['next']:
-#     results = spotify.next(results)
-#     albums.extend(results['items'])
 
-# for album in albums:
-#     print(album['name'])
