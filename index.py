@@ -9,9 +9,16 @@ import numpy as np
 from datetime import datetime
 import spotify
 import time
+import sys
 
 startTime = datetime.now()
-brt = 0.07
+
+try:
+    brt = int(sys.argv[1]) / 100
+except:
+    brt = 0.07
+
+# print(brt)
 
 img = None
 
