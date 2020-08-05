@@ -41,7 +41,7 @@ def get_image():
         imgurl = spotify.song()
     except:
         print('### error 1 ###')
-        imgurl = exceptions.ERROR_IMAGGE # error 1
+        imgurl = exceptions.ERROR_IMAGE # error 1
 
     return imgurl
 
