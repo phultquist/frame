@@ -29,7 +29,7 @@ if brt < 0:
 img = None
 
 # if the LED strip is not on you, that is okay, make sure this is set to false
-setLeds=True
+setLeds=False
 
 if setLeds:
     import board
