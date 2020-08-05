@@ -10,6 +10,7 @@ from datetime import datetime
 import spotify
 import time
 import sys
+import exceptions
 
 startTime = datetime.now()
 
@@ -40,7 +41,7 @@ def get_image():
         imgurl = spotify.song()
     except:
         print('### error 1 ###')
-        imgurl = 'https://i.ibb.co/Q85tMW2/e1.png' # error 1
+        imgurl = exceptions.ERROR_IMAGGE # error 1
 
     return imgurl
 

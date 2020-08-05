@@ -2,7 +2,7 @@ import spotipy
 import spotipy.util as util
 import json
 from secrets import SPOTIPY_CLIENT_ID, SPOTIPY_CLIENT_SECRET, username
-
+import exceptions
 import os
 
 os.environ["SPOTIPY_CLIENT_ID"] = SPOTIPY_CLIENT_ID
@@ -24,7 +24,8 @@ def song():
     playing = sp.currently_playing()
     if (playing == None) or (not (playing.get('is_playing'))):
         print('paused or stopped')
-        return "https://i.ibb.co/72zcBZR/Group-2.png"
+        return exceptions.PAUSED_IMAGE
+        
     images_returned = playing.get("item").get("album").get("images")
     image_url = (images_returned[len(images_returned) - 1].get('url'))
     name = playing.get("item").get("name")
