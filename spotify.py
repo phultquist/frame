@@ -43,5 +43,6 @@ def song():
         "name": name,
         "artist_names": artist_names,
         "fullsize_image_url": images_returned[0].get('url'),
-        "raw": json.dumps(playing)
+        "raw": json.dumps(playing),
+        "ready": True
     }

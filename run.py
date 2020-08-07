@@ -34,9 +34,6 @@ class Handler(BaseHTTPRequestHandler):
         message = "<html><body><img src='"+last_song.get('fullsize_image_url')+"'><h1>"+last_song.get('name')+"</h1><h2>"+last_song.get('artist_names')+"</h2><h3>Reload for changes</h3><p>"+last_song.get('raw')+"</p></body></html>"
         self.wfile.write(message.encode())
 
-    def do_POST(self):
-        print(self.rfile.read())
-
 def server():
     run(handler_class=Handler)
 
@@ -49,5 +46,6 @@ if __name__=='__main__':
     musicThread = threading.Thread(target=music)
 
     musicThread.start()
-    time.sleep(2)
+    while (not last_song.get("ready")):
+        pass
     serverThread.start()
