@@ -23,7 +23,7 @@ if setLeds:
 ### Record Audio ###
 ####################
 
-duration = 10  # seconds
+duration = 6  # seconds
 fs = 44100
 
 print('Recording...')
@@ -38,16 +38,16 @@ print('Done Recording')
 ### Get Image URL ###
 #####################
 
-image_file= open('./output.mp3',"rb")
-image_data_binary = image_file.read()
-image_data = (base64.b64encode(image_data_binary))
+sound_file= open('./output.mp3',"rb")
+sound_data_binary = sound_file.read()
+sound_data = (base64.b64encode(sound_data_binary))
 
 api_token_file = open('key', 'r')
 
 data = {
     'return': 'spotify',
     'api_token': api_token_file.read().split("\n")[0],
-    'audio': image_data
+    'audio': sound_data
 }
 
 result = requests.post('https://api.audd.io/', data=data)
