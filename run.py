@@ -16,7 +16,7 @@ def job():
     global last_song
     last_song = index.main(last_song.get('image_url'))
 
-schedule.every(1).seconds.do(job)
+schedule.every(0.5).seconds.do(job)
 
 def run(server_class=HTTPServer, handler_class=BaseHTTPRequestHandler):
   print("Log server started: http://localhost:8000")
