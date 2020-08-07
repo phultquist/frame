@@ -42,10 +42,11 @@ def music():
         schedule.run_pending()
 
 if __name__=='__main__':
-    serverThread = threading.Thread(target=server)
     musicThread = threading.Thread(target=music)
-
     musicThread.start()
-    while (not last_song.get("ready")):
-        pass
-    serverThread.start()
+
+    if not index.setLeds:
+        serverThread = threading.Thread(target=server)
+        while (not last_song.get("ready")):
+            pass
+        serverThread.start()
