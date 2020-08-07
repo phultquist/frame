@@ -1,5 +1,6 @@
 output.mp3
 key
+secrets.py
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
