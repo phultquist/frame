@@ -11,12 +11,16 @@ import webbrowser
 
 # initializes the last song so that way there is no error
 last_song = exceptions.exc_object(False)
+num_runs = 0
 
 def job():
     global last_song
+    global num_runs
+    num_runs += 1
     last_song = index.main(last_song.get('image_url'))
 
-schedule.every(0.5).seconds.do(job)
+refresh_rate = 0.5 # seconds per refresh
+schedule.every(refresh_rate).seconds.do(job)
 
 def run(server_class=HTTPServer, handler_class=BaseHTTPRequestHandler):
   print("Log server started: http://localhost:8000")
@@ -47,6 +51,7 @@ if __name__=='__main__':
 
     if not index.setLeds:
         serverThread = threading.Thread(target=server)
+        print("Play a song to get started")
         while (not last_song.get("ready")):
             pass
         serverThread.start()
