@@ -26,16 +26,19 @@ if brt < 0:
 img = None
 
 # if the LED strip is not on you, that is okay, make sure this is set to false
-setLeds=False
+setLeds=True
+
+if sys.argv[1] == "test":
+    setLeds = False
 
 if setLeds:
     import board
     import neopixel
     pixels = neopixel.NeoPixel(board.D18, 256, brightness = brt)
 
-def get_image():
+def get_image(song):
     try:
-        imgurl = spotify.song()
+        imgurl = song.get('image_url')
     except:
         print('### error 1 ###')
         imgurl = exceptions.ERROR_IMAGE # error 1
@@ -89,14 +92,16 @@ def update_pixels(finalpx):
             pixels[j - step:j] = finalpx[j - step:j]
             j += step
     else:
-        img.show()
+        # img.show()
         return
 
 def main(last_image_url):
-    imgurl = get_image()
+    song = spotify.song()
+    imgurl = get_image(song)
     if (imgurl == last_image_url) or (imgurl == None):
         pass
     else:
+        print(song.get('name'))
         px = manipulate(imgurl)
         update_pixels(px)
-    return imgurl
+    return song
