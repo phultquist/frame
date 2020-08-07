@@ -74,7 +74,8 @@ img = PIL.Image.open(BytesIO(imgresp.content))
 img = img.resize((16, 16))
 
 if not setLeds:
-    img.show()
+    pass
+    # img.show()
 
 imgpx = np.array(img)
 finalpx = []
