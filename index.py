@@ -28,8 +28,11 @@ img = None
 # if the LED strip is not on you, that is okay, make sure this is set to false
 setLeds=True
 
-if sys.argv[1] == "test":
-    setLeds = False
+try:
+    if sys.argv[1] == "test":
+        setLeds = False
+except:
+    pass
 
 if setLeds:
     import board
