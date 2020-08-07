@@ -46,6 +46,6 @@ if __name__=='__main__':
     musicThread = threading.Thread(target=music)
 
     musicThread.start()
-    # while (not last_song.get("ready")):
-    #     pass
-    # serverThread.start()
+    while (not last_song.get("ready")):
+        pass
+    serverThread.start()
