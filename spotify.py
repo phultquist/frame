@@ -25,7 +25,7 @@ sp = spotipy.Spotify(auth=token)
 def song():
     playing = sp.currently_playing()
     if (playing == None) or (not (playing.get('is_playing'))):
-        return exceptions.exc_object(False)
+        return exceptions.exc_object(False, json.dumps(playing))
 
     images_returned = playing.get("item").get("album").get("images")
     image_url = (images_returned[len(images_returned) - 1].get('url'))
