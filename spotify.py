@@ -4,6 +4,7 @@ from secrets import SPOTIPY_CLIENT_ID, SPOTIPY_CLIENT_SECRET, username
 import exceptions
 import os
 import json
+import time
 
 os.environ["SPOTIPY_CLIENT_ID"] = SPOTIPY_CLIENT_ID
 os.environ["SPOTIPY_CLIENT_SECRET"] = SPOTIPY_CLIENT_SECRET
@@ -13,25 +14,37 @@ loginUsername = username
 scope = 'user-read-private user-read-playback-state user-modify-playback-state'
 
 birdy_uri = 'spotify:artist:2WX2uTcsvV5OnS0inACecP'
-token = util.prompt_for_user_token(loginUsername,
-                                   scope,
-                                   client_id=SPOTIPY_CLIENT_ID,
-                                   client_secret=SPOTIPY_CLIENT_SECRET,
-                                   redirect_uri="http://localhost:3000/")
+token = util.prompt_for_user_token(loginUsername, scope, client_id=SPOTIPY_CLIENT_ID, client_secret=SPOTIPY_CLIENT_SECRET, redirect_uri="http://localhost:3000/")
 
 sp = spotipy.Spotify(auth=token)
 
+pause_time = 0
+screen_off = False
 
 def song():
+    global pause_time
+    global screen_off
+
     playing = sp.currently_playing()
     if (playing == None) or (not (playing.get('is_playing'))):
-        return exceptions.exc_object(False, json.dumps(playing))
+        if pause_time == 0:
+            pause_time = time.time()
+        if (time.time() - pause_time) > 3:
+            if not screen_off:
+                print('Shutting off...')
+            screen_off = True
+            return exceptions.exc_object('off', 'screen off')
+
+        return exceptions.exc_object('paused', json.dumps(playing))
+    else: 
+        screen_off = False
+        pause_time = 0
 
     try:
         images_returned = playing.get("item").get("album").get("images")
         image_url = (images_returned[len(images_returned) - 1].get('url'))
     except:
-        return exceptions.exc_object(False, json.dumps(playing))
+        return exceptions.exc_object('error', json.dumps(playing))
 
     artists = playing.get("item").get("album").get('artists')
     name = playing.get("item").get('name')

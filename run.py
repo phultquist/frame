@@ -10,7 +10,7 @@ import exceptions
 import webbrowser
 
 # initializes the last song so that way there is no error
-last_song = exceptions.exc_object(False)
+last_song = exceptions.exc_object('off')
 num_runs = 0
 
 def job():

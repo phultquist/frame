@@ -7,7 +7,6 @@ import PIL.Image
 from io import BytesIO
 import numpy as np
 import spotify
-import time
 import sys
 import exceptions
 
@@ -107,39 +106,20 @@ def update_pixels(finalpx):
             pixels[j - step:j] = finalpx[j - step:j]
             j += step
     else:
-        # img.show()
+        img.show()
         return
 
-pause_time = 0
-screen_off = False
-
 def main(last_image_url):
-    global pause_time
-    global screen_off
     song = spotify.song()
     imgurl = get_image(song)
     if (imgurl == last_image_url) or (imgurl == None):
         # note: this specifies if the image url is the same or not. Meaning, that if two songs are from the same album it won't do anything; it won't print the song name or anything.
         pass
     else:
-        if song.get('playing'):
-            print(song.get('name'))
+        # if song.get('playing'):
+        print(song.get('name'))
         px = manipulate(imgurl)
+        print(imgurl)
         update_pixels(px)
-    
-    shutoff_time = 60 # seconds
-
-    if (song.get('playing') == False) and (pause_time == 0):
-        pause_time = time.time()
-    elif (song.get('playing') == False) and not (pause_time == 0):
-        if (time.time() - pause_time > shutoff_time):
-            if not screen_off:
-                print("Shutting off...")
-            #don't play
-            screen_off = True
-            return exceptions.exc_object('off', 'screen is shut off')
-    else:
-        pause_time = 0
-        screen_off = False
 
     return song
