@@ -124,7 +124,7 @@ def main(last_image_url):
     if (song.get('playing') == False) and (time_since_pause == 0):
         time_since_pause = time.time()
     elif (song.get('playing') == False) and not (time_since_pause == 0):
-        if (time.time() - time_since_pause > 5): #fifteen seconds till shutoff
+        if (time.time() - time_since_pause > 60): #sixty seconds till shutoff
             #don't play
             print("time to shut off")
             return False
