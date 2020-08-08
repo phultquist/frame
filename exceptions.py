@@ -11,5 +11,6 @@ def exc_object(error, raw="reload for updates"):
         "fullsize_image_url": imgurl,
         "artist_names": 'Paused/Stopped',
         "raw": raw,
-        "ready": False
+        "ready": False,
+        "playing": False
     }

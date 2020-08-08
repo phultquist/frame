@@ -29,7 +29,6 @@ def run(server_class=HTTPServer, handler_class=BaseHTTPRequestHandler):
   httpd = server_class(server_address, handler_class)
   httpd.serve_forever()
 
-
 class Handler(BaseHTTPRequestHandler):
     def do_GET(self):
         self.send_response(200)
@@ -49,7 +48,7 @@ if __name__=='__main__':
     musicThread = threading.Thread(target=music)
     musicThread.start()
 
-    if not index.setLeds:
+    if (not index.setLeds) and (index.run_server):
         serverThread = threading.Thread(target=server)
         print("Play a song to get started")
         while (not last_song.get("ready")):

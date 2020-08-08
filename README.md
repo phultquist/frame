@@ -24,11 +24,26 @@ Create an Audd.io API Key and place it in `key`. You can use "test" as the key f
 
 After installing all packages, run the following commmand:
 ```bash
-$ python3 index.py
+$ python3 run.py
 ```
 If that causes a permissions error, run
 ```bash
-$ sudo python3 index.py
+$ sudo python3 run.py
+```
+
+To set brightness 10%, run
+```bash
+$ python3 run.py 10
+```
+
+To run in testing mode (no screen), run
+```bash
+$ python3 run.py test
+```
+
+By default, a server is included for debugging and viewing. This puts the song on the server live. To turn this off, run
+```bash
+$ python3 run.py [brightness%/test] noserver
 ```
 
 ### The Software 

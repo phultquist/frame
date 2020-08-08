@@ -27,8 +27,12 @@ def song():
     if (playing == None) or (not (playing.get('is_playing'))):
         return exceptions.exc_object(False, json.dumps(playing))
 
-    images_returned = playing.get("item").get("album").get("images")
-    image_url = (images_returned[len(images_returned) - 1].get('url'))
+    try:
+        images_returned = playing.get("item").get("album").get("images")
+        image_url = (images_returned[len(images_returned) - 1].get('url'))
+    except:
+        return exceptions.exc_object(False, json.dumps(playing))
+
     artists = playing.get("item").get("album").get('artists')
     name = playing.get("item").get('name')
     artist_names = ""
@@ -44,5 +48,6 @@ def song():
         "artist_names": artist_names,
         "fullsize_image_url": images_returned[0].get('url'),
         "raw": json.dumps(playing),
-        "ready": True
+        "ready": True,
+        "playing": True
     }

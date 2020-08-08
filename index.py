@@ -23,9 +23,14 @@ brt = 0.07
 if get_argument(1) != False and type(get_argument(1)) is int:
     brt = int(sys.argv[1]) / 100
 
+if get_argument(2) == 'noserver':
+    run_server = False
+else:
+    run_server = True
+
 # print(brt)
 if brt > 1:
-    brt = 100
+    brt = 1
 
 if brt < 0:
     brt = 0
@@ -102,7 +107,11 @@ def update_pixels(finalpx):
         # img.show()
         return
 
+time_since_pause = 0
+
 def main(last_image_url):
+    global time_since_pause
+
     song = spotify.song()
     imgurl = get_image(song)
     if (imgurl == last_image_url) or (imgurl == None):
@@ -111,4 +120,16 @@ def main(last_image_url):
         print(song.get('name'))
         px = manipulate(imgurl)
         update_pixels(px)
+    
+    if (song.get('playing') == False) and (time_since_pause == 0):
+        time_since_pause = time.time()
+    elif (song.get('playing') == False) and not (time_since_pause == 0):
+        if (time.time() - time_since_pause > 5): #fifteen seconds till shutoff
+            #don't play
+            print("time to shut off")
+            return False
+            pass
+    else:
+        time_since_pause = 0
+
     return song
