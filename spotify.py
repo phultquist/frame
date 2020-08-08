@@ -20,6 +20,7 @@ sp = spotipy.Spotify(auth=token)
 
 pause_time = 0
 screen_off = False
+shutoff_time = 60
 
 def song():
     global pause_time
@@ -29,7 +30,7 @@ def song():
     if (playing == None) or (not (playing.get('is_playing'))):
         if pause_time == 0:
             pause_time = time.time()
-        if (time.time() - pause_time) > 3:
+        if (time.time() - pause_time) > shutoff_time:
             if not screen_off:
                 print('Shutting off...')
             screen_off = True
