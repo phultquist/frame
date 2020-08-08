@@ -1,4 +1,4 @@
-# This script uses a running while loop to run index.py every 3 seconds
+# This script uses a running while loop to run index.py every so often
 # Totally honestly, I am not super proud of how this is done, but it must be done.
 
 import time
