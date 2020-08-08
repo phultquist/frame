@@ -63,10 +63,13 @@ def get_image(song):
 ################################
 
 def manipulate(imgurl):
-    imgresp = requests.get(imgurl)
     global img
-    img = PIL.Image.open(BytesIO(imgresp.content))
-
+    imgcontent = imgurl
+    if imgurl.startswith('http'):
+        imgresp = requests.get(imgurl)
+        imgcontent = BytesIO(imgresp.content)
+    
+    img = PIL.Image.open(imgcontent)
     img = img.resize((16, 16))
 
     imgpx = np.array(img)
