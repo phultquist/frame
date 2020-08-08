@@ -11,13 +11,20 @@ import time
 import sys
 import exceptions
 
-try:
+def get_argument(index):
+    try:
+        a = sys.argv[index]
+        return a
+    except:
+        return False
+        
+brt = 0.07
+
+if get_argument(1) != False and type(get_argument(1)) is int:
     brt = int(sys.argv[1]) / 100
-except:
-    brt = 0.07
 
 # print(brt)
-if brt > 100:
+if brt > 1:
     brt = 100
 
 if brt < 0:
@@ -28,11 +35,8 @@ img = None
 # if the LED strip is not on you, that is okay, make sure this is set to false
 setLeds=True
 
-try:
-    if sys.argv[1] == "test":
-        setLeds = False
-except:
-    pass
+if get_argument(1) == 'test':
+    setLeds = False
 
 if setLeds:
     import board
