@@ -1,8 +1,4 @@
-import json
 import requests
-import base64
-import sounddevice as sd
-from scipy.io.wavfile import write
 import PIL.Image
 from io import BytesIO
 import numpy as np
