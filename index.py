@@ -12,7 +12,7 @@ startTime = datetime.now()
 brt = 0.07
 
 # if the LED strip is not on you, that is okay, make sure this is set to false
-setLeds=False
+setLeds=True
 
 if setLeds:
     import board
@@ -93,7 +93,7 @@ print('Total Time: ' + str(datetime.now() - startTime))
 #####################
 
 if setLeds:
-    pixels = neopixel.NeoPixel(board.D18, 256, brightness = brt)
+    pixels = neopixel.NeoPixel(board.D12, 256, brightness = brt)
 
     j = 0
     step = 256
