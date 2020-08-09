@@ -32,7 +32,7 @@ if brt < 0:
 
 img = None
 
-# if the LED strip is not on you, that is okay, make sure this is set to false
+# if the LED strip is not on you, that is okay, make sure this is set to false; or, use the runtime variable "test"
 setLeds=True
 
 if get_argument(1) == 'test':
