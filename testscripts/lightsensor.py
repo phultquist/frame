@@ -34,6 +34,7 @@ while True:
     # These are unsigned, the higher the number the more light of that type.
     # There are no units like lux.
     # Infrared levels range from 0-65535 (16-bit)
+    '''
     infrared = sensor.infrared
     print("Infrared light: {0}".format(infrared))
     # Visible-only levels range from 0-2147483647 (32-bit)
@@ -42,4 +43,5 @@ while True:
     # Full spectrum (visible + IR) also range from 0-2147483647 (32-bit)
     full_spectrum = sensor.full_spectrum
     print("Full spectrum (IR + visible) light: {0}".format(full_spectrum))
+    '''
     time.sleep(1.0)
