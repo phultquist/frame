@@ -115,7 +115,7 @@ def main(last_image_url):
         # if song.get('playing'):
         print(song.get('name'))
         px = manipulate(imgurl)
-        print(imgurl)
+        # print(imgurl)
         update_pixels(px)
 
     return song
