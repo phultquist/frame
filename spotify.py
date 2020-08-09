@@ -20,7 +20,7 @@ sp = spotipy.Spotify(auth=token)
 
 pause_time = 0
 screen_off = False
-shutoff_time = 60
+shutoff_time = 60 # seconds
 
 def song():
     global pause_time
