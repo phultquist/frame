@@ -41,7 +41,7 @@ if get_argument(1) == 'test':
 if setLeds:
     import board
     import neopixel
-    pixels = neopixel.NeoPixel(board.D18, 256, brightness = brt)
+    pixels = neopixel.NeoPixel(board.D12, 256, brightness = brt)
 
 def get_image(song):
     try:
@@ -112,10 +112,8 @@ def main(last_image_url):
         # note: this specifies if the image url is the same or not. Meaning, that if two songs are from the same album it won't do anything; it won't print the song name or anything.
         pass
     else:
-        # if song.get('playing'):
         print(song.get('name'))
         px = manipulate(imgurl)
-        # print(imgurl)
         update_pixels(px)
 
     return song
