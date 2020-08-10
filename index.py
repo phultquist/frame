@@ -39,6 +39,8 @@ if get_argument(1) == 'test':
     setLeds = False
 
 if setLeds:
+    # import lux
+    # lux.light
     import board
     import neopixel
     pixels = neopixel.NeoPixel(board.D12, 256, brightness = brt)
