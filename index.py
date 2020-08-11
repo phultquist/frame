@@ -16,7 +16,7 @@ def get_argument(index):
         
 brt = 0.07
 
-if get_argument(1) != None and if get_argument(1) != "test"::
+if get_argument(1) != None and get_argument(1) != "test"::
     print("Hello Mister Funny Face")
     brt = int(get_argument(1)) / 100
 
