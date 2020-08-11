@@ -16,16 +16,16 @@ def get_argument(index):
         
 brt = 0.07
 
-#if get_argument(1) != None and type(get_argument(1)) is int:
-#    print("Hello Mister Funny Face")
-#    brt = int(get_argument(1)) / 100
+if get_argument(1) != None and type(get_argument(1)) is int:
+    print("Hello Mister Funny Face")
+    brt = int(get_argument(1)) / 100
 
-if get_argument(1) != None:
+#if get_argument(1) != None:
     print("Not none")
     
-print(isinstance(get_argument(1), numbers.Number))
-if getarg != “test”:
-    print("not test")
+#print(isinstance(get_argument(1), numbers.Number))
+#if getarg != “test”:
+#    print("not test")
 
 print(brt)
 print(get_argument(1))
