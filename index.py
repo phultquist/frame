@@ -19,8 +19,8 @@ brt = 0.07
 #    print("Hello Mister Funny Face")
 #    brt = int(get_argument(1)) / 100
 
-if get_argument(1) != None
-    print("Not none")
+#if get_argument(1) != None
+#    print("Not none")
     
 if type(get_argument(1)) is int
     print("is int")
