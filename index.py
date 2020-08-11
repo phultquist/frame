@@ -24,8 +24,8 @@ if get_argument(1) != None:
     print("Not none")
     
 print(isinstance(get_argument(1), numbers.Number))
-#if  == True:
-#    print("is int")
+if getarg != “test”:
+    print("not test")
 
 print(brt)
 print(get_argument(1))
