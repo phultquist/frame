@@ -25,7 +25,7 @@ if get_argument(1) != None:
     
 print(isinstance(get_argument(1), numbers.Number))
 if get_argument(1) != "test":
-#    print("not test")
+    print("not test")
 
 print(brt)
 print(get_argument(1))
