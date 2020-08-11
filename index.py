@@ -6,6 +6,15 @@ import spotify
 import sys
 import exceptions
 
+#pls don't kill me patrick:
+def is_integer(value: str, *, base: int=10) -> bool:
+    try:
+        int(value, base=base)
+        return True
+    except ValueError:
+        return False
+#pls don't kill me patrick:
+
 def get_argument(index):
     try:
         a = sys.argv[index]
