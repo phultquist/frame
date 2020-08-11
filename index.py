@@ -31,7 +31,7 @@ brt = 0.07
 if get_argument(1) != None:
     print("Not none")
     
-if get_argument(1).is_digit() != False:
+if str(get_argument(1)).is_digit() == True:
     print("is int")
 
 print(brt)
