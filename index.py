@@ -5,15 +5,7 @@ import numpy as np
 import spotify
 import sys
 import exceptions
-
-#pls don't kill me patrick:
-def is_digit(value: str, *, base: int=10) -> bool:
-    try:
-        int(value, base=base)
-        return True
-    except ValueError:
-        return False
-#pls don't kill me patrick:
+import numbers
 
 def get_argument(index):
     try:
@@ -31,8 +23,9 @@ brt = 0.07
 if get_argument(1) != None:
     print("Not none")
     
-if str(get_argument(1)).is_digit() == True:
-    print("is int")
+print(isinstance(getarg(1), numbers.Number))
+#if  == True:
+#    print("is int")
 
 print(brt)
 print(get_argument(1))
