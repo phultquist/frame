@@ -23,7 +23,7 @@ brt = 0.07
 if get_argument(1) != None:
     print("Not none")
     
-print(isinstance(getarg(1), numbers.Number))
+print(isinstance(get_argument(1), numbers.Number))
 #if  == True:
 #    print("is int")
 
