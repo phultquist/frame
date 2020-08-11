@@ -16,7 +16,7 @@ def get_argument(index):
 brt = 0.07
 
 if get_argument(1) != False and type(get_argument(1)) is int:
-    brt = int(sys.argv[1]) / 100
+    brt = int(get_argument(1)) / 100
 print(brt)
 print(get_argument(1))
 
