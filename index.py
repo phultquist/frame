@@ -22,7 +22,7 @@ brt = 0.07
 if get_argument(1) != None:
     print("Not none")
     
-if type(get_argument(1)) is int:
+if get_argument(1).is_digit() != False:
     print("is int")
 
 print(brt)
