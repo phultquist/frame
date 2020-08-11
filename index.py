@@ -7,7 +7,7 @@ import sys
 import exceptions
 
 #pls don't kill me patrick:
-def is_integer(value: str, *, base: int=10) -> bool:
+def is_digit(value: str, *, base: int=10) -> bool:
     try:
         int(value, base=base)
         return True
