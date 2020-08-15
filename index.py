@@ -20,12 +20,14 @@ max_brightness = 0.60
 brt = 0.07
 
 if get_argument(1) != None and get_argument(1) != "test":
-    print("Hello Mister Funny Face")
     brt = int(get_argument(1)) / (max_brightness * 100)
 
+if get_argument(1) == 'auto':
+    import light
+    import math
+    brt = math.sqrt(light.lux()) / 10
 
 print(brt)
-print(get_argument(1))
 
 if get_argument(2) == 'noserver':
     run_server = False
