@@ -22,7 +22,7 @@ This is a repository dedicated to the smart album cover display.
 Running on a Raspberry Pi, this recognizes the live music playing and displays it on a 16x16 grid made with LED strips.
 
 ### Usage
-Create an Audd.io API Key and place it in `key`. You can use "test" as the key for up to 10 instances.
+Create an Audd.io API Key and place it in `./key`. You can use "test" as the key for up to 10 instances.
 
 After installing all packages, run the following commmand:
 ```bash
