@@ -1,7 +1,7 @@
 import time
 import board
 import neopixel
-pixels = neopixel.NeoPixel(board.D12, 256, brightness=0.1)
+pixels = neopixel.NeoPixel(board.D12, 256, brightness=0.1, auto_write=False)
 
 v = 200
 mult = 1
@@ -15,7 +15,9 @@ while True:
     
     # for the life of me, i have no idea why this has to be a loop. i tried pixels = mbdtf and every time it showed funky colors, so here we are
     print(v)
-    pixels[0:100] = (v, v, v)
+    for i in range(100):
+        pixels[i] = (v, v, v)
+    pixels.show()
     
     v += mult * 3
 
