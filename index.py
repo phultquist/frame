@@ -16,7 +16,7 @@ def get_argument(index):
     except:
         return None
 
-max_brightness = 0.65
+max_brightness = 0.60
 brt = 0.07
 
 if get_argument(1) != None and get_argument(1) != "test":
