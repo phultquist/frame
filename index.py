@@ -85,6 +85,7 @@ def manipulate(imgurl):
             # print(imgpx)
             try:
                 r = nonlinearity.compensate(imgpx[ri][ci][0])
+                # print(r)
                 g = nonlinearity.compensate(imgpx[ri][ci][1])
                 b = nonlinearity.compensate(imgpx[ri][ci][2])
             except:
