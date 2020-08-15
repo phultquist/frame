@@ -1,4 +1,4 @@
-top = 255
+top = 256
 
 def compensate(original):
     return int((original * original) / top)
