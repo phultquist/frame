@@ -108,9 +108,9 @@ def manipulate(imgurl):
         # finalpx.append((r, g, b))
     print(str(highest))
     for ti in range(len(precompensatedpx)):
-        r = nonlinearity.compensate(ti[0])
-        g = nonlinearity.compensate(ti[1])
-        b = nonlinearity.compensate(ti[2])
+        r = nonlinearity.compensate(precompensatedpx[ti][0])
+        g = nonlinearity.compensate(precompensatedpx[ti][1])
+        b = nonlinearity.compensate(precompensatedpx[ti][2])
         finalpx.append((r, g, b))
         # print('something is wrong with the image with url ' + imgurl)
 
