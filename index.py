@@ -25,7 +25,7 @@ if get_argument(1) != None and get_argument(1) != "test" and get_argument(1) != 
 if get_argument(1) == 'auto':
     import light
     import math
-    brt = math.sqrt(light.lux()) / 16
+    brt = math.sqrt(light.lux()) / 19
     print('Set brightness automatically to '+str(brt))
 
 if get_argument(2) == 'noserver':
