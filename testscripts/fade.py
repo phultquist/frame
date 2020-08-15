@@ -13,9 +13,7 @@ while True:
     step = 256
 
     # for the life of me, i have no idea why this has to be a loop. i tried pixels = mbdtf and every time it showed funky colors, so here we are
-    while j < len(pixels) + 1:
-        pixels[j - step:j] = (v, v, v)
-        j += step
+    pixels[0:256] = (v, v, v)
     
     v += mult * 3
 
