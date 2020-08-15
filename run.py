@@ -20,6 +20,7 @@ def job():
     try:
         last_song = index.main(last_song.get('image_url'))
     except Exception as e:
+        print('############### Exception in job ################')
         print(e)
         time.sleep(5)
 
