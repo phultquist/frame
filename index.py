@@ -16,12 +16,12 @@ def get_argument(index):
     except:
         return None
 
-
+max_brightness = 0.65
 brt = 0.07
 
 if get_argument(1) != None and get_argument(1) != "test":
     print("Hello Mister Funny Face")
-    brt = int(get_argument(1)) / 100
+    brt = int(get_argument(1)) / (max_brightness * 100)
 
 
 print(brt)
@@ -33,7 +33,7 @@ else:
     run_server = True
 
 # print(brt)
-if brt > 1:
+if brt > max_brightness:
     brt = 1
 
 if brt < 0:
