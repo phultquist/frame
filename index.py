@@ -8,13 +8,15 @@ import exceptions
 import numbers
 import nonlinearity
 
+
 def get_argument(index):
     try:
         a = sys.argv[index]
         return a
     except:
         return None
-        
+
+
 brt = 0.07
 
 if get_argument(1) != None and get_argument(1) != "test":
@@ -40,7 +42,7 @@ if brt < 0:
 img = None
 
 # if the LED strip is not on you, that is okay, make sure this is set to false; or, use the runtime variable "test"
-setLeds=True
+setLeds = True
 
 if get_argument(1) == 'test':
     setLeds = False
@@ -50,14 +52,15 @@ if setLeds:
     # lux.light
     import board
     import neopixel
-    pixels = neopixel.NeoPixel(board.D12, 256, brightness = brt)
+    pixels = neopixel.NeoPixel(board.D12, 256, brightness=brt)
+
 
 def get_image(song):
     try:
         imgurl = song.get('image_url')
     except:
         print('### error 1 ###')
-        imgurl = exceptions.ERROR_IMAGE # error 1
+        imgurl = exceptions.ERROR_IMAGE  # error 1
 
     return imgurl
 
@@ -72,28 +75,43 @@ def manipulate(imgurl):
     if imgurl.startswith('http'):
         imgresp = requests.get(imgurl)
         imgcontent = BytesIO(imgresp.content)
-    
+
     img = PIL.Image.open(imgcontent)
     img = img.resize((16, 16))
 
     imgpx = np.array(img)
     finalpx = []
+    precompensatedpx = []
+    highest = 0
     for ri in range(len(imgpx)):
         if ri % 2 == 1:
             imgpx[ri] = imgpx[ri][::-1]  # flips every 2 rows
         for ci in range(len(imgpx[0])):
             # print(imgpx)
             try:
-                r = nonlinearity.compensate(imgpx[ri][ci][0])
-                # print(r)
-                g = nonlinearity.compensate(imgpx[ri][ci][1])
-                b = nonlinearity.compensate(imgpx[ri][ci][2])
+                r = imgpx[ri][ci][0]
+                g = imgpx[ri][ci][1]
+                b = imgpx[ri][ci][2]
             except:
-                r = nonlinearity.compensate(imgpx[ri][ci])
-                g = nonlinearity.compensate(imgpx[ri][ci])
-                b = nonlinearity.compensate(imgpx[ri][ci])
+                r = imgpx[ri][ci]
+                g = imgpx[ri][ci]
+                b = imgpx[ri][ci]
 
-            finalpx.append((r, g, b))
+        if r > highest:
+            highest = r
+        if g > highest:
+            highest = g
+        if b > highest:
+            highest = b
+
+        precompensatedpx.append([r, g, b])
+        # finalpx.append((r, g, b))
+    print(highest)
+    for ti in range(len(precompensatedpx)):
+        r = nonlinearity.compensate(ti[0])
+        g = nonlinearity.compensate(ti[1])
+        b = nonlinearity.compensate(ti[2])
+        finalpx.append((r, g, b))
         # print('something is wrong with the image with url ' + imgurl)
 
     return finalpx
@@ -101,6 +119,7 @@ def manipulate(imgurl):
 #####################
 ### Update Pixels ###
 #####################
+
 
 def update_pixels(finalpx):
     if setLeds:
@@ -114,6 +133,7 @@ def update_pixels(finalpx):
     else:
         # img.show()
         return
+
 
 def main(last_image_url):
     song = spotify.song()

@@ -11,6 +11,8 @@ i2c = busio.I2C(board.SCL, board.SDA)
  
 # Initialize the sensor.
 sensor = adafruit_tsl2591.TSL2591(i2c)
- 
-lux = sensor.lux
-print("Total light: {0}lux".format(lux))å
+
+def lux():
+    return sensor.lux
+
+print("Total light: {0}lux".format(lux))
