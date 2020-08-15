@@ -106,7 +106,7 @@ def manipulate(imgurl):
 
         precompensatedpx.append([r, g, b])
         # finalpx.append((r, g, b))
-    print(highest)
+    print(str(highest))
     for ti in range(len(precompensatedpx)):
         r = nonlinearity.compensate(ti[0])
         g = nonlinearity.compensate(ti[1])
