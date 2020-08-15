@@ -11,4 +11,5 @@ while True:
 
     pixels.fill((v, v, v))
     v += mult * 1
+    time.sleep(0.05)
 
