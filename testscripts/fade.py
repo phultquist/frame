@@ -18,5 +18,4 @@ while True:
         j += step
     
     v += mult * 3
-    time.sleep(0.05)
 
