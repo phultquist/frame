@@ -97,22 +97,23 @@ def manipulate(imgurl):
                 g = imgpx[ri][ci]
                 b = imgpx[ri][ci]
 
-        if r > highest:
-            highest = r
-        if g > highest:
-            highest = g
-        if b > highest:
-            highest = b
+            if r > highest:
+                highest = r
+            if g > highest:
+                highest = g
+            if b > highest:
+                highest = b
 
-        precompensatedpx.append([r, g, b])
+            precompensatedpx.append([r, g, b])
         # finalpx.append((r, g, b))
     print(str(highest))
+    print(len(precompensatedpx))
     for ti in range(len(precompensatedpx)):
         r = nonlinearity.compensate(precompensatedpx[ti][0])
         g = nonlinearity.compensate(precompensatedpx[ti][1])
         b = nonlinearity.compensate(precompensatedpx[ti][2])
+        # print(r,g,b)
         finalpx.append((r, g, b))
-        # print('something is wrong with the image with url ' + imgurl)
 
     return finalpx
 
