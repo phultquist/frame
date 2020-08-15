@@ -19,7 +19,7 @@ def get_argument(index):
 max_brightness = 0.60
 brt = 0.07
 
-if get_argument(1) != None and get_argument(1) != "test":
+if get_argument(1) != None and get_argument(1) != "test" and get_argument(1) != 'auto':
     brt = int(get_argument(1)) / (max_brightness * 100)
 
 if get_argument(1) == 'auto':
