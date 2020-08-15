@@ -13,5 +13,5 @@ while True:
     print(v)
     pixels[0] = (v, v, v)
     
-    # v += mult * 3
+    v += mult * 3
 
