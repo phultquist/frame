@@ -83,7 +83,6 @@ def manipulate(imgurl):
 
     imgpx = np.array(img)
     finalpx = []
-    precompensatedpx = []
 
     for ri in range(len(imgpx)):
         if ri % 2 == 1:
