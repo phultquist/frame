@@ -9,6 +9,5 @@ while True:
         v = 0
     # for the life of me, i have no idea why this has to be a loop. i tried pixels = mbdtf and every time it showed funky colors, so here we are
     pixels[v] = (200, 200, 200)
-    pixels.show()
     v += 1
 
