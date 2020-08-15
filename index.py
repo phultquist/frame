@@ -6,6 +6,7 @@ import spotify
 import sys
 import exceptions
 import numbers
+import nonlinearity
 
 def get_argument(index):
     try:
@@ -83,13 +84,13 @@ def manipulate(imgurl):
         for ci in range(len(imgpx[0])):
             # print(imgpx)
             try:
-                r = imgpx[ri][ci][0]
-                g = imgpx[ri][ci][1]
-                b = imgpx[ri][ci][2]
+                r = nonlinearity.compensate(imgpx[ri][ci][0])
+                g = nonlinearity.compensate(imgpx[ri][ci][1])
+                b = nonlinearity.compensate(imgpx[ri][ci][2])
             except:
-                r = imgpx[ri][ci]
-                g = imgpx[ri][ci]
-                b = imgpx[ri][ci]
+                r = nonlinearity.compensate(imgpx[ri][ci])
+                g = nonlinearity.compensate(imgpx[ri][ci])
+                b = nonlinearity.compensate(imgpx[ri][ci])
 
             finalpx.append((r, g, b))
         # print('something is wrong with the image with url ' + imgurl)
