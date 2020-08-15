@@ -96,9 +96,9 @@ def manipulate(imgurl):
                 g = imgpx[ri][ci]
                 b = imgpx[ri][ci]
 
-            r = nonlinearity.compensate(precompensatedpx[ti][0])
-            g = nonlinearity.compensate(precompensatedpx[ti][1])
-            b = nonlinearity.compensate(precompensatedpx[ti][2])
+            r = nonlinearity.compensate(r)
+            g = nonlinearity.compensate(g)
+            b = nonlinearity.compensate(b)
 
             finalpx.append((r, g, b))
 
