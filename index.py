@@ -82,12 +82,11 @@ def manipulate(imgurl):
     imgpx = np.array(img)
     finalpx = []
     precompensatedpx = []
-    highest = 0
+
     for ri in range(len(imgpx)):
         if ri % 2 == 1:
             imgpx[ri] = imgpx[ri][::-1]  # flips every 2 rows
         for ci in range(len(imgpx[0])):
-            # print(imgpx)
             try:
                 r = imgpx[ri][ci][0]
                 g = imgpx[ri][ci][1]
@@ -97,23 +96,11 @@ def manipulate(imgurl):
                 g = imgpx[ri][ci]
                 b = imgpx[ri][ci]
 
-            if r > highest:
-                highest = r
-            if g > highest:
-                highest = g
-            if b > highest:
-                highest = b
+            r = nonlinearity.compensate(precompensatedpx[ti][0])
+            g = nonlinearity.compensate(precompensatedpx[ti][1])
+            b = nonlinearity.compensate(precompensatedpx[ti][2])
 
-            precompensatedpx.append([r, g, b])
-        # finalpx.append((r, g, b))
-    print(str(highest))
-    print(len(precompensatedpx))
-    for ti in range(len(precompensatedpx)):
-        r = nonlinearity.compensate(precompensatedpx[ti][0])
-        g = nonlinearity.compensate(precompensatedpx[ti][1])
-        b = nonlinearity.compensate(precompensatedpx[ti][2])
-        # print(r,g,b)
-        finalpx.append((r, g, b))
+            finalpx.append((r, g, b))
 
     return finalpx
 
