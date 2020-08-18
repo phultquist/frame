@@ -1,5 +1,5 @@
 top = 256
-gamma = 3
+gamma = 1
 
 def compensate(original):
     # print(original)
