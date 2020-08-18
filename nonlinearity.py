@@ -1,9 +1,9 @@
-top = 255
-gamma = 1.8
+max_pixel_brightness = 255
+brightness_gamma = 1.8
 
 def compensate(original):
     # print(original)
     original = int(original)
     if original == 0:
         return 0
-    return int((original ** gamma) * (top ** (1 - gamma)))
+    return int((original ** brightness_gamma) * (max_pixel_brightness ** (1 - brightness_gamma)))
