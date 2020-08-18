@@ -1,4 +1,4 @@
-top = 256
+top = 255
 gamma = 1.8
 
 def compensate(original):
