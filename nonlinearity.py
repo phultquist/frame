@@ -6,4 +6,4 @@ def compensate(original):
     original = int(original)
     if original == 0:
         return 0
-    return int((original ** gamma) / top)
+    return int((original ** gamma) * (top ** (1 - gamma)))
