@@ -141,7 +141,7 @@ def main(last_image_url):
     return song
 
 stepcount = 0
-steps = 14
+steps = 8
 
 def animate(oldpixels, newpixels):
     global pixels
