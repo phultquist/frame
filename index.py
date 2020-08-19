@@ -54,7 +54,7 @@ if setLeds:
     # lux.light
     import board
     import neopixel
-    pixels = neopixel.NeoPixel(board.D12, 256, brightness=brt, auto_write=False)
+    pixels = neopixel.NeoPixel(board.D12, 256, brightness=brt)
 
 
 def get_image(song):
@@ -155,11 +155,11 @@ def animate(oldpixels, newpixels):
                 temppixel[j] = int(calc_pixel(oldpixels[l][j], newpixels[l][j], stepcount))
             pix.append(tuple(temppixel))
         pixels[0:256] = pix[0:256]
-        pixels.show()
+        # pixels.show()
         stepcount += 1
 
     pixels[0:256] = newpixels[0:256]
-    pixels.show()
+    # pixels.show()
     
     
 def calc_pixel(old, new, stepno):
