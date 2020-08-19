@@ -157,7 +157,8 @@ def animate(oldpixels, newpixels):
         pixels.show()
         stepcount += 1
 
-    # pixels[0:256] = newpixels[0:256]
+    pixels[0:256] = newpixels[0:256]
+    pixels.show()
     
     
 def calc_pixel(old, new, stepno):
