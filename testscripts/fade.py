@@ -26,7 +26,7 @@ while True:
     # for the life of me, i have no idea why this has to be a loop. i tried pixels = mbdtf and every time it showed funky colors, so here we are
     updated = [0,0,0]
     for j in range(3):
-        updated[j] = calc_pixel(color[j], newcolor[j], stepcount)
+        updated[j] = int(calc_pixel(color[j], newcolor[j], stepcount))
 
     for i in range(256):
         pixels[i] = (updated[0], updated[1], updated[2])
