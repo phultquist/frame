@@ -54,7 +54,7 @@ if setLeds:
     # lux.light
     import board
     import neopixel
-    pixels = neopixel.NeoPixel(board.D12, 256, brightness=brt)
+    pixels = neopixel.NeoPixel(board.D12, 256, brightness=brt, auto_write=False)
 
 
 def get_image(song):
@@ -113,10 +113,6 @@ def manipulate(imgurl):
 
 def update_pixels(finalpx):
     if setLeds:
-        j = 0
-        step = 256
-
-        # for the life of me, i have no idea why this has to be a loop. i tried pixels = mbdtf and every time it showed funky colors, so here we are
         animate(pixels[0:256], finalpx)
         # pixels[0:256] = finalpx[0:256]
         # while j < len(pixels) + 1:
@@ -154,12 +150,15 @@ def animate(oldpixels, newpixels):
             for j in range(3):
                 temppixel[j] = int(calc_pixel(oldpixels[l][j], newpixels[l][j], stepcount))
             pix.append(tuple(temppixel))
-        pixels[0:256] = pix[0:256]
-        # pixels.show()
+
+
+        for i in range(len(oldpixels)):
+            pixels[i] = (pix[i][0], pix[i][1], pix[i][2])
+        pixels.show()
         stepcount += 1
 
     pixels[0:256] = newpixels[0:256]
-    # pixels.show()
+    pixels.show()
     
     
 def calc_pixel(old, new, stepno):
