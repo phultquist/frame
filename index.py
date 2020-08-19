@@ -149,7 +149,7 @@ def animate(oldpixels, newpixels):
             temppixel = [0,0,0]
             for j in range(3):
                 temppixel[j] = int(calc_pixel(oldpixels[l][j], newpixels[l][j], stepcount))
-            pix.append(tuple(temppixel))
+            pix.append(temppixel)
 
 
         for i in range(len(oldpixels)):
