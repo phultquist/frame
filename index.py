@@ -136,12 +136,10 @@ def main(last_image_url):
 
     return song
 
-stepcount = 0
-steps = 12
+steps = 8
 
 def animate(oldpixels, newpixels):
     global pixels
-    global stepcount
     stepcount = 0
     while stepcount < steps:
         pix = []
