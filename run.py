@@ -17,12 +17,7 @@ def job():
     global last_song
     global num_runs
     num_runs += 1
-    try:
-        last_song = index.main(last_song.get('image_url'))
-    except Exception as e:
-        print('############### Exception in job ################')
-        print(e)
-        time.sleep(5)
+    last_song = index.main(last_song.get('image_url'))
 
 refresh_rate = 0.5 # seconds per refresh
 schedule.every(refresh_rate).seconds.do(job)
