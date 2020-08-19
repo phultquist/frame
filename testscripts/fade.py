@@ -14,7 +14,6 @@ while True:
         mult *= -1
     
     # for the life of me, i have no idea why this has to be a loop. i tried pixels = mbdtf and every time it showed funky colors, so here we are
-    print(v)
     for i in range(256):
         pixels[i] = (v, v, v)
     pixels.show()
