@@ -139,7 +139,7 @@ def main(last_image_url):
 steps = 8
 
 def animate(oldpixels, newpixels):
-    global pixels
+    # global pixels
     stepcount = 0
     while stepcount < steps:
         pix = []
