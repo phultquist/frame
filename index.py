@@ -144,6 +144,7 @@ stepcount = 0
 steps = 28
 
 def animate(oldpixels, newpixels):
+    global pixels
     global stepcount
     pix = []
     while stepcount < steps:
