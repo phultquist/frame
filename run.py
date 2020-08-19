@@ -19,8 +19,8 @@ def job():
     num_runs += 1
     last_song = index.main(last_song.get('image_url'))
 
-refresh_rate = 1 # seconds per refresh
-schedule.every(refresh_rate).seconds.do(job)
+refresh_interval = 0.5 # seconds per refresh
+schedule.every(refresh_interval).seconds.do(job)
 
 def run(server_class=HTTPServer, handler_class=BaseHTTPRequestHandler):
   print("Log server started: http://localhost:8000")
