@@ -118,7 +118,7 @@ def update_pixels(finalpx):
 
         # for the life of me, i have no idea why this has to be a loop. i tried pixels = mbdtf and every time it showed funky colors, so here we are
         animate(pixels[0:256], finalpx)
-        pixels[0:256] = finalpx[0:256]
+        # pixels[0:256] = finalpx[0:256]
         # while j < len(pixels) + 1:
         #     pixels[j - step:j] = finalpx[j - step:j]
         #     j += step
