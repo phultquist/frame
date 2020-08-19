@@ -1,12 +1,20 @@
 import time
 import board
 import neopixel
+from random import *
+
 pixels = neopixel.NeoPixel(board.D12, 256, brightness=0.1, auto_write=False)
 
 v = 200
 mult = 1
 color = [0, 255, 0]
+oldpixels = []
+newpixels = []
+for k in range(256):
+    oldpixels.append([randrange(256), randrange(256), randrange(256)])
 newcolor= [255, 0, 0]
+for k in range(len(oldpixels)):
+    newpixels.append([randrange(256), randrange(256), randrange(256)])
 steps = 28
 stepcount = 0
 
@@ -24,12 +32,15 @@ while True:
         stepcount = 0
     
     # for the life of me, i have no idea why this has to be a loop. i tried pixels = mbdtf and every time it showed funky colors, so here we are
-    updated = [0,0,0]
-    for j in range(3):
-        updated[j] = int(calc_pixel(color[j], newcolor[j], stepcount))
+    updatedpixels = []
+    for l in range(len(oldpixels)):
+        pi = [0,0,0]
+        for j in range(3):
+            pi[j] = int(calc_pixel(color[j], newcolor[j], stepcount))
+        updatedpixels.append(pi)
 
-    for i in range(256):
-        pixels[i] = (updated[0], updated[1], updated[2])
+    for i in range(len(oldpixels)):
+        pixels[i] = (updatedpixels[i][0], updatedpixels[i][1], updatedpixels[i][2])
     pixels.show()
     
     stepcount += 1
