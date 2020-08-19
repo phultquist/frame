@@ -20,7 +20,6 @@ def calc_pixel(old, new, stepno):
     
 
 while True:
-    global stepcount
     if stepcount > steps:
         stepcount = 0
     
