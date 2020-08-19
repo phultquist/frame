@@ -27,9 +27,11 @@ def calc_pixel(old, new, stepno):
     
 
 while True:
-    if stepcount > steps:
-        stepcount = 0
-    
+    if stepcount >= steps:
+        # stepcount = 0
+        mult *= -1
+    if stepcount <= 0:
+        mult *= -1
     # for the life of me, i have no idea why this has to be a loop. i tried pixels = mbdtf and every time it showed funky colors, so here we are
     updatedpixels = []
     for l in range(len(oldpixels)):
@@ -42,4 +44,4 @@ while True:
         pixels[i] = (updatedpixels[i][0], updatedpixels[i][1], updatedpixels[i][2])
     pixels.show()
     
-    stepcount += 1
+    stepcount += 1*mult
