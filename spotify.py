@@ -25,8 +25,17 @@ shutoff_time = 60 # seconds
 def song():
     global pause_time
     global screen_off
+    global sp
+    
+    try:
+        playing = sp.currently_playing()
+    except spotipy.client.SpotifyException:
+        # re-authenticate when token expires
+        token = util.prompt_for_user_token(loginUsername, scope, client_id=SPOTIPY_CLIENT_ID, client_secret=SPOTIPY_CLIENT_SECRET, redirect_uri="http://localhost:3000/")
+        sp = spotipy.Spotify(auth=token)
+        playing = sp.currently_playing()
 
-    playing = sp.currently_playing()
+    
     if (playing == None) or (not (playing.get('is_playing'))):
         if pause_time == 0:
             pause_time = time.time()
