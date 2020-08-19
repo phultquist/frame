@@ -1,11 +1,10 @@
 import time
 import board
 import neopixel
-from random import *
+from random import randrange
 
 pixels = neopixel.NeoPixel(board.D12, 256, brightness=0.1, auto_write=False)
 
-v = 200
 mult = 1
 color = [0, 255, 0]
 oldpixels = []
@@ -36,7 +35,7 @@ while True:
     for l in range(len(oldpixels)):
         pi = [0,0,0]
         for j in range(3):
-            pi[j] = int(calc_pixel(color[j], newcolor[j], stepcount))
+            pi[j] = int(calc_pixel(oldpixels[l][j], newpixels[l][j], stepcount))
         updatedpixels.append(pi)
 
     for i in range(len(oldpixels)):
