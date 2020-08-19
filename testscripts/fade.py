@@ -18,5 +18,5 @@ while True:
         pixels[i] = (v, v, v)
     pixels.show()
     
-    v += mult * 18
+    v += mult * 9
 
