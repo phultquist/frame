@@ -13,7 +13,6 @@ loginUsername = username
 # what the program is allowed to modify
 scope = 'user-read-private user-read-playback-state user-modify-playback-state'
 
-birdy_uri = 'spotify:artist:2WX2uTcsvV5OnS0inACecP'
 token = util.prompt_for_user_token(loginUsername, scope, client_id=SPOTIPY_CLIENT_ID, client_secret=SPOTIPY_CLIENT_SECRET, redirect_uri="http://localhost:3000/")
 
 sp = spotipy.Spotify(auth=token)

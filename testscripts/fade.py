@@ -15,7 +15,7 @@ while True:
     
     # for the life of me, i have no idea why this has to be a loop. i tried pixels = mbdtf and every time it showed funky colors, so here we are
     print(v)
-    for i in range(100):
+    for i in range(255):
         pixels[i] = (v, v, v)
     pixels.show()
     
