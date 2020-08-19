@@ -150,17 +150,13 @@ def animate(oldpixels, newpixels):
     while stepcount < steps:
         pix = []
         for l in range(len(oldpixels)):
-            pi = [0,0,0]
+            temppixel = [0,0,0]
             for j in range(3):
-                pi[j] = int(calc_pixel(oldpixels[l][j], newpixels[l][j], stepcount))
-            pi = tuple(pi)
-            pix.append(pi)
+                temppixel[j] = int(calc_pixel(oldpixels[l][j], newpixels[l][j], stepcount))
+            pix.append(tuple(temppixel))
         pixels[0:256] = pix[0:256]
         pixels.show()
         stepcount += 1
-
-    pixels[0:256] = newpixels[0:256]
-    pixels.show()
     
     
 def calc_pixel(old, new, stepno):
