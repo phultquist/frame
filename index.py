@@ -154,8 +154,6 @@ def animate(oldpixels, newpixels):
             for j in range(3):
                 pi[j] = int(calc_pixel(oldpixels[l][j], newpixels[l][j], stepcount))
             pi = tuple(pi)
-            if l == 0:
-                print(pi)
             pix.append(pi)
         pixels[0:256] = pix[0:256]
         pixels.show()
