@@ -23,19 +23,19 @@ brt = 0.07
 
 def set_brightness():
     global brt
-    l = light.lux()
+    try:
+        l = light.lux()
 
-    # if light is negative, sqrt will not work
-    if l < 0:
-        l = 0
+        # if light is negative, sqrt will not work
+        if l < 0:
+            l = 0
 
-    try:    
-        readvalue = math.sqrt(l) / 18
+        interpreted = math.sqrt(l) / 18
     except:
         # there can be an overload of brightness, in which an error is thrown
-        readvalue = max_brightness
+        interpreted = max_brightness
 
-    brt = readvalue
+    brt = interpreted
     if brt > max_brightness:
         brt = max_brightness
     if brt < min_brightness:
