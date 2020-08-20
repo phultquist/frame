@@ -98,9 +98,9 @@ def manipulate(imgurl):
                 b = imgpx[ri][ci]
 
             if brt > 0.15:
-                r = nonlinearity.compensate(r)
-                g = nonlinearity.compensate(g)
-                b = nonlinearity.compensate(b)
+                r = int(brt * nonlinearity.compensate(r))
+                g = int(brt * nonlinearity.compensate(g))
+                b = int(brt * nonlinearity.compensate(b))
 
             finalpx.append((r, g, b))
 
