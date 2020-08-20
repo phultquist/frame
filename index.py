@@ -54,7 +54,7 @@ if setLeds:
     # lux.light
     import board
     import neopixel
-    pixels = neopixel.NeoPixel(board.D12, 256, brightness=brt, auto_write=False)
+    pixels = neopixel.NeoPixel(board.D12, 256, auto_write=False)
 
 
 def get_image(song):
