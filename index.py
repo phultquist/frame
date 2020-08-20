@@ -23,6 +23,7 @@ brt = 0.07
 
 def set_brightness():
     global brt
+    global lastbrt
     brt = math.sqrt(light.lux()) / 18
     if brt > max_brightness:
         brt = max_brightness
@@ -124,11 +125,16 @@ def update_pixels(finalpx):
         # img.show()
         return
 
-
 def main(last_image_url):
     song = spotify.song()
     imgurl = get_image(song)
+
+    # set brightness automatically
+    lastbrt = brt
     set_brightness()
+    if lastbrt != brt:
+        px = manipulate(imgurl)
+        update_pixels(px)
     if (imgurl == last_image_url) or (imgurl == None):
         # note: this specifies if the image url is the same or not. Meaning, that if two songs are from the same album it won't do anything; it won't print the song name or anything.
         pass
