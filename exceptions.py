@@ -1,4 +1,4 @@
-PAUSED_IMAGE = 'assets/paused1.png'
+PAUSED_IMAGE = 'assets/pausedbig.png'
 ERROR_IMAGE = 'assets/error.png'
 OFF_IMAGE = 'assets/off.png'
 
