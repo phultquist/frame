@@ -15,6 +15,11 @@ def get_argument(index):
         return a
     except:
         return None
+    
+def set_brightness():
+    global brt
+    brt = math.sqrt(light.lux()) / 18
+    print('Set brightness automatically to '+str(brt))
 
 max_brightness = 0.60
 min_brightness = 0.07
@@ -27,11 +32,6 @@ if get_argument(1) == 'auto':
     import light
     import math
     set_brightness()
-    
-def set_brightness():
-    global brt
-    brt = math.sqrt(light.lux()) / 18
-    print('Set brightness automatically to '+str(brt))
 
 if get_argument(2) == 'noserver':
     run_server = False
