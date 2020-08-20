@@ -16,14 +16,19 @@ def get_argument(index):
     except:
         return None
     
-def set_brightness():
-    global brt
-    brt = math.sqrt(light.lux()) / 18
-    print('Set brightness automatically to '+str(brt))
 
 max_brightness = 0.60
 min_brightness = 0.07
 brt = 0.07
+
+def set_brightness():
+    global brt
+    brt = math.sqrt(light.lux()) / 18
+    if brt > max_brightness:
+        brt = max_brightness
+    if brt < min_brightness:
+        brt = min_brightness
+    print('Set brightness automatically to '+str(brt))
 
 if get_argument(1) != None and get_argument(1) != "test" and get_argument(1) != 'auto':
     brt = int(get_argument(1)) / (max_brightness * 100)
@@ -37,13 +42,6 @@ if get_argument(2) == 'noserver':
     run_server = False
 else:
     run_server = True
-
-# print(brt)
-if brt > max_brightness:
-    brt = 1
-
-if brt < min_brightness:
-    brt = min_brightness
 
 img = None
 
