@@ -33,6 +33,7 @@ def set_brightness():
         interpreted = math.sqrt(l) / 18
     except:
         # there can be an overload of brightness, in which an error is thrown
+        print('Error getting brightness. Set to maximum')
         interpreted = max_brightness
 
     brt = interpreted
