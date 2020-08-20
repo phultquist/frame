@@ -30,7 +30,7 @@ def set_brightness():
         if l < 0:
             l = 0
 
-        interpreted = math.sqrt(l) / 12
+        interpreted = math.sqrt(l) / 15
     except:
         # there can be an overload of brightness, in which an error is thrown
         print('Error getting brightness. Set to maximum')
