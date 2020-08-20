@@ -23,13 +23,14 @@ brt = 0.07
 
 def set_brightness():
     global brt
-    global lastbrt
-    brt = math.sqrt(light.lux()) / 18
-    if brt > max_brightness:
-        brt = max_brightness
-    if brt < min_brightness:
-        brt = min_brightness
-    print('Set brightness automatically to '+str(brt))
+    readvalue = math.sqrt(light.lux()) / 18
+    if abs(readvalue - brt) > 0.15:
+        brt = readvalue
+        if brt > max_brightness:
+            brt = max_brightness
+        if brt < min_brightness:
+            brt = min_brightness
+        print('Set brightness automatically to '+str(brt))
 
 if get_argument(1) != None and get_argument(1) != "test" and get_argument(1) != 'auto':
     brt = int(get_argument(1)) / (max_brightness * 100)
