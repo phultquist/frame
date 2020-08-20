@@ -26,6 +26,10 @@ if get_argument(1) != None and get_argument(1) != "test" and get_argument(1) != 
 if get_argument(1) == 'auto':
     import light
     import math
+    set_brightness()
+    
+def set_brightness():
+    global brt
     brt = math.sqrt(light.lux()) / 18
     print('Set brightness automatically to '+str(brt))
 
@@ -126,6 +130,7 @@ def update_pixels(finalpx):
 def main(last_image_url):
     song = spotify.song()
     imgurl = get_image(song)
+    set_brightness()
     if (imgurl == last_image_url) or (imgurl == None):
         # note: this specifies if the image url is the same or not. Meaning, that if two songs are from the same album it won't do anything; it won't print the song name or anything.
         pass
