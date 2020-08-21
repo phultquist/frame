@@ -147,7 +147,8 @@ def main(last_image_url):
 
     # set brightness automatically
     lastbrt = brt
-    set_brightness()
+    if abs(brt - lastbrt) > 0.04:
+        set_brightness()
     if lastbrt != brt:
         px = manipulate(imgurl)
         update_pixels(px)
