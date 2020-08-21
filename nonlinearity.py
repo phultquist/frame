@@ -1,5 +1,5 @@
 max_pixel_brightness = 255
-brightness_gamma = 1.5
+brightness_gamma = 1.4
 
 def compensate(original):
     # print(original)
