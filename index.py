@@ -43,7 +43,7 @@ def set_brightness(val):
     brt = val
     if brt > max_brightness:
         brt = max_brightness
-    if brt < min_brightness:
+    elif brt < min_brightness:
         brt = min_brightness
     print('Set brightness automatically to '+str(brt))
 
