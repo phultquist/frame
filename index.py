@@ -30,7 +30,7 @@ def get_brightness():
         if l < 0:
             l = 0
 
-        interpreted = (l ** (1 / auto_brightness_gamma)) / 38
+        interpreted = (l ** (1 / auto_brightness_gamma)) / 45
     except:
         # there can be an overload of brightness, in which an error is thrown
         print('Error getting brightness. Set to maximum')
