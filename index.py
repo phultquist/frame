@@ -20,7 +20,7 @@ def get_argument(index):
 max_brightness = 0.60
 min_brightness = 0.07
 brt = 0.07
-auto_brightness_gamma = 2
+auto_brightness_gamma = 1.5
 
 def get_brightness():
     try:
@@ -30,7 +30,7 @@ def get_brightness():
         if l < 0:
             l = 0
 
-        interpreted = (l ** (1 / auto_brightness_gamma)) / 17
+        interpreted = (l ** (1 / auto_brightness_gamma)) / 50
     except:
         # there can be an overload of brightness, in which an error is thrown
         print('Error getting brightness. Set to maximum')
