@@ -107,18 +107,22 @@ def manipulate(imgurl):
             imgpx[ri] = imgpx[ri][::-1]  # flips every 2 rows
         for ci in range(len(imgpx[0])):
             try:
+                # colored pixels
                 r = imgpx[ri][ci][0]
                 g = imgpx[ri][ci][1]
                 b = imgpx[ri][ci][2]
             except:
+                # only black and white pixels
                 r = imgpx[ri][ci]
                 g = imgpx[ri][ci]
                 b = imgpx[ri][ci]
 
+            # manipulation of all pixels
             r = int(brt * r)
             g = int(brt * g)
             b = int(brt * b)
 
+            # adjust for bad colors on display
             if brt > 0.15:
                 r = nonlinearity.compensate(r)
                 g = nonlinearity.compensate(g)
