@@ -21,8 +21,7 @@ max_brightness = 0.60
 min_brightness = 0.07
 brt = 0.07
 
-def set_brightness():
-    global brt
+def get_brightness():
     try:
         l = light.lux()
 
@@ -35,8 +34,12 @@ def set_brightness():
         # there can be an overload of brightness, in which an error is thrown
         print('Error getting brightness. Set to maximum')
         interpreted = max_brightness
+    return interpreted
 
-    brt = interpreted
+def set_brightness(val):
+    global brt
+    
+    brt = val
     if brt > max_brightness:
         brt = max_brightness
     if brt < min_brightness:
@@ -49,7 +52,7 @@ if get_argument(1) != None and get_argument(1) != "test" and get_argument(1) != 
 if get_argument(1) == 'auto':
     import light
     import math
-    set_brightness()
+    set_brightness(get_brightness())
 
 if get_argument(2) == 'noserver':
     run_server = False
@@ -147,8 +150,9 @@ def main(last_image_url):
 
     # set brightness automatically
     lastbrt = brt
-    if abs(brt - lastbrt) > 0.02:
-        set_brightness()
+    current = get_brightness()
+    if abs(current - lastbrt) > 0.02:
+        set_brightness(current)
     if lastbrt != brt:
         px = manipulate(imgurl)
         update_pixels(px)
