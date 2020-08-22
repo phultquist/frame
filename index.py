@@ -155,14 +155,11 @@ def main(last_image_url):
 
     # set brightness automatically
     lastbrt = brt
-    if setLeds==False:
-        current = get_brightness()
-        if abs(current - lastbrt) > 0.02:
-            set_brightness(current)
-        
-    # if lastbrt != brt:
-    #     px = manipulate(imgurl)
-    #     update_pixels(px)
+
+    current = get_brightness()
+    if abs(current - lastbrt) > 0.02:
+        set_brightness(current)
+    
     if (imgurl == last_image_url) or (imgurl == None):
         # note: this specifies if the image url is the same or not. Meaning, that if two songs are from the same album it won't do anything; it won't print the song name or anything.
         pass
