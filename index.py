@@ -33,7 +33,7 @@ def get_brightness():
         interpreted = (l ** (1 / auto_brightness_gamma)) / 45
     except:
         # there can be an overload of brightness, in which an error is thrown
-        print('Error getting brightness. Set to maximum')
+        print('Error getting brightness. Used maximum')
         interpreted = max_brightness
     return interpreted
 
@@ -98,7 +98,7 @@ def manipulate(imgurl):
         imgsource = BytesIO(imgresp.content)
 
     img = PIL.Image.open(imgsource)
-    img = img.resize((16, 16))
+    img = img.resize((16, 16), resample=PIL.Image.NEAREST)
 
     imgpx = np.array(img)
     finalpx = []
@@ -146,7 +146,7 @@ def update_pixels(finalpx):
         #     pixels[j - step:j] = finalpx[j - step:j]
         #     j += step
     else:
-        # img.show()
+        img.show()
         return
 
 def main(last_image_url):
@@ -155,9 +155,11 @@ def main(last_image_url):
 
     # set brightness automatically
     lastbrt = brt
-    current = get_brightness()
-    if abs(current - lastbrt) > 0.02:
-        set_brightness(current)
+    if not setLeds:
+        current = get_brightness()
+        if abs(current - lastbrt) > 0.02:
+            set_brightness(current)
+        
     if lastbrt != brt:
         px = manipulate(imgurl)
         update_pixels(px)
