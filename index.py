@@ -155,7 +155,7 @@ def main(last_image_url):
 
     # set brightness automatically
     lastbrt = brt
-    if not setLeds:
+    if setLeds==False:
         current = get_brightness()
         if abs(current - lastbrt) > 0.02:
             set_brightness(current)
