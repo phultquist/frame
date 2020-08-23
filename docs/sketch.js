@@ -18,9 +18,9 @@ function setup() {
     button = createButton('set');
     button.mousePressed(() => {
         if (isNaN(input.value())) {
-            alert("that's not a number")
+            alert("Input a number")
         } else if (input.value() > 150) {
-            alert('why')
+            alert('Must be less than 150')
         } else {
             window.location = 'https://phultquist.github.io/smart-album-cover/?n=' + input.value();
         }
