@@ -173,7 +173,7 @@ def main(last_image_url):
 
     return song
 
-steps = 10
+steps = 12
 
 def animate(oldpixels, newpixels):
     # global pixels
