@@ -31,6 +31,7 @@ def song():
     except spotipy.client.SpotifyException:
         # re-authenticate when token expires
         token = util.prompt_for_user_token(loginUsername, scope, client_id=SPOTIPY_CLIENT_ID, client_secret=SPOTIPY_CLIENT_SECRET, redirect_uri="http://localhost:3000/")
+        print("New Spotify Token")
         sp = spotipy.Spotify(auth=token)
         playing = sp.currently_playing()
 

@@ -21,6 +21,23 @@ function preload() {
 function setup() {
     createCanvas(810, 400);
 
+<<<<<<< HEAD
+=======
+    input = createInput();
+    // createP('pixels across')
+    button = createButton('set');
+    button.mousePressed(() => {
+        if (isNaN(input.value())) {
+            alert("Input a number")
+        } else if (input.value() > 150) {
+            alert('Must be less than 150')
+        } else {
+            window.location = 'https://phultquist.github.io/smart-album-cover/?n=' + input.value();
+        }
+    });
+
+    createCanvas(24 * 24, 24 * 24);
+>>>>>>> 6530ae9c63dcf9a2bcc8d3a3af90a57208da0940
     img.resize(l, l);
     img.loadPixels();
 
@@ -118,6 +135,7 @@ function groupPixels(pixels) {
     }
     return grouped
 }
+
 
 function averagePixels() {
     
