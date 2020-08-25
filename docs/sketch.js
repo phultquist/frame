@@ -7,10 +7,10 @@ let input, button
 let img, cimg;
 
 //xxx
-let imgname = 'https://i.scdn.co/image/ab67616d00004851806c160566580d6335d1f16c'
+// let imgname = 'https://i.scdn.co/image/ab67616d00004851806c160566580d6335d1f16c'
 
 //graduation
-// let imgname = 'https://i.scdn.co/image/ab67616d000048519bbd79106e510d13a9a5ec33'
+let imgname = 'https://i.scdn.co/image/ab67616d000048519bbd79106e510d13a9a5ec33'
 
 //young dumb and broke
 // let imgname = 'https://i.scdn.co/image/ab67616d00004851988ede5e1276e758b5f9e577'
@@ -146,7 +146,9 @@ function generalize(pi) {
         // totals[i] = average(v)
         totals[i] = median(v)
     })
-    return totals.map(t => t / pi.length)
+    console.log(totals);
+    return totals;
+    // return totals.map(t => t / pi.length)
 }
 
 let average = (array) => array.reduce((a, b) => a + b) / array.length;
