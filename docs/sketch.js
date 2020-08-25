@@ -7,11 +7,16 @@ let input, button
 let img, cimg;
 
 //xxx
-let imgname = 'https://i.scdn.co/image/ab67616d00004851806c160566580d6335d1f16c'
+// let imgname = 'https://i.scdn.co/image/ab67616d00004851806c160566580d6335d1f16c'
 
 //graduation
 // let imgname = 'https://i.scdn.co/image/ab67616d000048519bbd79106e510d13a9a5ec33'
-// let imgname = 'graduation.png'
+
+//young dumb and broke
+let imgname = 'https://i.scdn.co/image/ab67616d00004851988ede5e1276e758b5f9e577'
+
+//runaway
+// let imgname = 'https://i.scdn.co/image/ab67616d00004851d9194aa18fa4c9362b47464f'
 
 function preload() {
     img = loadImage(imgname);
@@ -19,7 +24,7 @@ function preload() {
 }
 
 function setup() {
-    createCanvas(810, 400);
+    createCanvas(830, 400);
 
     img.resize(l, l);
     img.loadPixels();
@@ -129,7 +134,8 @@ function groupPixels(pixels) {
 
 
 function generalize(pi) {
-    let totals = [0,0,0]
+    let s = 0
+    let totals = [s*pi.length,s*pi.length,s*pi.length]
     let component;
     pi.forEach(pixel => {
         for (n = 0; n < totals.length; n++) {
