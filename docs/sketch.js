@@ -10,10 +10,10 @@ let img, cimg;
 // let imgname = 'https://i.scdn.co/image/ab67616d00004851806c160566580d6335d1f16c'
 
 //graduation
-// let imgname = 'https://i.scdn.co/image/ab67616d000048519bbd79106e510d13a9a5ec33'
+let imgname = 'https://i.scdn.co/image/ab67616d000048519bbd79106e510d13a9a5ec33'
 
 //young dumb and broke
-let imgname = 'https://i.scdn.co/image/ab67616d00004851988ede5e1276e758b5f9e577'
+// let imgname = 'https://i.scdn.co/image/ab67616d00004851988ede5e1276e758b5f9e577'
 
 //runaway
 // let imgname = 'https://i.scdn.co/image/ab67616d00004851d9194aa18fa4c9362b47464f'
@@ -42,7 +42,7 @@ function setup() {
 
 
     let grouped = groupPixels(pixels)
-    console.log(grouped);
+    // console.log(grouped);
     let structured = structure(grouped)
 
     drawGrid(structured, 0, false)
@@ -64,7 +64,7 @@ function setup() {
     }
 
     org = groupPixels(org);
-
+    console.log(org);
     let stepsize = cimg.width / l;
     console.log(stepsize);
     for (x = 0; x < org.length; x += stepsize) {
