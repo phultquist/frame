@@ -21,23 +21,6 @@ function preload() {
 function setup() {
     createCanvas(810, 400);
 
-<<<<<<< HEAD
-=======
-    input = createInput();
-    // createP('pixels across')
-    button = createButton('set');
-    button.mousePressed(() => {
-        if (isNaN(input.value())) {
-            alert("Input a number")
-        } else if (input.value() > 150) {
-            alert('Must be less than 150')
-        } else {
-            window.location = 'https://phultquist.github.io/smart-album-cover/?n=' + input.value();
-        }
-    });
-
-    createCanvas(24 * 24, 24 * 24);
->>>>>>> 6530ae9c63dcf9a2bcc8d3a3af90a57208da0940
     img.resize(l, l);
     img.loadPixels();
 
@@ -76,17 +59,25 @@ function setup() {
     }
 
     org = groupPixels(org);
+
     let stepsize = cimg.width / l;
-    // console.log(org);
+    console.log(stepsize);
     for (x = 0; x < org.length; x += stepsize) {
         let row = org[x]
         let smallrow = []
         for (y = 0; y < row.length; y += stepsize) {
-            smallrow.push(row[y])
+            let toAvg = []
+            for (a = 0; a < stepsize; a++) {
+                for (b = 0; b < stepsize; b++){
+                    toAvg.push(org[x+a][y+b])
+                }
+            }
+            // let avg = averagePixels([org[x][y], org[x][y +1], org[x+1][y], org[x+1][y+1]])
+            let avg = generalize(toAvg)
+            smallrow.push(avg);
         }
         cpix.push(smallrow);
     }
-    console.log(cpix);
 
     let rawStructured = structure(cpix)
     drawGrid(rawStructured, width / 2 + 10, false)
@@ -137,6 +128,15 @@ function groupPixels(pixels) {
 }
 
 
-function averagePixels() {
-    
+function generalize(pi) {
+    let totals = [0,0,0]
+    let component;
+    pi.forEach(pixel => {
+        for (n = 0; n < totals.length; n++) {
+            component = pixel[n]
+            // if (component > 200) component = 255 
+            totals[n] += component
+        }
+    })
+    return totals.map(t => t / pi.length)
 }
