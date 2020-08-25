@@ -146,7 +146,7 @@ def update_pixels(finalpx):
         #     pixels[j - step:j] = finalpx[j - step:j]
         #     j += step
     else:
-        img.show()
+        # img.show()
         return
 
 def main(last_image_url):
