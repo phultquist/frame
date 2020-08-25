@@ -73,12 +73,12 @@ function setup() {
         for (y = 0; y < row.length; y += stepsize) {
             let toAvg = []
             for (a = 0; a < stepsize; a++) {
-                for (b = 0; b < stepsize; b++){
-                    toAvg.push(org[x+a][y+b])
+                for (b = 0; b < stepsize; b++) {
+                    toAvg.push(org[x + a][y + b])
                 }
             }
-            for (o = 0; o < 50; o++){
-                toAvg.push(org[x+2][y+2])
+            for (o = 0; o < 50; o++) {
+                // toAvg.push(org[x+2][y+2])
             }
             // let avg = averagePixels([org[x][y], org[x][y +1], org[x+1][y], org[x+1][y+1]])
             let avg = generalize(toAvg)
@@ -138,15 +138,14 @@ function groupPixels(pixels) {
 
 function generalize(pi) {
     let s = 0
-    let totals = [0,0,0]
+    let totals = [0, 0, 0]
     let transposed = transpose(pi);
     // console.log(transposed);
     let component;
     transposed.forEach((v, i) => {
-        // totals[i] = average(v)
-        totals[i] = median(v)
+        totals[i] = compensate(average(v))
+        // totals[i] = compensate(median(v))
     })
-    console.log(totals);
     return totals;
     // return totals.map(t => t / pi.length)
 }
@@ -158,45 +157,51 @@ function transpose(a) {
     // Calculate the width and height of the Array
     var w = a.length || 0;
     var h = a[0] instanceof Array ? a[0].length : 0;
-  
+
     // In case it is a zero matrix, no transpose routine needed.
-    if(h === 0 || w === 0) { return []; }
-  
+    if (h === 0 || w === 0) { return []; }
+
     /**
      * @var {Number} i Counter
      * @var {Number} j Counter
      * @var {Array} t Transposed data is stored in this array.
      */
     var i, j, t = [];
-  
-    // Loop through every item in the outer array (height)
-    for(i=0; i<h; i++) {
-  
-      // Insert a new row (array)
-      t[i] = [];
-  
-      // Loop through every item per item in outer array (width)
-      for(j=0; j<w; j++) {
-  
-        // Save transposed data.
-        t[i][j] = a[j][i];
-      }
-    }
-  
-    return t;
-  }
 
-  function median(values){
-    if(values.length ===0) return 0;
-  
-    values.sort(function(a,b){
-      return a-b;
+    // Loop through every item in the outer array (height)
+    for (i = 0; i < h; i++) {
+
+        // Insert a new row (array)
+        t[i] = [];
+
+        // Loop through every item per item in outer array (width)
+        for (j = 0; j < w; j++) {
+
+            // Save transposed data.
+            t[i][j] = a[j][i];
+        }
+    }
+
+    return t;
+}
+
+function median(values) {
+    if (values.length === 0) return 0;
+
+    values.sort(function (a, b) {
+        return a - b;
     });
-  
+
     var half = Math.floor(values.length / 2);
-  
+
     if (values.length % 2)
-      return values[half];
-  
+        return values[half];
+
     return (values[half - 1] + values[half]) / 2.0;
-  }
+}
+
+function compensate(original) {
+    let max = 255
+    let gamma = 1
+    return parseInt(pow(original, gamma) * pow(max, 1-gamma))
+}
