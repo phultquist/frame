@@ -141,10 +141,6 @@ def manipulate(imgurl):
 def update_pixels(finalpx):
     if setLeds:
         animate(pixels[0:256], finalpx)
-        # pixels[0:256] = finalpx[0:256]
-        # while j < len(pixels) + 1:
-        #     pixels[j - step:j] = finalpx[j - step:j]
-        #     j += step
     else:
         # img.show()
         return
