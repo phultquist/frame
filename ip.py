@@ -1,7 +1,7 @@
 import socket
 
-hostname = socket.gethostname()
-ip = socket.gethostbyname(hostname)
+# hostname = socket.gethostname()
+# ip = socket.gethostbyname(hostname)
 
 def get_ip_address():
     ip_address = '';
@@ -12,4 +12,3 @@ def get_ip_address():
     return ip_address
 
 print(get_ip_address())
-print(ip)
