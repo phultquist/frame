@@ -9,4 +9,3 @@ def get_ip_address():
     return ip_address
 
 ip = get_ip_address()
-print(ip)
