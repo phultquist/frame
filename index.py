@@ -35,7 +35,8 @@ def get_brightness():
         interpreted = (l ** (1 / auto_brightness_gamma)) / 45
     except:
         # there can be an overload of brightness, in which an error is thrown
-        print('Error getting brightness. Used maximum')
+        if setLeds:
+            print('Error getting brightness. Used maximum')
         interpreted = max_brightness
     return interpreted
 
@@ -100,11 +101,12 @@ def manipulate(imgurl):
         imgsource = BytesIO(imgresp.content)
 
     img = PIL.Image.open(imgsource)
-    imgpx = resize.resize(img) 
+    imgpx = resize.resize(img)
 
-    # img = img.resize((16, 16), resample=PIL.Image.NEAREST)
-    # imgpx = np.array(img)
-
+    # only doing this for testing mode.
+    img = PIL.Image.fromarray(imgpx)
+    img.show()
+    
     finalpx = []
 
     for ri in range(len(imgpx)):
@@ -146,7 +148,7 @@ def update_pixels(finalpx):
     if setLeds:
         animate(pixels[0:256], finalpx)
     else:
-        # img.show()
+        img.show()
         return
 
 def main(last_image_url):
@@ -163,7 +165,7 @@ def main(last_image_url):
     if lastbrt != brt:
         px = manipulate(imgurl)
         update_pixels(px)
-    if (imgurl == last_image_url) or (imgurl == None):
+    elif (imgurl == last_image_url) or (imgurl == None):
         # note: this specifies if the image url is the same or not. Meaning, that if two songs are from the same album it won't do anything; it won't print the song name or anything.
         pass
     else:
