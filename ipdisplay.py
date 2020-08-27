@@ -15,11 +15,6 @@ def job():
     show('error')
     time.sleep(2)
     show('off')
-    # show(1)
-    # time.sleep(1)
-    # show(2)
-    # time.sleep(1)
-    # show(3)
 
 def show(code):
     ref = exceptions.exc_object(str(code))
