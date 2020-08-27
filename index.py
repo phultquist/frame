@@ -106,7 +106,7 @@ def manipulate(imgurl):
     # only doing this for testing mode.
     img = PIL.Image.fromarray(imgpx)
     img.show()
-    
+
     finalpx = []
 
     for ri in range(len(imgpx)):
@@ -148,7 +148,7 @@ def update_pixels(finalpx):
     if setLeds:
         animate(pixels[0:256], finalpx)
     else:
-        img.show()
+        # img.show()
         return
 
 def main(last_image_url):
