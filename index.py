@@ -105,7 +105,8 @@ def manipulate(imgurl):
 
     # only doing this for testing mode.
     img = PIL.Image.fromarray(imgpx)
-    img.show()
+    if not setLeds:
+        img.show()
 
     finalpx = []
 
