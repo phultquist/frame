@@ -11,4 +11,5 @@ def get_ip_address():
     s.close()
     return ip_address
 
+print(get_ip_address())
 print(ip)
