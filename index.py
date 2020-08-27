@@ -8,6 +8,8 @@ import exceptions
 import numbers
 import nonlinearity
 
+sys.path.append('/resize')
+from resize import resize
 
 def get_argument(index):
     try:
@@ -98,9 +100,11 @@ def manipulate(imgurl):
         imgsource = BytesIO(imgresp.content)
 
     img = PIL.Image.open(imgsource)
-    img = img.resize((16, 16), resample=PIL.Image.NEAREST)
+    imgpx = resize.resize(img) 
 
-    imgpx = np.array(img)
+    # img = img.resize((16, 16), resample=PIL.Image.NEAREST)
+    # imgpx = np.array(img)
+
     finalpx = []
 
     for ri in range(len(imgpx)):
