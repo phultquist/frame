@@ -8,7 +8,6 @@ from secrets import SPOTIPY_CLIENT_ID, SPOTIPY_CLIENT_SECRET, username
 import ip
 
 print(ip.ip)
-# quit()
 
 scope = 'user-read-private user-read-playback-state user-modify-playback-state'
 
@@ -25,28 +24,3 @@ sp = spotipy.Spotify(auth_manager=SpotifyOAuth(client_id=SPOTIPY_CLIENT_ID,
 
 results = sp.currently_playing()
 print(results)
-# for idx, item in enumerate(results['items']):
-#     track = item['track']
-#     print(idx, track['artists'][0]['name'], " – ", track['name'])
-
-# import spotipy
-# from spotipy.oauth2 import SpotifyClientCredentials
-# import os
-# from secrets import SPOTIPY_CLIENT_ID, SPOTIPY_CLIENT_SECRET, username
-
-# os.environ["SPOTIPY_CLIENT_ID"] = SPOTIPY_CLIENT_ID
-# os.environ["SPOTIPY_CLIENT_SECRET"] = SPOTIPY_CLIENT_SECRET
-
-# auth_manager = SpotifyClientCredentials()
-# sp = spotipy.Spotify(auth_manager=auth_manager)
-
-# playlists = sp.user_playlists('spotify')
-# while playlists:
-#     for i, playlist in enumerate(playlists['items']):
-#         print("%4d %s %s" % (i + 1 + playlists['offset'], playlist['uri'],  playlist['name']))
-#     if playlists['next']:
-#         playlists = sp.next(playlists)
-#     else:
-#         playlists = None
-
-# print(sp.currently_playing())
