@@ -2,6 +2,7 @@
 # print(spotify.song())
 
 import spotipy
+import os
 from spotipy.oauth2 import SpotifyOAuth
 from secrets import SPOTIPY_CLIENT_ID, SPOTIPY_CLIENT_SECRET, username
 
