@@ -6,9 +6,9 @@ import json
 def get():
     f = open("./mobile/server/settings.json", "r")
     content = f.read()
-    print(content)
+    # print(content)
     parsed = json.loads(content)
-    print(parsed["brightness"])
+    # print(parsed["brightness"])
     return parsed
 
 # get()
