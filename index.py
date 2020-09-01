@@ -7,6 +7,7 @@ import sys
 import exceptions
 import numbers
 import nonlinearity
+import settings
 
 sys.path.append('/resize')
 from resize import resize
@@ -25,6 +26,9 @@ brt = 0.07
 auto_brightness_gamma = 1
 
 def get_brightness():
+    #just for now, get from settings
+    return int(settings.get()['brightness']) / 100
+
     try:
         l = light.lux()
 
