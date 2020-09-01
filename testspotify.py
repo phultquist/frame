@@ -17,7 +17,7 @@ sp = spotipy.Spotify(auth_manager=SpotifyOAuth(client_id=SPOTIPY_CLIENT_ID,
                                                client_secret=SPOTIPY_CLIENT_SECRET,
                                                redirect_uri="http://"+str(ip.ip)+":3000/",
                                                scope="user-library-read",
-                                               username="jdiaalhsw8zdhpcdv391bj5we",
+                                               username=username,
                                                show_dialog=True,
                                                cache_path=None))
 
