@@ -10,13 +10,15 @@ import ip
 print(ip.ip)
 # quit()
 
+scope = 'user-read-private user-read-playback-state user-modify-playback-state'
+
 os.environ["SPOTIPY_CLIENT_ID"] = SPOTIPY_CLIENT_ID
 os.environ["SPOTIPY_CLIENT_SECRET"] = SPOTIPY_CLIENT_SECRET
 
 sp = spotipy.Spotify(auth_manager=SpotifyOAuth(client_id=SPOTIPY_CLIENT_ID,
                                                client_secret=SPOTIPY_CLIENT_SECRET,
                                                redirect_uri="http://"+str(ip.ip)+":3000/",
-                                               scope="user-library-read",
+                                               scope=scope,
                                                username=username,
                                                show_dialog=True,
                                                cache_path=None))
