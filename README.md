@@ -57,6 +57,8 @@ Python script records live audio, then uses the [audd.io](https://audd.io) servi
 
 Then sets the pixels to whatever the album cover receives.
 
+Note: `authentication.py` doesn't do anything useful... yet!
+
 ### The Hardware
 
 ![Top](assets/top.jpg)
