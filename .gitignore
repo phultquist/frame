@@ -5,6 +5,7 @@ key
 __pycache__/
 *.py[cod]
 *$py.class
+spotipy/
 
 # C extensions
 *.so
