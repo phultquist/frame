@@ -5,13 +5,16 @@ import spotipy
 import os
 from spotipy.oauth2 import SpotifyOAuth
 from secrets import SPOTIPY_CLIENT_ID, SPOTIPY_CLIENT_SECRET, username
+import ip
+
+print(ip)
 
 os.environ["SPOTIPY_CLIENT_ID"] = SPOTIPY_CLIENT_ID
 os.environ["SPOTIPY_CLIENT_SECRET"] = SPOTIPY_CLIENT_SECRET
 
 sp = spotipy.Spotify(auth_manager=SpotifyOAuth(client_id=SPOTIPY_CLIENT_ID,
                                                client_secret=SPOTIPY_CLIENT_SECRET,
-                                               redirect_uri="http://192.168.68.117:3000/",
+                                               redirect_uri="http://"+ip+":3000/",
                                                scope="user-library-read",
                                                username="jdiaalhsw8zdhpcdv391bj5we",
                                                show_dialog=True,
