@@ -8,7 +8,7 @@ def get():
     content = f.read()
     # print(content)
     parsed = json.loads(content)
-    print(parsed["brightness"])
+    # print(parsed["brightness"])
     f.close()
     return parsed
 
