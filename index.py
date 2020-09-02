@@ -186,7 +186,7 @@ def main(last_image_url):
 steps = 12
 
 def animate(oldpixels, newpixels):
-    # set_step_count()
+    set_step_count()
     # global pixels
     stepcount = 0
     while stepcount < steps:
