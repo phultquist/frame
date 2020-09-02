@@ -42,6 +42,7 @@ def get_brightness():
         if setLeds:
             print('Error getting brightness. Used maximum')
         interpreted = max_brightness
+    print(interpreted, brightness_setting)
     return interpreted * brightness_setting
 
 def set_brightness(val):
