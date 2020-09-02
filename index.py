@@ -28,6 +28,7 @@ auto_brightness_gamma = 1
 def get_brightness():
     #just for now, get from settings
     brightness_setting = int(settings.get()['brightness']) / 100
+    return brightness_setting
 
     try:
         l = light.lux()
@@ -185,6 +186,7 @@ def main(last_image_url):
 steps = 12
 
 def animate(oldpixels, newpixels):
+    # set_step_count()
     # global pixels
     stepcount = 0
     while stepcount < steps:
@@ -192,7 +194,7 @@ def animate(oldpixels, newpixels):
         for l in range(len(oldpixels)):
             temppixel = [0,0,0]
             for j in range(3):
-                temppixel[j] = int(calc_pixel(oldpixels[l][j], newpixels[l][j], stepcount))
+                temppixel[j] = int(calc_pixel(oldpixels[l][j], newpixels[l][j], stepcount, steps))
             pix.append(temppixel)
 
 
@@ -204,9 +206,12 @@ def animate(oldpixels, newpixels):
     pixels[0:256] = newpixels[0:256]
     pixels.show()
     
-    
-def calc_pixel(old, new, stepno):
-    p = ((new - old)/steps) * stepno + old
+def set_step_count():
+    global steps
+    steps = int(settings.get()['animation'])
+
+def calc_pixel(old, new, stepno, totalsteps):
+    p = ((new - old)/totalsteps) * stepno + old
     if p > 255:
         p = 255
     if p < 0:
