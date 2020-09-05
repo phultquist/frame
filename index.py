@@ -8,6 +8,7 @@ import exceptions
 import numbers
 import nonlinearity
 import settings
+import brightness
 
 sys.path.append('/resize')
 from resize import resize
@@ -18,34 +19,25 @@ def get_argument(index):
         return a
     except:
         return None
-    
 
 max_brightness = 0.60
 min_brightness = 0.07
 brt = 0.07
-auto_brightness_gamma = 1
 
 def get_brightness():
     #just for now, get from settings
 
-    # brightness_setting = int(settings.get()['brightness']) / 100
+    brightness_setting = int(settings.get()['brightness']) / 100
+    l = 45
     # return brightness_setting
     try:
         l = light.lux()
-
-        # if light is negative, sqrt will not work
-        if l < 0:
-            l = 0
-
-        # normalize
-        interpreted = (l ** (1 / auto_brightness_gamma)) / 45
-        print(interpreted)
     except:
         # there can be an overload of brightness, in which an error is thrown
         if setLeds:
             print('Error getting brightness. Used maximum')
-        interpreted = max_brightness
-    return interpreted
+    
+    return brightness.get_output_brightness(brightness_setting, l, max_brightness=max_brightness, min_brightness=min_brightness)
 
 def set_brightness(val):
     global brt
@@ -188,7 +180,7 @@ steps = 12
 
 def animate(oldpixels, newpixels):
     set_step_count()
-    # global pixels
+
     stepcount = 0
     while stepcount < steps:
         pix = []
