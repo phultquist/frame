@@ -30,7 +30,6 @@ def get_brightness():
 
     # brightness_setting = int(settings.get()['brightness']) / 100
     # return brightness_setting
-
     try:
         l = light.lux()
 

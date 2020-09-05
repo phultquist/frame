@@ -12,6 +12,7 @@ def get_output_brightness(user_brightness, sensor_value):
 		sensor_value = (max_brightness / brightness_scale_factor)
 
 	output_brightness = sensor_value * (0.116 * (74 ** user_brightness)) * brightness_scale_factor
+	
 	if output_brightness < min_brightness:
 		output_brightness = min_brightness
 	if output_brightness > max_brightness:
