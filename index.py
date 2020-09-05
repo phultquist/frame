@@ -27,8 +27,9 @@ auto_brightness_gamma = 1
 
 def get_brightness():
     #just for now, get from settings
-    brightness_setting = int(settings.get()['brightness']) / 100
-    return brightness_setting
+
+    # brightness_setting = int(settings.get()['brightness']) / 100
+    # return brightness_setting
 
     try:
         l = light.lux()
@@ -37,14 +38,15 @@ def get_brightness():
         if l < 0:
             l = 0
 
+        # normalize
         interpreted = (l ** (1 / auto_brightness_gamma)) / 45
+        print(interpreted)
     except:
         # there can be an overload of brightness, in which an error is thrown
         if setLeds:
             print('Error getting brightness. Used maximum')
         interpreted = max_brightness
-    print(interpreted, brightness_setting)
-    return interpreted * brightness_setting
+    return interpreted
 
 def set_brightness(val):
     global brt
