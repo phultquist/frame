@@ -100,7 +100,9 @@ def manipulate(imgurl):
         imgsource = BytesIO(imgresp.content)
 
     img = PIL.Image.open(imgsource)
-    imgpx = resize.resize(img)
+    contrast_setting = int(settings.get()['contrast']) / 100 + 0.5
+
+    imgpx = resize.resize(img, contrast_setting)
 
     # only doing this for testing mode.
     img = PIL.Image.fromarray(imgpx)
