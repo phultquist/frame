@@ -1,7 +1,7 @@
 # Instruction for setup
 Run on Raspberry Pi 4
 
-# Install Raspbian
+## Install Raspbian
 Using the Raspberry Pi Imager, simply install Raspbian (32 Bit)
 
 ## Clone Git Repository
@@ -18,6 +18,9 @@ This will take a while (about 5-10 minutes)
 `sudo python3 -m pip install --force-reinstall adafruit-blinka`
 
 `sudo pip3 install adafruit-circuitpython-tsl2591`
+
+Finally, install schedule
+`sudo pip3 install schedule`
 
 ## Configure Pi
 > Run `sudo raspi-config` on the command line, then use the arrow keys to select 'Interfacing Options' and 'I2C' to tell the RasPi to enable the I2C interface. Then select 'Finish' and reboot the RasPi.
