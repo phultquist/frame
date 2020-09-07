@@ -61,7 +61,7 @@ Note: `authentication.py` doesn't do anything useful... yet!
 
 ### The Hardware
 
-![Top](assets/top.jpg)
-![LED](assets/led.jpg)
+<!-- ![Top](assets/top.jpg) -->
+<!-- ![LED](assets/led.jpg) -->
 
 See more at [The Lab](https://thelab.gallery/user/AddisonHenikoff)
