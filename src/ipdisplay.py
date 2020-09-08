@@ -20,4 +20,5 @@ def show(code):
     ref = exceptions.exc_object(str(code))
     px = index.manipulate(ref.get('image_url'))
     index.update_pixels(px)
+
 job()
