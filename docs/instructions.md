@@ -6,8 +6,11 @@ Using the Raspberry Pi Imager, simply install Raspbian (32 Bit)
 
 ## Clone Git Repository
 `sudo git clone https://github.com/phultquist/smart-album-cover`
+
 `cd smart-album-cover`
+
 `sudo git clone https://github.com/phultquist/resize`
+
 `sudo git clone https://github.com/phultquist/mobile`
 
 ## Install Requirements
