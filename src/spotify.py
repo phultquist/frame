@@ -49,6 +49,7 @@ def song():
                 screen_off = True
                 return exceptions.exc_object('off', 'screen off')
         else:
+            clock.now()
             return exceptions.exc_object('time', 'currently displaying song')
 
         return exceptions.exc_object('paused', json.dumps(playing))

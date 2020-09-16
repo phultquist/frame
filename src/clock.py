@@ -17,7 +17,7 @@ def get_image(src):
 all_images = []
 
 for i in range(10):
-    ref = get_image_ref('classic', i)
+    ref = get_image_ref('modern', i)
     all_images.append(get_image(ref))
 
 def combine_horizontally(n1, n2):
