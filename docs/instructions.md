@@ -16,6 +16,7 @@ Using the Raspberry Pi Imager, simply install Raspbian (32 Bit)
 `sudo git clone https://github.com/phultquist/mobile`
 
 ## Install Requirements
+
 `sudo pip3 install -r requirements.txt`
 This will take a while (about 5-10 minutes)
 
