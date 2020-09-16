@@ -21,6 +21,7 @@ Using the Raspberry Pi Imager, simply install Raspbian (32 Bit)
 This will take a while (about 5-10 minutes)
 
 `sudo pip3 install rpi_ws281x adafruit-circuitpython-neopixel`
+
 `sudo python3 -m pip install --force-reinstall adafruit-blinka`
 
 `sudo pip3 install adafruit-circuitpython-tsl2591`
