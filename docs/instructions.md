@@ -29,6 +29,15 @@ This will take a while (about 5-10 minutes)
 Finally, install schedule
 `sudo pip3 install schedule`
 
+## Install Microphone Drivers
+`git clone https://github.com/respeaker/seeed-voicecard`
+
+`cd seeed-voicecard`
+
+`sudo ./install.sh  --compat-kernel`
+
+`sudo reboot`
+
 ## Configure Pi
 > Run `sudo raspi-config` on the command line, then use the arrow keys to select 'Interfacing Options' and 'I2C' to tell the RasPi to enable the I2C interface. Then select 'Finish' and reboot the RasPi.
 
