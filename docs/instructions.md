@@ -28,3 +28,6 @@ Finally, install schedule
 ## Run the Program
 `sudo python3 run.py auto`
 See more in ../README.md. You'll be asked to sign in first
+
+## Sign into spotify
+Run `sudo python3 authentication.py`
