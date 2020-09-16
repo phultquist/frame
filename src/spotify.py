@@ -49,7 +49,7 @@ def song():
                 screen_off = True
                 return exceptions.exc_object('off', 'screen off')
         else:
-            return exceptions.exc_object('time')
+            return exceptions.exc_object('time', 'currently displaying song')
 
         return exceptions.exc_object('paused', json.dumps(playing))
     else: 
