@@ -1,15 +1,21 @@
 PAUSED_IMAGE = 'assets/paused.png'
 ERROR_IMAGE = 'assets/error.png'
 OFF_IMAGE = 'assets/off.png'
+TIME_IMAGE = 'assets/time.png'
 
 def exc_object(type, raw="reload for updates"):
     imgurl = PAUSED_IMAGE
+    force_reload = False
+
     if type=='error':
         imgurl = ERROR_IMAGE
     elif type=='off':
         imgurl = OFF_IMAGE
     elif type=='paused':
         imgurl = PAUSED_IMAGE
+    elif type.startswith('time'):
+        imgurl = TIME_IMAGE
+        force_reload = True
     elif type.startswith('errorcode'):
         imgurl = 'assets/codes/'+type.split('_')[1] + '.png'
         
@@ -20,5 +26,6 @@ def exc_object(type, raw="reload for updates"):
         "artist_names": 'Paused/Stopped',
         "raw": raw,
         "ready": False,
-        "playing": False
+        "playing": False,
+        "force": force_reload
     }

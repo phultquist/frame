@@ -2,6 +2,7 @@ from datetime import datetime
 import PIL.Image
 import numpy as np
 
+to_display = '0000'
 
 def get_image_ref(style, digit):
     return 'assets/clock/'+style+'-'+str(digit)+'.png'
@@ -13,21 +14,11 @@ def get_image(src):
     return img
 
 
-# ref = get_image(get_image_ref('modern', 0))
-# print(ref)
 all_images = []
 
 for i in range(10):
-    ref = get_image_ref('modern', i)
-    # get_image(i)
+    ref = get_image_ref('classic', i)
     all_images.append(get_image(ref))
-
-to_display = datetime.now().strftime("%H%M")
-
-to_display = str(to_display)
-if len(to_display) > 4:
-    to_display = '0000'
-
 
 def combine_horizontally(n1, n2):
     n1 = int(n1)
@@ -55,11 +46,6 @@ def combine_horizontally(n1, n2):
     # im.show()
     return new_image_pixels
 
-
-top = combine_horizontally(to_display[0], to_display[1])
-bottom = combine_horizontally(to_display[2], to_display[3])
-
-
 def combine_vertically(top, bottom):
     all_px = top
 
@@ -79,6 +65,20 @@ def combine_vertically(top, bottom):
     all_px = all_px
     return all_px
 
-combined = combine_vertically(top, bottom)
-im = PIL.Image.fromarray(np.array(combined))
-im.show()
+def now():
+    global to_display
+    to_display = datetime.now().strftime("%H%M")
+
+    to_display = str(to_display)
+    if len(to_display) > 4:
+        to_display = '0000'
+
+    top = combine_horizontally(to_display[0], to_display[1])
+    bottom = combine_horizontally(to_display[2], to_display[3])
+
+    combined = combine_vertically(top, bottom)
+    im = PIL.Image.fromarray(np.array(combined))
+    # im.show()
+    im.save('assets/time.png', 'PNG')
+
+now()

@@ -168,7 +168,7 @@ def main(last_image_url):
     if lastbrt != brt:
         px = manipulate(imgurl)
         update_pixels(px)
-    elif (imgurl == last_image_url) or (imgurl == None):
+    elif ((imgurl == last_image_url) or (imgurl == None)) and (song.get("force") == False):
         # note: this specifies if the image url is the same or not. Meaning, that if two songs are from the same album it won't do anything; it won't print the song name or anything.
         pass
     else:

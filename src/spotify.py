@@ -5,6 +5,7 @@ import exceptions
 import os
 import json
 import time
+import clock
 
 os.environ["SPOTIPY_CLIENT_ID"] = SPOTIPY_CLIENT_ID
 os.environ["SPOTIPY_CLIENT_SECRET"] = SPOTIPY_CLIENT_SECRET
@@ -20,6 +21,8 @@ sp = spotipy.Spotify(auth=token)
 pause_time = 0
 screen_off = False
 shutoff_time = 60 # seconds
+
+show_clock = True
 
 def song():
     global pause_time
@@ -37,13 +40,16 @@ def song():
 
     
     if (playing == None) or (not (playing.get('is_playing'))):
-        if pause_time == 0:
-            pause_time = time.time()
-        if (time.time() - pause_time) > shutoff_time:
-            if not screen_off:
-                print('Shutting off...')
-            screen_off = True
-            return exceptions.exc_object('off', 'screen off')
+        if not show_clock:
+            if pause_time == 0:
+                pause_time = time.time()
+            if (time.time() - pause_time) > shutoff_time:
+                if not screen_off:
+                    print('Shutting off...')
+                screen_off = True
+                return exceptions.exc_object('off', 'screen off')
+        else:
+            return exceptions.exc_object('time')
 
         return exceptions.exc_object('paused', json.dumps(playing))
     else: 
@@ -72,5 +78,6 @@ def song():
         "fullsize_image_url": images_returned[0].get('url'),
         "raw": json.dumps(playing),
         "ready": True,
-        "playing": True
+        "playing": True,
+        "force": False
     }
