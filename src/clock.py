@@ -66,7 +66,11 @@ def combine_vertically(top, bottom):
 
 def now():
     global to_display
+    use_24_hour_clock = False
     to_display = datetime.now().strftime("%I%M")
+    
+    if use_24_hour_clock:
+        to_display = datetime.now().strftime("%H%M")
 
     to_display = str(to_display)
     if len(to_display) != 4:
