@@ -62,7 +62,6 @@ def combine_vertically(top, bottom):
     for y in range(len(bottom)):
         all_px.append(bottom[y])
 
-    all_px = all_px
     return all_px
 
 def now():
