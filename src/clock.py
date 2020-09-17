@@ -66,10 +66,10 @@ def combine_vertically(top, bottom):
 
 def now():
     global to_display
-    to_display = datetime.now().strftime("%H%M")
+    to_display = datetime.now().strftime("%I%M")
 
     to_display = str(to_display)
-    if len(to_display) > 4:
+    if len(to_display) != 4:
         to_display = '0000'
 
     top = combine_horizontally(to_display[0], to_display[1])
