@@ -153,11 +153,7 @@ def manipulate():
 
     return finalpx
 
-#####################
-### Update Pixels ###
-#####################
-
-
+# Update the pixels on the screen
 def update_pixels(finalpx):
     if setLeds:
         animate(pixels[0:256], finalpx)
@@ -165,6 +161,7 @@ def update_pixels(finalpx):
         img.show()
         return
 
+# Main function to be repeatedly run. Gets song, and brings everything together
 def main(last_image_url):
     song = spotify.song()
     imgurl = get_image(song)
@@ -196,6 +193,7 @@ def main(last_image_url):
 
 steps = 12
 
+# Animates a set of pixels
 def animate(oldpixels, newpixels):
     set_step_count()
 
@@ -217,10 +215,12 @@ def animate(oldpixels, newpixels):
     pixels[0:256] = newpixels[0:256]
     pixels.show()
     
+# Sets number of frames on the animatoin
 def set_step_count():
     global steps
     steps = int(settings.get()['animation'])
 
+# Used for animation. Calculates the pixel color based on a linear function x1 + x((y2-y1) / dx)
 def calc_pixel(old, new, stepno, totalsteps):
     p = ((new - old)/totalsteps) * stepno + old
     if p > 255:
