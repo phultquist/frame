@@ -38,7 +38,7 @@ def get_brightness():
         if setLeds:
             print('Error getting sensor value. Used 45')
     
-    print("light sensor value: " +l)
+    print("light sensor value: " +str(l))
     return brightness.get_output_brightness(brightness_setting, l, max_brightness=max_brightness, min_brightness=min_brightness)
 
 def set_brightness(val):
