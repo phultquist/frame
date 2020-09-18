@@ -9,6 +9,7 @@ import numbers
 import nonlinearity
 import settings
 import brightness
+import clock
 
 sys.path.append('/resize')
 from resize import resize
@@ -35,8 +36,9 @@ def get_brightness():
     except:
         # there can be an overload of brightness, in which an error is thrown
         if setLeds:
-            print('Error getting brightness. Used maximum')
+            print('Error getting sensor value. Used 45')
     
+    print("light sensor value: " +l)
     return brightness.get_output_brightness(brightness_setting, l, max_brightness=max_brightness, min_brightness=min_brightness)
 
 def set_brightness(val):
@@ -57,10 +59,7 @@ if get_argument(1) == 'auto':
     import math
     set_brightness(get_brightness())
 
-if get_argument(2) == 'noserver':
-    run_server = False
-else:
-    run_server = True
+run_server = False
 
 img = None
 
@@ -92,23 +91,35 @@ def get_image(song):
 ### Get Image and Manipulate ###
 ################################
 
-def manipulate(imgurl):
+def find_image(locator):
     global img
-    imgsource = imgurl
-    if imgurl.startswith('http'):
-        imgresp = requests.get(imgurl)
+    imgsource = locator
+    if locator.startswith('http'):
+        imgresp = requests.get(locator)
         imgsource = BytesIO(imgresp.content)
 
     img = PIL.Image.open(imgsource)
-    contrast_setting = int(settings.get()['contrast']) / 100 + 0.5
+    return img
 
+def get_pixels(imgurl=None, image=None):
+    global img
+
+    if (imgurl== None) and not (image==None):
+        img = image
+    else:
+        find_image(imgurl)
+
+    return manipulate()
+
+def manipulate():
+    global img
+    # find_image(imgurl)
+
+    contrast_setting = int(settings.get()['contrast']) / 100 + 0.5
     imgpx = resize.resize(img, contrast_setting)
 
     # only doing this for testing mode.
     img = PIL.Image.fromarray(imgpx)
-    if not setLeds:
-        pass
-        # img.show()
 
     finalpx = []
 
@@ -151,7 +162,7 @@ def update_pixels(finalpx):
     if setLeds:
         animate(pixels[0:256], finalpx)
     else:
-        # img.show()
+        img.show()
         return
 
 def main(last_image_url):
@@ -162,18 +173,23 @@ def main(last_image_url):
     lastbrt = brt
 
     current = get_brightness()
+    if song.get('type') == "time":
+        time_image = clock.now()
+        px = get_pixels(image=time_image)
+    else:
+        px = get_pixels(imgurl)
+
     if abs(current - lastbrt) > 0.02:
         set_brightness(current)
         
     if lastbrt != brt:
-        px = manipulate(imgurl)
         update_pixels(px)
     elif ((imgurl == last_image_url) or (imgurl == None)) and (song.get("force") == False):
-        # note: this specifies if the image url is the same or not. Meaning, that if two songs are from the same album it won't do anything; it won't print the song name or anything.
+        # note: this specifies if the image url is the same or not. Meaning, that if two songs are from the same album it won't do anything
         pass
     else:
         print(song.get('name'))
-        px = manipulate(imgurl)
+        # img.show()
         update_pixels(px)
 
     return song

@@ -68,7 +68,7 @@ def now():
     global to_display
     use_24_hour_clock = False
     to_display = datetime.now().strftime("%I%M")
-    
+
     if use_24_hour_clock:
         to_display = datetime.now().strftime("%H%M")
 
@@ -82,6 +82,7 @@ def now():
     combined = combine_vertically(top, bottom)
     im = PIL.Image.fromarray(np.array(combined))
     # im.show()
-    im.save('assets/time.png', 'PNG')
+    # im.save('assets/time.png', 'PNG')
+    return im
 
 now()

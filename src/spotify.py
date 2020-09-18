@@ -5,7 +5,7 @@ import exceptions
 import os
 import json
 import time
-import clock
+from datetime import datetime
 
 os.environ["SPOTIPY_CLIENT_ID"] = SPOTIPY_CLIENT_ID
 os.environ["SPOTIPY_CLIENT_SECRET"] = SPOTIPY_CLIENT_SECRET
@@ -49,8 +49,8 @@ def song():
                 screen_off = True
                 return exceptions.exc_object('off', 'screen off')
         else:
-            clock.now()
-            return exceptions.exc_object('time', 'currently displaying song')
+            # clock.now()
+            return exceptions.exc_object('time', datetime.now().strftime("%H%M"))
 
         return exceptions.exc_object('paused', json.dumps(playing))
     else: 
@@ -80,5 +80,7 @@ def song():
         "raw": json.dumps(playing),
         "ready": True,
         "playing": True,
-        "force": False
+        "force": False,
+        "exception": False,
+        "type": "song"
     }
