@@ -2,7 +2,7 @@ def get_output_brightness(user_brightness, sensor_value, max_brightness, min_bri
 	if sensor_value < 0:
             sensor_value = 0
 			
-	interpreted = sensor_value / 5
+	interpreted = sensor_value
 
 	if interpreted > 1:
 		interpreted = 1
