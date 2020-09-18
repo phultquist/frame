@@ -43,14 +43,6 @@ To run in testing mode (no screen), run
 $ python3 run.py test
 ```
 
-By default, a server is included for debugging and viewing. This puts the song on the server live, as well as a lot of information including the album cover and all information that was retrieved. 
-To view the code, open **[Port 8000](http://localhost:8000)** in a web browser.
-
-To turn the local server off, just add "noserver" as the second argument. By default, if it is not in test mode, no server will run.
-```bash
-$ python3 run.py test noserver
-```
-
 ### The Software 
 
 Python script records live audio, then uses the [audd.io](https://audd.io) service for music recognition.

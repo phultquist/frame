@@ -70,12 +70,9 @@ if get_argument(1) == 'test':
     setLeds = False
 
 if setLeds:
-    # import lux
-    # lux.light
     import board
     import neopixel
     pixels = neopixel.NeoPixel(board.D12, 256, auto_write=False)
-
 
 def get_image(song):
     try:
@@ -86,11 +83,7 @@ def get_image(song):
 
     return imgurl
 
-
-################################
-### Get Image and Manipulate ###
-################################
-
+# Finds the image based off of url/path
 def find_image(locator):
     global img
     imgsource = locator
@@ -101,6 +94,7 @@ def find_image(locator):
     img = PIL.Image.open(imgsource)
     return img
 
+# Gets the pixels given either the url or the exact image
 def get_pixels(imgurl=None, image=None):
     global img
 
@@ -111,9 +105,9 @@ def get_pixels(imgurl=None, image=None):
 
     return manipulate()
 
+# Reverses every second row, compensates for non-linearity, etc.
 def manipulate():
     global img
-    # find_image(imgurl)
 
     contrast_setting = int(settings.get()['contrast']) / 100 + 0.5
     imgpx = resize.resize(img, contrast_setting)

@@ -4,9 +4,13 @@ import numpy as np
 
 to_display = '0000'
 
+colors_to_replace = [
+    ([0, 0, 0, 255], [255, 0, 0, 255]),
+    ([136, 136, 136, 255], [0, 0, 0, 255])
+]
+
 def get_image_ref(style, digit):
     return 'assets/clock/'+style+'-'+str(digit)+'.png'
-
 
 def get_image(src):
     img = PIL.Image.open(src)
@@ -37,13 +41,10 @@ def combine_horizontally(n1, n2):
             row2 = second_num_pixels[y]
             while len(row2) < 8:
                 row2.insert(0, [0,0,0,255])
-
             row.append(row2[x])
 
         new_image_pixels.append(np.uint8(row))
 
-    # im = PIL.Image.fromarray(np.array(new_image_pixels))
-    # im.show()
     return new_image_pixels
 
 def combine_vertically(top, bottom):
@@ -61,6 +62,12 @@ def combine_vertically(top, bottom):
 
     for y in range(len(bottom)):
         all_px.append(bottom[y])
+    # print(all_px)
+    for pair in colors_to_replace:
+        for y in range(len(all_px)):
+            for x in range(len(all_px[y])):
+                if (all_px[y][x] == pair[0]).all():
+                    all_px[y][x] = pair[1]
 
     return all_px
 
@@ -81,7 +88,7 @@ def now():
 
     combined = combine_vertically(top, bottom)
     im = PIL.Image.fromarray(np.array(combined))
-    # im.show()
+    im.show()
     # im.save('assets/time.png', 'PNG')
     return im
 
