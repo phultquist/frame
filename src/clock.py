@@ -5,8 +5,8 @@ import numpy as np
 to_display = '0000'
 
 colors_to_replace = [
-    ([0, 0, 0, 255], [255, 0, 0, 255]), # replace black with...
-    ([136, 136, 136, 255], [0, 0, 0, 255]) # replace gray with...
+    ([0, 0, 0, 255], [0, 0, 0, 255]), # replace black with...
+    ([136, 136, 136, 255], [130, 130, 130, 255]) # replace gray with...
 ]
 
 def get_image_ref(style, digit):
@@ -21,7 +21,7 @@ def get_image(src):
 all_images = []
 
 for i in range(10):
-    ref = get_image_ref('classic', i)
+    ref = get_image_ref('modern', i)
     all_images.append(get_image(ref))
 
 def combine_horizontally(n1, n2):
