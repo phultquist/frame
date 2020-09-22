@@ -170,7 +170,7 @@ def main(last_image_url):
     else:
         px = get_pixels(imgurl)
 
-    if abs(current - lastbrt) > 0.01:
+    if abs(current - lastbrt) > 0.00:
         set_brightness(current)
         
     if lastbrt != brt:
