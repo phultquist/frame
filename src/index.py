@@ -174,6 +174,7 @@ def main(last_image_url):
         set_brightness(current)
         
     if lastbrt != brt:
+        print('pixels updated to ' +str(l))
         update_pixels(px)
     elif ((imgurl == last_image_url) or (imgurl == None)) and (song.get("force") == False):
         # note: this specifies if the image url is the same or not. Meaning, that if two songs are from the same album it won't do anything
@@ -181,6 +182,7 @@ def main(last_image_url):
     else:
         print(song.get('name'))
         # img.show()
+        print('pixels updated to ' +str(l))
         update_pixels(px)
 
     return song
