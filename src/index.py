@@ -49,7 +49,7 @@ def set_brightness(val):
         brt = max_brightness
     elif brt < min_brightness:
         brt = min_brightness
-    print('Set brightness automatically to '+str(brt))
+    #print('Set brightness automatically to '+str(brt))
 
 if get_argument(1) != None and get_argument(1) != "test" and get_argument(1) != 'auto':
     brt = int(get_argument(1)) / (max_brightness * 100)
