@@ -164,15 +164,16 @@ def main(last_image_url):
     lastbrt = brt
 
     current = get_brightness()
+
+    if abs(current - lastbrt) > 0.02:
+        set_brightness(current)
+
     if song.get('type') == "time":
         time_image = clock.now()
         px = get_pixels(image=time_image)
     else:
         px = get_pixels(imgurl)
 
-    if abs(current - lastbrt) > 0.02:
-        set_brightness(current)
-        
     if lastbrt != brt:
         print('pixels updated to ' +str(brt))
         update_pixels(px)
