@@ -22,7 +22,7 @@ def get_argument(index):
         return None
 
 max_brightness = 0.40
-min_brightness = 0.05
+min_brightness = 0.06
 brt = 0.05
 
 def get_brightness():
