@@ -8,7 +8,7 @@ import exceptions
 import numbers
 import nonlinearity
 import settings
-import brightness
+import autobrightness
 import clock
 
 sys.path.append('/resize')
@@ -39,7 +39,7 @@ def get_brightness():
             print('Error getting sensor value. Used 45')
     
     #print("light sensor value: " +str(l))
-    return brightness.get_output_brightness(brightness_setting, l, max_brightness=max_brightness, min_brightness=min_brightness)
+    return autobrightness.get_output_brightness(brightness_setting, l, max_brightness=max_brightness, min_brightness=min_brightness)
 
 def set_brightness(val):
     global brt

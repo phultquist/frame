@@ -7,7 +7,8 @@ import schedule
 import threading
 from http.server import BaseHTTPRequestHandler,HTTPServer
 import exceptions
-import webbrowser
+import ip
+import requests
 
 # initializes the last song so that way there is no error
 last_song = exceptions.exc_object('off')
@@ -19,15 +20,15 @@ def job():
     num_runs += 1
     last_song = index.main(last_song.get('image_url'))
 
+def send_ip_to_server():
+    #the ip is used in the app
+    ip.get_ip_address
+    # requests.get()
+
 refresh_interval = 0.5 # seconds per refresh
 schedule.every(refresh_interval).seconds.do(job)
 
-def run(server_class=HTTPServer, handler_class=BaseHTTPRequestHandler):
-  print("Log server started: http://localhost:8000")
-  webbrowser.open('http://localhost:8000/', new=0)
-  server_address = ('localhost', 8000)
-  httpd = server_class(server_address, handler_class)
-  httpd.serve_forever()
+schedule.every(1).minutes.do(send_ip_to_server)
 
 def music():
     while 1:

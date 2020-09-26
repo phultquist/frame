@@ -1,2 +1,3 @@
 cd src
-sudo python3 run.py auto
+python3 run.py test
+# sudo python3 run.py test
