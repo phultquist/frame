@@ -88,7 +88,7 @@ def now():
 
     combined = combine_vertically(top, bottom)
     im = PIL.Image.fromarray(np.array(combined))
-    im.show()
+    # im.show()
     # im.save('assets/time.png', 'PNG')
     return im
 
