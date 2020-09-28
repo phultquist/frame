@@ -13,7 +13,7 @@ So, to combat this, Frame sends its local ip to the server. Every 1 minute, or o
 
 `https://patrick.today/frame/set/?ip=<LOCAL IP ADDRESS>&frameId=<FRAME ID>`
 
-It knows its local ip address, and the Frame ID is standard in each frame.
+It knows its local ip address, and the Frame ID is set in `secrets.py`.
 
 ## From your Phone
 
