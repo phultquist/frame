@@ -9,7 +9,7 @@ Of course, each device on a network has its own local ip address. You use this i
 
 To do this, we could just keep trying ips... but that's like thousands of possibilities. We also could ping around on the local network to try to find a raspberry pi, but there might be other pis on the same network, and this often isn't possible due to device security concerns.
 
-So, to combat this, Frame sends its local ip to the server. Every 1 minute, or on start, it makes the following request which uploads the ip:
+So, to combat this, Frame sends its local ip to the server. Every 1 minute, or on start, it checks to see if its local ip has changed. If so, it makes the following request which uploads the ip:
 
 `https://patrick.today/frame/set/?ip=<LOCAL IP ADDRESS>&frameId=<FRAME ID>`
 
