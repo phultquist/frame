@@ -27,4 +27,4 @@ On the background, here is what happens:
 - The server finds a frame with the same global ip (that means the frame and phone are on the same network!)
   - If it can't find one, it throws an error
 - Once the frame is found, the local IP is taken from a database
-- The phone is redirected to the proper local ip. That's <LOCAL IP ADDRESS> above
+- The phone is redirected to the proper local ip. That's `<LOCAL IP ADDRESS>` above
