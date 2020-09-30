@@ -18,4 +18,10 @@ def get():
     f.close()
     return parsed
 
-# get()
+def checkTrigger(name):
+    global parsed
+    get()
+    f = open("./mobile/server/settings.json", "w")
+    parsed[name] = not(parsed[name])
+    # f.write
+    f.close()
