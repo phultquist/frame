@@ -2,7 +2,7 @@ import requests
 import PIL.Image
 from io import BytesIO
 import numpy as np
-import spotify
+import musicfinder
 import sys
 import exceptions
 import numbers
@@ -157,7 +157,7 @@ def update_pixels(finalpx):
 
 # Main function to be repeatedly run. Gets song, and brings everything together
 def main(last_image_url):
-    song = spotify.song()
+    song = musicfinder.song()
     imgurl = get_image(song)
 
     # set brightness automatically

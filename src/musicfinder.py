@@ -5,6 +5,8 @@ import exceptions
 import os
 import json
 import time
+import settings
+import listen
 from datetime import datetime
 
 os.environ["SPOTIPY_CLIENT_ID"] = SPOTIPY_CLIENT_ID
@@ -28,6 +30,8 @@ def song():
     global pause_time
     global screen_off
     global sp
+
+    return listen.recognize()
     
     try:
         playing = sp.currently_playing()
