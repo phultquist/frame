@@ -64,4 +64,4 @@ def recognize():
         "type": "song"
     }
 
-recognize()
+# recognize()

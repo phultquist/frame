@@ -19,6 +19,7 @@ stored_ip_address = ''
 def job():
     global last_song
     global num_runs
+    print('job called')
     num_runs += 1
     last_song = index.main(last_song.get('image_url'))
 
