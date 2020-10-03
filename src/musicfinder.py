@@ -6,7 +6,7 @@ import os
 import json
 import time
 import settings
-#import listen
+import listen
 from datetime import datetime
 
 os.environ["SPOTIPY_CLIENT_ID"] = SPOTIPY_CLIENT_ID
@@ -32,9 +32,13 @@ def song():
     global sp
 
     current_settings = settings.get()
-    if current_settings["mode"] == "listen" and current_settings["listenTrigger"] == True:
-        settings.checkTrigger("listenTrigger")
-        return listen.recognize()
+    if current_settings["mode"] == "listen":
+        if current_settings["listenTrigger"] == True:
+            settings.setTrigger("listenTrigger")
+            return listen.recognize()
+        else:
+            return listen.last()
+            # return exceptions.exc_object('off', 'screen off')
     
     try:
         playing = sp.currently_playing()
@@ -84,7 +88,8 @@ def song():
         "name": name,
         "artist_names": artist_names,
         "fullsize_image_url": images_returned[0].get('url'),
-        "raw": json.dumps(playing),
+        "raw": "spotify",
+        # "raw": json.dumps(playing),
         "ready": True,
         "playing": True,
         "force": False,

@@ -18,7 +18,7 @@ def get():
     f.close()
     return parsed
 
-def checkTrigger(name):
+def setTrigger(name):
     global parsed
     get()
     f = open("./mobile/server/settings.json", "w")

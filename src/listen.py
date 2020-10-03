@@ -10,6 +10,7 @@ import exceptions
 duration = 6  # seconds
 fs = 44100
 
+last_successful_song = exceptions.exc_object("off", "screen off")
 recorded_file_name = "output.mp3"
 
 # records song and saves to file. easier to save then open, and it overall doesn't take too long.
@@ -24,6 +25,7 @@ def record():
 
 # recognize the current song playing. also records
 def recognize():
+    global last_successful_song
     record()
     sound_file = open('./'+recorded_file_name,"rb")
     sound_data_binary = sound_file.read()
@@ -38,6 +40,7 @@ def recognize():
     result = requests.post('https://api.audd.io/', data=data)
 
     response = json.loads(result.text)
+    # print(response)
     name = 'null'
     artist = 'null'
     try:
@@ -51,17 +54,21 @@ def recognize():
         return exceptions.exc_object('off', 'screen off')
 
     print(imgurl)
-    return {
+    full_object = {
         "image_url": imgurl,
         "name": name,
         "artist_names": artist,
         "fullsize_image_url": imgurl,
-        "raw": json.dumps(response),
+        "raw": "listening",
+        # "raw": json.dumps(response),
         "ready": True,
         "playing": True,
         "force": False,
         "exception": False,
         "type": "song"
     }
+    last_successful_song = full_object
+    return full_object
 
-# recognize()
+def last():
+    return last_successful_song
