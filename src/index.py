@@ -75,7 +75,7 @@ if setLeds:
     pixels = neopixel.NeoPixel(board.D12, 256, auto_write=False)
 
 def get_image(song):
-    print(song)
+    # print(song)
     try:
         imgurl = song.get('image_url')
     except:
