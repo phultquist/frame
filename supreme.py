@@ -22,4 +22,4 @@ site_thread = threading.Thread(target=site)
 
 server_thread.start()
 display_thread.start()
-site_thread.start()
+# site_thread.start()
