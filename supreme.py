@@ -5,7 +5,7 @@ import neopixel
 
 pixels = neopixel.NeoPixel(board.D12, 30)
 
-pixels[2] = (0, 0, 255)
+pixels[0] = (0, 0, 255)
 
 def server():
     subprocess.call(['bash', 'server.sh'])
