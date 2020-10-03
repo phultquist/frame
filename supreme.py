@@ -1,5 +1,11 @@
 import subprocess
 import threading
+import board
+import neopixel
+
+pixels = neopixel.NeoPixel(board.D12, 30)
+
+pixels[2] = (0, 0, 255)
 
 def server():
     subprocess.call(['bash', 'server.sh'])
