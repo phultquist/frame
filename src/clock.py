@@ -1,6 +1,7 @@
 from datetime import datetime
 import PIL.Image
 import numpy as np
+import settings
 
 to_display = '0000'
 
@@ -21,7 +22,10 @@ def get_image(src):
 all_images = []
 
 for i in range(10):
-    ref = get_image_ref('modern', i)
+    clock_style = settings.get()["clock"]
+    if not (clock_style == "modern"):
+        clock_style = "classic"
+    ref = get_image_ref(clock_style, i)
     all_images.append(get_image(ref))
 
 def combine_horizontally(n1, n2):
