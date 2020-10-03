@@ -31,7 +31,10 @@ def song():
     global screen_off
     global sp
 
-    return listen.recognize()
+    current_settings = settings.get()
+    if current_settings["mode"] == "listen" and current_settings["listenTrigger"] == True:
+        settings.checkTrigger("listenTrigger")
+        return listen.recognize()
     
     try:
         playing = sp.currently_playing()

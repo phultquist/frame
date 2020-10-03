@@ -23,5 +23,6 @@ def checkTrigger(name):
     get()
     f = open("./mobile/server/settings.json", "w")
     parsed[name] = not(parsed[name])
-    # f.write
+    json.dump(parsed, f, indent=4)
     f.close()
+    return

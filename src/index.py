@@ -152,7 +152,7 @@ def update_pixels(finalpx):
     if setLeds:
         animate(pixels[0:256], finalpx)
     else:
-        img.show()
+        # img.show()
         return
 
 # Main function to be repeatedly run. Gets song, and brings everything together
