@@ -6,7 +6,7 @@ import os
 import json
 import time
 import settings
-import listen
+#import listen
 from datetime import datetime
 
 os.environ["SPOTIPY_CLIENT_ID"] = SPOTIPY_CLIENT_ID
