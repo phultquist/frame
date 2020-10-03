@@ -20,6 +20,6 @@ server_thread = threading.Thread(target=server)
 display_thread = threading.Thread(target=display)
 site_thread = threading.Thread(target=site)
 
-server_thread.start()
+# server_thread.start()
 display_thread.start()
-site_thread.start()
+# site_thread.start()
