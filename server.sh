@@ -1,5 +1,5 @@
 cd src/mobile
-git stash
-git pull
+sudo git stash
+sudo git pull
 cd server
 sudo node index.js

@@ -1,4 +1,4 @@
 cd src/mobile
-git pull
+sudo git pull
 cd site
-npm start
+sudo npm start
