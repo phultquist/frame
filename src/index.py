@@ -35,7 +35,7 @@ def get_brightness():
         l = light.lux()
         if (l) > 30:
             l = 30
-        else if l < 0:
+        elif l < 0:
             l = 0
         l = (l * 10/3) / 100
     except:
