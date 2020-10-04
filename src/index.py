@@ -42,10 +42,13 @@ def get_brightness():
         # there can be an overload of brightness, in which an error is thrown
         if setLeds:
             print('Error getting sensor value. Used 45')
-    print("sensor: "+str(l), "setting: "+str(brightness_setting))
-    return (l+int(brightness_setting))/2
+    output = (l+int(brightness_setting))/2
 
-    # return autobrightness.get_output_brightness(brightness_setting, l, max_brightness=max_brightness, min_brightness=min_brightness)
+    print("sensor: "+str(l), "setting: "+str(brightness_setting), "output: "+str(output))
+
+    # output = autobrightness.get_output_brightness(brightness_setting, l, max_brightness=max_brightness, min_brightness=min_brightness)
+    return output
+
 
 def set_brightness(val):
     global brt
