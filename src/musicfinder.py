@@ -49,7 +49,14 @@ def song():
         sp = spotipy.Spotify(auth=token)
         playing = sp.currently_playing()
 
-    show_clock = settings.check("showClock") or True
+    clock_setting = settings.check("showClock")
+    # print(clock_setting)
+
+    if clock_setting == "true":
+        show_clock = True
+    else:
+        show_clock = False
+    
     if (playing == None) or (not (playing.get('is_playing'))):
         if not show_clock:
             if pause_time == 0:
