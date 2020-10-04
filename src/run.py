@@ -32,7 +32,7 @@ def send_ip_to_server():
 
         # the code for this is not open source. It basically just stores the global and local ip
         r = requests.get("https://patrick.today/frame/set", params={'ip': ip_address_url, 'frameId': FRAME_ID})
-
+        print(r.url)
         if r.status_code == 200:
             # successful update
             print("global ip updated")

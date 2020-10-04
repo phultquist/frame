@@ -49,7 +49,7 @@ def song():
         sp = spotipy.Spotify(auth=token)
         playing = sp.currently_playing()
 
-    
+    show_clock = settings.check("showClock") or True
     if (playing == None) or (not (playing.get('is_playing'))):
         if not show_clock:
             if pause_time == 0:
@@ -60,7 +60,6 @@ def song():
                 screen_off = True
                 return exceptions.exc_object('off', 'screen off')
         else:
-            # clock.now()
             return exceptions.exc_object('time', datetime.now().strftime("%H%M"))
 
         return exceptions.exc_object('paused', json.dumps(playing))

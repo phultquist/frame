@@ -44,7 +44,7 @@ def get_brightness():
             print('Error getting sensor value. Used 45')
     output = (l+(brightness_setting))/2
 
-    print("sensor: "+str(l), "setting: "+str(brightness_setting), "output: "+str(output))
+    # print("sensor: "+str(l), "setting: "+str(brightness_setting), "output: "+str(output))
 
     # output = autobrightness.get_output_brightness(brightness_setting, l, max_brightness=max_brightness, min_brightness=min_brightness)
     return output
@@ -193,7 +193,7 @@ def main(last_image_url):
         pass
     else:
         print(song.get('name'))
-        # img.show()
+        img.show()
         update_pixels(px)
 
     return song

@@ -18,6 +18,13 @@ def get():
     f.close()
     return parsed
 
+def check(name):
+    get()
+    try:
+        return parsed[name]
+    except:
+        return
+
 def setTrigger(name):
     global parsed
     get()
