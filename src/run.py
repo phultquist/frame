@@ -37,7 +37,8 @@ def send_ip_to_server():
             # successful update
             print("global ip updated")
             pass
-        else:
+        else Exception as e:
+            print(e)
             print("there was an error updating the global ip")
         
         stored_ip_address = latest_ip_address
