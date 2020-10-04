@@ -9,6 +9,7 @@ def get_output_brightness(user_brightness, sensor_value, max_brightness, min_bri
 	# multiply interpreted by linear user_brightness value from 0 to 2
 	output_brightness = ((user_brightness / 50) * interpreted)
 	
+	return interpreted * 3 * user_brightness / 100 
 
 	# this is some version of point slope form
 	#output_brightness = output_brightness * (max_brightness - min_brightness) + min_brightness
