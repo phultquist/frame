@@ -33,6 +33,11 @@ def get_brightness():
     # return brightness_setting
     try:
         l = light.lux()
+        if (l) > 30:
+            l = 30
+        else if l < 0:
+            l = 0
+        l = (l * 10/3) / 100
     except:
         # there can be an overload of brightness, in which an error is thrown
         if setLeds:
