@@ -30,7 +30,6 @@ def get_brightness():
 
     brightness_setting = int(settings.get()['brightness']) / 100
     l = 45
-    print(l)
     # return brightness_setting
     try:
         l = light.lux()
@@ -38,7 +37,7 @@ def get_brightness():
         # there can be an overload of brightness, in which an error is thrown
         if setLeds:
             print('Error getting sensor value. Used 45')
-    
+    print(l)
     #print("light sensor value: " +str(l))
     return autobrightness.get_output_brightness(brightness_setting, l, max_brightness=max_brightness, min_brightness=min_brightness)
 
