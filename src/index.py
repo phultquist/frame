@@ -167,6 +167,7 @@ def main(last_image_url):
     current = get_brightness()
 
     if abs(current - lastbrt) > 0.02:
+        print(current)
         set_brightness(current)
 
     if song.get('type') == "time":
