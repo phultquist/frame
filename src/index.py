@@ -42,7 +42,7 @@ def get_brightness():
         # there can be an overload of brightness, in which an error is thrown
         if setLeds:
             print('Error getting sensor value. Used 45')
-    output = (l+int(brightness_setting))/2
+    output = (l+(brightness_setting))/2
 
     print("sensor: "+str(l), "setting: "+str(brightness_setting), "output: "+str(output))
 
