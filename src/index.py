@@ -172,7 +172,7 @@ def main(last_image_url):
 
     current = get_brightness()
 
-    if abs(current - lastbrt) > 0.02:
+    if abs(current - lastbrt) > 0.01:
         # print(current)
         set_brightness(current)
 
