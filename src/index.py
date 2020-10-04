@@ -43,8 +43,9 @@ def get_brightness():
         if setLeds:
             print('Error getting sensor value. Used 45')
     print(l)
-    #print("light sensor value: " +str(l))
-    return autobrightness.get_output_brightness(brightness_setting, l, max_brightness=max_brightness, min_brightness=min_brightness)
+    return (l+int(brightness_setting)/100)/2
+
+    # return autobrightness.get_output_brightness(brightness_setting, l, max_brightness=max_brightness, min_brightness=min_brightness)
 
 def set_brightness(val):
     global brt
