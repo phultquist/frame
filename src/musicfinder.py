@@ -47,7 +47,11 @@ def song():
         token = util.prompt_for_user_token(loginUsername, scope, client_id=SPOTIPY_CLIENT_ID, client_secret=SPOTIPY_CLIENT_SECRET, redirect_uri="http://localhost:3000/")
         print("New Spotify Token")
         sp = spotipy.Spotify(auth=token)
-        playing = sp.currently_playing()
+        try:
+            playing = sp.currently_playing()
+        except:
+            playing = None
+            print("unable to get current song")
 
     clock_setting = settings.check("showClock")
     # print(clock_setting)
