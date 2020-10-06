@@ -50,7 +50,7 @@ def song():
         try:
             playing = sp.currently_playing()
         except:
-            playing = None
+            return exceptions.exc_object('error', 'spotify api error')
             print("unable to get current song")
 
     clock_setting = settings.check("showClock")
