@@ -98,10 +98,13 @@ def find_image(locator):
     global img
     imgsource = locator
     if locator.startswith('http'):
-        imgresp = requests.get(locator)
-        imgsource = BytesIO(imgresp.content)
-
-    img = PIL.Image.open(imgsource)
+        try:
+            imgresp = requests.get(locator)
+            imgsource = BytesIO(imgresp.content)
+            img = PIL.Image.open(imgsource)
+        except: 
+            print("couldn't grab image")
+    
     return img
 
 # Gets the pixels given either the url or the exact image
