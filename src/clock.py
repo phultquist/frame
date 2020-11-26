@@ -6,7 +6,7 @@ import settings
 to_display = '0000'
 
 black_replacement = [0,0,0,255]
-gray_replacement = [0,0,0,255]
+gray_replacement = [130,130,130,255]
 
 
 def get_image_ref(style, digit):
@@ -40,12 +40,12 @@ def combine_horizontally(n1, n2):
     for y in range(len(first_num_pixels)):
         row = first_num_pixels[y]
         while len(row) < 8:
-            row.append([130,130,130,255])
+            row.append([0,0,0,255])
 
         for x in range(8):
             row2 = second_num_pixels[y]
             while len(row2) < 8:
-                row2.insert(0, [130,130,130,255])
+                row2.insert(0, [0,0,0,255])
             row.append(row2[x])
 
         new_image_pixels.append(np.uint8(row))
@@ -60,12 +60,12 @@ def combine_vertically(top, bottom):
     ]
     # print(colors_to_replace)
     while len(top) < 8:
-        newrow = [gray_replacement] * 16
+        newrow = [[0,0,0,255]] * 16
         newrow = np.uint8(newrow)
         top.append(newrow)
 
     while len(bottom) < 8:
-        newrow = [gray_replacement] * 16
+        newrow = [[0,0,0,255]] * 16
         newrow = np.uint8(newrow)
         bottom.insert(0, newrow)
 
