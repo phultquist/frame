@@ -197,7 +197,10 @@ def main(last_image_url):
         pass
     else:
         print(song.get('name'))
-        print(song.get('fullsize_image_url'))
+        display_image_url = song.get('fullsize_image_url')
+        if not display_image_url.startswith("http"):
+            display_image_url = "https://i.ibb.co/KNq0069/Group-30.png"
+
         settings.put("albumName", song.get('name'))
         settings.put("imageUrl", song.get('fullsize_image_url'))
         img.show()
