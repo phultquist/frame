@@ -202,7 +202,7 @@ def main(last_image_url):
             display_image_url = "https://i.ibb.co/KNq0069/Group-30.png"
 
         settings.put("albumName", song.get('name'))
-        settings.put("imageUrl", song.get('fullsize_image_url'))
+        settings.put("imageUrl", display_image_url)
         img.show()
         update_pixels(px)
 
