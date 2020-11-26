@@ -88,7 +88,7 @@ def now():
     black_replacement.append(255)
     # print(settings.check("clockColor").split(','))
 
-    use_24_hour_clock = False
+    use_24_hour_clock = settings.check("clockTiming") == "24"
     to_display = datetime.now().strftime("%I%M")
 
     if use_24_hour_clock:
