@@ -98,12 +98,15 @@ def find_image(locator):
     global img
     imgsource = locator
     if locator.startswith('http'):
-        # try:
-        imgresp = requests.get(locator)
-        imgsource = BytesIO(imgresp.content)
-        
-    img = PIL.Image.open(imgsource)
-        # except: 
+        try:
+            imgresp = requests.get(locator)
+            imgsource = BytesIO(imgresp.content)
+        except:
+            imgresp = requests.get(locator)
+            imgsource = BytesIO(imgresp.content)
+
+        img = PIL.Image.open(imgsource)
+
         #     print("couldn't grab image")
     
     return img
