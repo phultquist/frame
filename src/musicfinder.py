@@ -28,6 +28,7 @@ shutoff_time = 60 # seconds
 show_clock = True
 
 def song():
+    # print("song called")
     global pause_time
     global screen_off
     global sp

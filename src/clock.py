@@ -8,10 +8,6 @@ to_display = '0000'
 black_replacement = [0,0,0,255]
 gray_replacement = [130,130,130,255]
 
-colors_to_replace = [
-    ([0, 0, 0, 255], black_replacement), # replace black with...
-    ([136, 136, 136, 255], gray_replacement) # replace gray with...
-]
 
 def get_image_ref(style, digit):
     return 'assets/clock/'+style+'-'+str(digit)+'.png'
@@ -58,7 +54,11 @@ def combine_horizontally(n1, n2):
 
 def combine_vertically(top, bottom):
     all_px = top
-
+    colors_to_replace = [
+        ([0, 0, 0, 255], black_replacement), # replace black with...
+        ([136, 136, 136, 255], gray_replacement) # replace gray with...
+    ]
+    # print(colors_to_replace)
     while len(top) < 8:
         newrow = [[0,0,0,255]] * 16
         newrow = np.uint8(newrow)
@@ -84,7 +84,9 @@ def now():
     set_digit_images()
     global to_display
     global black_replacement
-    black_replacement = settings.check("clockColor").split(",").append(255)
+    black_replacement = settings.check("clockColor").split(",")
+    black_replacement.append(255)
+    # print(settings.check("clockColor").split(','))
 
     use_24_hour_clock = False
     to_display = datetime.now().strftime("%I%M")
