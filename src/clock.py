@@ -5,9 +5,12 @@ import settings
 
 to_display = '0000'
 
+black_replacement = [0,0,0,255]
+gray_replacement = [0,0,0,255]
+
 colors_to_replace = [
-    ([0, 0, 0, 255], [0, 0, 0, 255]), # replace black with...
-    ([136, 136, 136, 255], [130, 130, 130, 255]) # replace gray with...
+    ([0, 0, 0, 255], black_replacement), # replace black with...
+    ([136, 136, 136, 255], gray_replacement) # replace gray with...
 ]
 
 def get_image_ref(style, digit):
