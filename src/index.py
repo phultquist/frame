@@ -197,7 +197,9 @@ def main(last_image_url):
         pass
     else:
         print(song.get('name'))
+        print(song.get('fullsize_image_url'))
         settings.put("albumName", song.get('name'))
+        settings.put("imageUrl", song.get('fullsize_image_url'))
         img.show()
         update_pixels(px)
 
