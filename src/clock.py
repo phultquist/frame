@@ -89,7 +89,6 @@ def now():
     # print(settings.check("clockColor").split(','))
 
     use_24_hour_clock = settings.check("clockTiming") == "24"
-    print(settings.check("clockTiming"))
     to_display = datetime.now().strftime("%I%M")
 
     if use_24_hour_clock:

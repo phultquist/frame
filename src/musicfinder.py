@@ -73,7 +73,7 @@ def song():
                 screen_off = True
                 return exceptions.exc_object('off', 'screen off')
         else:
-            return exceptions.exc_object('time', datetime.now().strftime("%H%M")+settings.check("clock")+settings.check("clockColor"))
+            return exceptions.exc_object('time', datetime.now().strftime("%H%M")+settings.check("clock")+settings.check("clockColor")+settings.check("clockTiming"))
 
         return exceptions.exc_object('paused', json.dumps(playing))
     else: 
