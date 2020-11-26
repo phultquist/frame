@@ -60,12 +60,12 @@ def combine_vertically(top, bottom):
     ]
     # print(colors_to_replace)
     while len(top) < 8:
-        newrow = [[130,130,130,255]] * 16
+        newrow = [gray_replacement] * 16
         newrow = np.uint8(newrow)
         top.append(newrow)
 
     while len(bottom) < 8:
-        newrow = [[130,130,130,255]] * 16
+        newrow = [gray_replacement] * 16
         newrow = np.uint8(newrow)
         bottom.insert(0, newrow)
 
