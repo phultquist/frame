@@ -83,6 +83,9 @@ def combine_vertically(top, bottom):
 def now():
     set_digit_images()
     global to_display
+    global black_replacement
+    black_replacement = settings.check("clockColor").split(",").append(255)
+
     use_24_hour_clock = False
     to_display = datetime.now().strftime("%I%M")
 
@@ -98,8 +101,7 @@ def now():
 
     combined = combine_vertically(top, bottom)
     im = PIL.Image.fromarray(np.array(combined))
-    # im.show()
-    # im.save('assets/time.png', 'PNG')
+
     return im
 
 now()
