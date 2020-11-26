@@ -18,6 +18,12 @@ def get():
     f.close()
     return parsed
 
+def put(name, val):
+    f = open("./mobile/server/settings.json", "w")
+    parsed[name] = val
+    json.dump(parsed, f, indent=4)
+    f.close()
+
 def check(name):
     get()
     try:
