@@ -203,6 +203,7 @@ def main(last_image_url):
 
         settings.put("albumName", song.get('name'))
         settings.put("imageUrl", display_image_url)
+        settings.put("artistName", song.get('artist_names'))
         img.show()
         update_pixels(px)
 
