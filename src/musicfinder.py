@@ -8,6 +8,7 @@ import time
 import settings
 import listen
 from datetime import datetime
+import random
 
 os.environ["SPOTIPY_CLIENT_ID"] = SPOTIPY_CLIENT_ID
 os.environ["SPOTIPY_CLIENT_SECRET"] = SPOTIPY_CLIENT_SECRET
@@ -71,7 +72,7 @@ def song():
                 screen_off = True
                 return exceptions.exc_object('off', 'screen off')
         else:
-            return exceptions.exc_object('time', datetime.now().strftime("%H%M"))
+            return exceptions.exc_object('time', datetime.now().strftime("%H%M")+settings.check("clock"))
 
         return exceptions.exc_object('paused', json.dumps(playing))
     else: 

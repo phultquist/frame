@@ -18,15 +18,17 @@ def get_image(src):
     # img.show()
     return img
 
-
 all_images = []
 
-for i in range(10):
-    clock_style = settings.get()["clock"]
-    if not (clock_style == "modern"):
-        clock_style = "classic"
-    ref = get_image_ref(clock_style, i)
-    all_images.append(get_image(ref))
+def set_digit_images():
+    global all_images
+    all_images = []
+    for i in range(10):
+        clock_style = settings.get()["clock"]
+        if not (clock_style == "modern"):
+            clock_style = "classic"
+        ref = get_image_ref(clock_style, i)
+        all_images.append(get_image(ref))
 
 def combine_horizontally(n1, n2):
     n1 = int(n1)
@@ -76,6 +78,7 @@ def combine_vertically(top, bottom):
     return all_px
 
 def now():
+    set_digit_images()
     global to_display
     use_24_hour_clock = False
     to_display = datetime.now().strftime("%I%M")
