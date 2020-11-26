@@ -6,7 +6,7 @@ import settings
 to_display = '0000'
 
 black_replacement = [0,0,0,255]
-gray_replacement = [130,130,130,255]
+gray_replacement = [0,0,0,255]
 
 
 def get_image_ref(style, digit):
