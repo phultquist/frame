@@ -40,12 +40,12 @@ def combine_horizontally(n1, n2):
     for y in range(len(first_num_pixels)):
         row = first_num_pixels[y]
         while len(row) < 8:
-            row.append([0.1,0,0,255])
+            row.append([1,0,0,255])
 
         for x in range(8):
             row2 = second_num_pixels[y]
             while len(row2) < 8:
-                row2.insert(0, [0.1,0,0,255])
+                row2.insert(0, [1,0,0,255])
             row.append(row2[x])
 
         new_image_pixels.append(np.uint8(row))
@@ -60,12 +60,12 @@ def combine_vertically(top, bottom):
     ]
     # print(colors_to_replace)
     while len(top) < 8:
-        newrow = [[0.1,0,0,255]] * 16
+        newrow = [[1,0,0,255]] * 16
         newrow = np.uint8(newrow)
         top.append(newrow)
 
     while len(bottom) < 8:
-        newrow = [[0.1,0,0,255]] * 16
+        newrow = [[1,0,0,255]] * 16
         newrow = np.uint8(newrow)
         bottom.insert(0, newrow)
 
