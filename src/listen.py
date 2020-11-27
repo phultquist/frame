@@ -10,6 +10,7 @@ import exceptions
 duration = 6  # seconds
 fs = 44100
 
+# NOTE: This is a misnomer; I originally named it this, and will change soon.
 last_successful_song = exceptions.exc_object("off", "screen off")
 recorded_file_name = "output.mp3"
 
@@ -49,6 +50,7 @@ def recognize():
         imgurl = response['result']['spotify']['album']['images'][0]['url']
     except:
         # print(response)
+        last_successful_song = exceptions.exc_object('off', 'screen off')
         return exceptions.exc_object('off', 'screen off')
 
     full_object = {
