@@ -39,8 +39,8 @@ def song():
             settings.setTrigger("listenTrigger")
             return listen.recognize()
         else:
-            return listen.last()
-            # return exceptions.exc_object('off', 'screen off')
+            # return listen.last()
+            return exceptions.exc_object('off', 'screen off')
     
     try:
         playing = sp.currently_playing()

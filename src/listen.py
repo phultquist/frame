@@ -46,14 +46,11 @@ def recognize():
     try:
         name = response['result']['title']
         artist = response['result']['artist']
-        # print(name + " - " + artist)
-        # print(response['result']['artist'])
         imgurl = response['result']['spotify']['album']['images'][0]['url']
     except:
         # print(response)
         return exceptions.exc_object('off', 'screen off')
 
-    # print(imgurl)
     full_object = {
         "image_url": imgurl,
         "name": name,
