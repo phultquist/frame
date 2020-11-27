@@ -35,7 +35,7 @@ def song():
 
     current_settings = settings.get()
     if current_settings["mode"] == "listen":
-        if current_settings["listenTrigger"] == True:
+        if current_settings["listenTrigger"] == True or current_settings["listenTrigger"] == "true":
             settings.setTrigger("listenTrigger")
             return listen.recognize()
         else:
