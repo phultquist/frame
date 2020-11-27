@@ -105,7 +105,7 @@ def find_image(locator):
             # imgresp = requests.get(locator)
             # imgsource = BytesIO(imgresp.content)
 
-        img = PIL.Image.open(imgsource)
+    img = PIL.Image.open(imgsource)
 
         #     print("couldn't grab image")
     
