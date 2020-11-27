@@ -21,7 +21,7 @@ def get_argument(index):
     except:
         return None
 
-max_brightness = 0.40
+max_brightness = 0.50
 min_brightness = 0.06
 brt = 0.05
 
