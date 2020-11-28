@@ -10,6 +10,7 @@ import nonlinearity
 import settings
 import autobrightness
 import clock
+import nightshift
 
 sys.path.append('/resize')
 from resize import resize
@@ -110,8 +111,6 @@ def find_image(locator):
             # imgsource = BytesIO(imgresp.content)
 
     img = PIL.Image.open(imgsource)
-
-        #     print("couldn't grab image")
     
     return img
 
@@ -157,6 +156,12 @@ def manipulate():
             r = int(brt * r)
             g = int(brt * g)
             b = int(brt * b)
+
+            night_shift_setting = settings.check("nightshift")
+            if (night_shift_setting == None):
+                night_shift_setting = 0
+
+            (r,g,b) = nightshift.adjust(r,g,b, 100-night_shift_setting)
 
             # adjust for bad colors on display
             if brt > 0.15:
