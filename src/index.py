@@ -162,11 +162,7 @@ def manipulate():
             if (night_shift_setting == None):
                 night_shift_setting = 0
 
-            if (ci == 0 and ri == 0):
-                print(r,g,b)
             (r,g,b) = nightshift.adjust(r,g,b, 100-int(night_shift_setting))
-            if (ci == 0 and ri == 0):
-                print(r,g,b)
 
             # adjust for bad colors on display
             if brt > 0.15:
