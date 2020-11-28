@@ -188,6 +188,7 @@ def update_pixels(finalpx):
 
 # Main function to be repeatedly run. Gets song, and brings everything together
 def main(last_image_url):
+    global night_shift_value
     song = musicfinder.song()
     imgurl = get_image(song)
 
