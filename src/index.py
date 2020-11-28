@@ -25,6 +25,7 @@ def get_argument(index):
 max_brightness = 0.50
 min_brightness = 0.06
 brt = 0.05
+night_shift_value = 0
 
 def get_brightness():
     #just for now, get from settings
@@ -192,6 +193,8 @@ def main(last_image_url):
 
     # set brightness automatically
     lastbrt = brt
+    last_night_shift_value = night_shift_value
+    night_shift_value = settings.check("nightshift")
 
     current = get_brightness()
 
@@ -205,7 +208,7 @@ def main(last_image_url):
     else:
         px = get_pixels(imgurl)
 
-    if lastbrt != brt:
+    if lastbrt != brt or last_night_shift_value != night_shift_value:
         print('brt updated to ' +str(brt))
         update_pixels(px)
     elif ((imgurl == last_image_url) or (imgurl == None)) and (song.get("force") == False):
