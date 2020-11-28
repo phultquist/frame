@@ -32,7 +32,7 @@ def get_brightness():
     l = 45
 
     print(settings.check("autobrightness"))
-    if settings.check("autobrightness") == False or settings.check("autobrightntess") == "false":
+    if settings.check("autobrightness") == False or settings.check("autobrightness") == "false":
         print('autobrightness off')
         return brightness_setting
 
