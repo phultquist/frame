@@ -34,6 +34,10 @@ def song():
     global sp
 
     current_settings = settings.get()
+    if current_settings["asleep"] == "true" or current_settings["asleep"] == True:
+        settings.put("albumName", "Frame is Asleep")
+        return exceptions.exc_object('off', 'screen off')
+
     if current_settings["mode"] == "listen":
         if current_settings["listenTrigger"] == True or current_settings["listenTrigger"] == "true":
             settings.setTrigger("listenTrigger")
