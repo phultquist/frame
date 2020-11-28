@@ -1,3 +1,5 @@
+
+
 def get_output_brightness(user_brightness, sensor_value, max_brightness, min_brightness):
 	if sensor_value < 0:
             sensor_value = 0

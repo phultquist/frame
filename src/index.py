@@ -30,6 +30,10 @@ def get_brightness():
 
     brightness_setting = int(settings.get()['brightness']) / 100
     l = 45
+
+    if settings.check("autobrightness") == False or settings.check("autobrightntess") == "false":
+        return brightness_setting
+
     # return brightness_setting
     try:
         l = light.lux()
