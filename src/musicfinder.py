@@ -41,7 +41,8 @@ def song():
         else:
             return listen.last()
             # return exceptions.exc_object('off', 'screen off')
-    
+    listen.reset_last_successful_song()
+
     try:
         playing = sp.currently_playing()
     except spotipy.client.SpotifyException:

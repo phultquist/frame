@@ -14,6 +14,9 @@ fs = 44100
 last_successful_song = exceptions.exc_object("off", "screen off")
 recorded_file_name = "output.mp3"
 
+def reset_last_successful_song():
+    last_successful_song = exceptions.exc_object("off", "screen off")
+
 # records song and saves to file. easier to save then open, and it overall doesn't take too long.
 def record():
     print('Recording...')
