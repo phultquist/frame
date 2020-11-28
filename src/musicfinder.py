@@ -36,6 +36,7 @@ def song():
     current_settings = settings.get()
     if current_settings["asleep"] == "true" or current_settings["asleep"] == True:
         settings.put("albumName", "Frame is Asleep")
+        settings.put("imageUrl", "https://i.ibb.co/2d9xQNk/Group-31.png")
         return exceptions.exc_object('off', 'screen off')
 
     if current_settings["mode"] == "listen":
