@@ -206,14 +206,17 @@ def main(last_image_url):
         px = get_pixels(image=time_image)
     elif song.get('type') == "gif":
         current_item = song
+        frame_number = 0
         while settings.check("idleMode").startswith("gif") and current_item.get('type') == 'gif':
             gif_id = current_item.get('raw')
             frames = fun.get_frames(gif_id)
             for frame in frames:
                 frame_image = PIL.Image.fromarray(frame)
                 px = get_pixels(image=frame_image)
-                update_pixels(px, transition=False)
+                update_pixels(px, transition=False if frame_number != 0 else True)
+                
                 time.sleep(fun.frame_duration)
+                frame_number += 1
             current_item = driver.song()
     else:
         px = get_pixels(imgurl)
