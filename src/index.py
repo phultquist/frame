@@ -30,15 +30,12 @@ brt = 0.05
 night_shift_value = 0
 
 def get_brightness():
-    #just for now, get from settings
-
     brightness_setting = int(settings.get()['brightness']) / 100
     l = 45
 
     if settings.check("autobrightness") == False or settings.check("autobrightness") == "false":
         return brightness_setting
 
-    # return brightness_setting
     try:
         l = light.lux()
         if (l) > 30:
@@ -202,14 +199,13 @@ def main(last_image_url):
     current = get_brightness()
 
     if abs(current - lastbrt) > 0.01:
-        # print(current)
         set_brightness(current)
 
     if song.get('type') == "time":
         time_image = clock.now()
         px = get_pixels(image=time_image)
     elif song.get('type') == "gif":
-        while settings.check("idleMode").startswith("gif"):
+        while settings.check("idleMode").startswith("gif") and driver.song().get('type') == 'gif':
             gif_id = song.get('raw')
             frames = fun.get_frames(gif_id)
             for frame in frames:

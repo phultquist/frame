@@ -61,7 +61,6 @@ def song():
             playing = sp.currently_playing()
         except:
             return exceptions.exc_object('error', 'spotify api error')
-            print("unable to get current song")
 
     idle_setting = settings.check("idleMode") # can be clock, gif:[gif_id], off, false (off means the same thing as false)
 
@@ -116,7 +115,6 @@ def song():
         "artist_names": artist_names,
         "fullsize_image_url": images_returned[0].get('url'),
         "raw": "spotify",
-        # "raw": json.dumps(playing),
         "ready": True,
         "playing": True,
         "force": False,

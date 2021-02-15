@@ -3,7 +3,7 @@ import time
 from PIL import Image, ImageSequence
 import numpy as np
 
-frame_duration = 0.03
+frame_duration = 0
 
 # Display individual frames from the loaded animated GIF file
 def get_frames(gif_id):
