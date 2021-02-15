@@ -177,9 +177,9 @@ def manipulate():
     return finalpx
 
 # Update the pixels on the screen
-def update_pixels(finalpx, animate=True):
+def update_pixels(finalpx, transition=True):
     if setLeds:
-        if animate:
+        if transition:
             animate(pixels[0:256], finalpx)
         else:
             pixels[0:256] = finalpx[0:256]
@@ -215,7 +215,7 @@ def main(last_image_url):
             for frame in frames:
                 frame_image = PIL.Image.fromarray(frame)
                 px = get_pixels(image=frame_image)
-                update_pixels(px, animate=False)
+                update_pixels(px, transition=False)
                 time.sleep(fun.frame_duration)
     else:
         px = get_pixels(imgurl)
