@@ -83,7 +83,6 @@ def song():
         elif idle_setting.startswith("gif"):
             try:
                 gif_id = idle_setting.split(':')[1] # format is gif:[gif_id]
-                print("using gif")
                 return exceptions.exc_object('gif', gif_id)
             except Exception as e:
                 print(e)
