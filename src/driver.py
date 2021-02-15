@@ -1,3 +1,5 @@
+# drives the program, finds what to put on the screen
+
 import spotipy
 import spotipy.util as util
 from secrets import SPOTIPY_CLIENT_ID, SPOTIPY_CLIENT_SECRET, username
@@ -61,16 +63,14 @@ def song():
             return exceptions.exc_object('error', 'spotify api error')
             print("unable to get current song")
 
-    clock_setting = settings.check("showClock")
-    # print(clock_setting)
+    idle_setting = settings.check("idleMode") # can be clock, gif:[gif_id], off, false (off means the same thing as false)
 
-    if clock_setting == "true":
-        show_clock = True
-    else:
-        show_clock = False
+    if idle_setting == "off":
+        idle_setting = "false"
     
     if (playing == None) or (not (playing.get('is_playing'))):
-        if not show_clock:
+        if idle_setting == "false":
+            # no clock, no gif
             if pause_time == 0:
                 pause_time = time.time()
             if (time.time() - pause_time) > shutoff_time:
@@ -78,8 +78,17 @@ def song():
                     print('Shutting off...')
                 screen_off = True
                 return exceptions.exc_object('off', 'screen off')
-        else:
+        elif idle_setting == "clock":
+            # a composite index, that way if anything changes the clock updates :)
             return exceptions.exc_object('time', datetime.now().strftime("%H%M")+settings.check("clock")+settings.check("clockColor")+settings.check("clockTiming"))
+        elif idle_setting.startswith("gif"):
+            try:
+                gif_id = idle_setting.split(':')[1] # format is gif:[gif_id]
+                print("using gif")
+                return exceptions.exc_object('gif', gif_id)
+            except Exception as e:
+                print(e)
+                return exceptions.exc_object('error', "error with gif: "+idle_setting)
 
         return exceptions.exc_object('paused', json.dumps(playing))
     else: 

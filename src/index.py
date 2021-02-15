@@ -2,7 +2,8 @@ import requests
 import PIL.Image
 from io import BytesIO
 import numpy as np
-import musicfinder
+import time
+import driver
 import sys
 import exceptions
 import numbers
@@ -11,6 +12,7 @@ import settings
 import autobrightness
 import clock
 import nightshift
+import fun
 
 sys.path.append('/resize')
 from resize import resize
@@ -119,7 +121,7 @@ def find_image(locator):
 def get_pixels(imgurl=None, image=None):
     global img
 
-    if (imgurl== None) and not (image==None):
+    if (imgurl== None) and not (image==None): # if actual image object passed in
         img = image
     else:
         find_image(imgurl)
@@ -175,17 +177,21 @@ def manipulate():
     return finalpx
 
 # Update the pixels on the screen
-def update_pixels(finalpx):
+def update_pixels(finalpx, animate=True):
     if setLeds:
-        animate(pixels[0:256], finalpx)
+        if animate:
+            animate(pixels[0:256], finalpx)
+        else:
+            pixels[0:256] = finalpx[0:256]
+            pixels.show()
     else:
-        # img.show()
+        img.show()
         return
 
 # Main function to be repeatedly run. Gets song, and brings everything together
 def main(last_image_url):
-    global night_shift_value
-    song = musicfinder.song()
+    global night_shift_value, img
+    song = driver.song()
     imgurl = get_image(song)
 
     # set brightness automatically
@@ -202,6 +208,15 @@ def main(last_image_url):
     if song.get('type') == "time":
         time_image = clock.now()
         px = get_pixels(image=time_image)
+    elif song.get('type') == "gif":
+        while settings.check("idleMode").startswith("gif"):
+            gif_id = song.get('raw')
+            frames = fun.get_frames(gif_id)
+            for frame in frames:
+                frame_image = PIL.Image.fromarray(frame)
+                px = get_pixels(image=frame_image)
+                update_pixels(px, animate=False)
+                time.sleep(fun.frame_duration)
     else:
         px = get_pixels(imgurl)
 
@@ -220,7 +235,7 @@ def main(last_image_url):
         settings.put("albumName", song.get('name'))
         settings.put("imageUrl", display_image_url)
         settings.put("artistName", song.get('artist_names'))
-        img.show()
+        # img.show()
         update_pixels(px)
 
     return song
@@ -239,7 +254,6 @@ def animate(oldpixels, newpixels):
             for j in range(3):
                 temppixel[j] = int(calc_pixel(oldpixels[l][j], newpixels[l][j], stepcount, steps))
             pix.append(temppixel)
-
 
         for i in range(len(oldpixels)):
             pixels[i] = (pix[i][0], pix[i][1], pix[i][2])
@@ -262,4 +276,3 @@ def calc_pixel(old, new, stepno, totalsteps):
     if p < 0:
         p = 0
     return p
-    
