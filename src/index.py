@@ -184,6 +184,12 @@ def update_pixels(finalpx, transition=True):
     else:
         img.show()
         return
+def configure_brightness():
+    lastbrt = brt
+
+    current = get_brightness()
+    if abs(current - lastbrt) > 0.01:
+        set_brightness(current)
 
 # Main function to be repeatedly run. Gets song, and brings everything together
 def main(last_image_url):
@@ -208,6 +214,7 @@ def main(last_image_url):
         current_item = song
         frame_number = 0
         while settings.check("idleMode").startswith("gif") and current_item.get('type') == 'gif':
+            configure_brightness()
             gif_id = current_item.get('raw')
             frames = fun.get_frames(gif_id)
             for frame in frames:
