@@ -7,3 +7,5 @@ SPOTIPY_CLIENT_SECRET = 'your-spotify-client-secret'
 #   set username to 'jdiaalhsw8zdhpcdv391bj5we'
 
 username = 'your-username' 
+
+FRAME_ID = 'your-frame-id'
