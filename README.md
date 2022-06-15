@@ -1,5 +1,7 @@
-# Frame
+# [Frame](https://patrick.app/project/frame)
 A Summer of Making Project by Addison and Patrick. 
+![1d318fd0c7d2752428f7d16fac4e24e8edbbd3c5-750x1246](https://user-images.githubusercontent.com/46694203/173881306-22dbde9e-0080-431c-b2c3-8a92593f4726.jpg)
+
 
 **Funded by GitHub through Hack Club.**
 
