@@ -244,6 +244,7 @@ dist
 .yarn/install-state.gz
 .pnp.*
 secrets.py
+secrets_old.py
 .cache-jdiaalhsw8zdhpcdv391bj5we
 
 assets/time.png
