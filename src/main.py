@@ -49,8 +49,15 @@ async def connect_to_server():
                         # Parse JSON message
                         try:
                             data = json.loads(message)
-                            if data.get("type") != "image_update":
-                                logger.warning(f"Unexpected message type: {data.get('type')}")
+                            message_type = data.get("type")
+                            
+                            if message_type == "error":
+                                error_msg = data.get("data", "Unknown error")
+                                logger.error(f"Server error: {error_msg}")
+                                continue
+                                
+                            if message_type != "image_update":
+                                logger.warning(f"Unexpected message type: {message_type}")
                                 continue
                                 
                             base64_image = data.get("data")
