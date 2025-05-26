@@ -6,10 +6,15 @@ import io
 import os
 import json
 import logging
+import board
+import neopixel
 
 # Set up logging
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
+
+# Initialize the NeoPixel strip
+pixels = neopixel.NeoPixel(board.D12, 256, auto_write=False)
 
 # Default frame ID if secrets.py doesn't exist
 try:
@@ -26,6 +31,28 @@ DISPLAY_SETTINGS = {
 def save_display_settings():
     with open("display.json", "w") as f:
         json.dump(DISPLAY_SETTINGS, f)
+
+def display_image(image):
+    """Display the image on the NeoPixel grid"""
+    # Convert image to RGB if needed
+    if image.mode != 'RGB':
+        image = image.convert('RGB')
+    
+    # Get pixel data
+    pixels_data = []
+    for y in range(16):
+        for x in range(16):
+            r, g, b = image.getpixel((x, y))
+            # Apply brightness setting
+            brightness = DISPLAY_SETTINGS["brightness"] / 100.0
+            r = int(r * brightness)
+            g = int(g * brightness)
+            b = int(b * brightness)
+            pixels_data.append((r, g, b))
+    
+    # Update the display
+    pixels[0:256] = pixels_data
+    pixels.show()
 
 async def connect_to_server():
     uri = "wss://pixel-forge-sarv.replit.app/ws"
@@ -79,10 +106,9 @@ async def connect_to_server():
                                 logger.warning(f"Invalid image size: {image.size}. Expected 16x16")
                                 continue
                                 
-                            # Convert to RGB if needed
-                            if image.mode != 'RGB':
-                                image = image.convert('RGB')
-                                
+                            # Display the image on the NeoPixel grid
+                            display_image(image)
+                            
                             # Update display settings
                             DISPLAY_SETTINGS["imageUrl"] = "data:image/png;base64," + base64_image
                             save_display_settings()
