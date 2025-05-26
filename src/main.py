@@ -5,12 +5,22 @@ from PIL import Image
 import io
 import settings
 from secrets import FRAME_ID
+import os
+
+# Ensure settings directory exists
+os.makedirs("./mobile/server", exist_ok=True)
+
+# Initialize settings if file doesn't exist
+if not os.path.exists("./mobile/server/settings.json"):
+    with open("./mobile/server/settings.json", "w") as f:
+        f.write("{}")
 
 # Set fixed brightness to 10%
+settings.get()  # Initialize parsed
 settings.put("brightness", "10")
 
 async def connect_to_server():
-    uri = "wss://496f9859-0bd6-406c-9620-cde7602a369e-00-t4vt0ini4r5m.spock.replit.dev/ws"
+    uri = "wss://patrick.com/frame"
     while True:
         try:
             async with websockets.connect(uri) as websocket:
@@ -36,6 +46,7 @@ async def connect_to_server():
                             image = image.convert('RGB')
                             
                         # Display the image
+                        settings.get()  # Refresh settings
                         settings.put("imageUrl", "data:image/png;base64," + message)
                         
                     except websockets.exceptions.ConnectionClosed:
