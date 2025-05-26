@@ -28,8 +28,7 @@ def save_display_settings():
         json.dump(DISPLAY_SETTINGS, f)
 
 async def connect_to_server():
-    # Use wss:// for secure WebSocket connection
-    uri = "wss://a8380e87-affe-4e91-9cf5-16d897067889-00-3u2toyoji9vca.spock.replit.dev/ws"
+    uri = "wss://pixel-forge-sarv.replit.app/ws"
     logger.info(f"Attempting to connect to {uri}")
     
     while True:
@@ -43,33 +42,49 @@ async def connect_to_server():
                 
                 while True:
                     try:
-                        # Receive base64 encoded PNG
+                        # Receive JSON message
                         message = await websocket.recv()
-                        logger.info("Received image data")
+                        logger.info("Received message")
                         
-                        # Decode base64 to image
-                        image_data = base64.b64decode(message)
-                        image = Image.open(io.BytesIO(image_data))
-                        
-                        # Validate image size
-                        if image.size != (16, 16):
-                            logger.warning(f"Invalid image size: {image.size}. Expected 16x16")
+                        # Parse JSON message
+                        try:
+                            data = json.loads(message)
+                            if data.get("type") != "image_update":
+                                logger.warning(f"Unexpected message type: {data.get('type')}")
+                                continue
+                                
+                            base64_image = data.get("data")
+                            if not base64_image:
+                                logger.warning("No image data in message")
+                                continue
+                                
+                            # Decode base64 to image
+                            image_data = base64.b64decode(base64_image)
+                            image = Image.open(io.BytesIO(image_data))
+                            
+                            # Validate image size
+                            if image.size != (16, 16):
+                                logger.warning(f"Invalid image size: {image.size}. Expected 16x16")
+                                continue
+                                
+                            # Convert to RGB if needed
+                            if image.mode != 'RGB':
+                                image = image.convert('RGB')
+                                
+                            # Update display settings
+                            DISPLAY_SETTINGS["imageUrl"] = "data:image/png;base64," + base64_image
+                            save_display_settings()
+                            logger.info("Updated display with new image")
+                            
+                        except json.JSONDecodeError:
+                            logger.error("Failed to parse JSON message")
                             continue
-                            
-                        # Convert to RGB if needed
-                        if image.mode != 'RGB':
-                            image = image.convert('RGB')
-                            
-                        # Update display settings
-                        DISPLAY_SETTINGS["imageUrl"] = "data:image/png;base64," + message
-                        save_display_settings()
-                        logger.info("Updated display with new image")
                         
                     except websockets.exceptions.ConnectionClosed:
                         logger.warning("Connection closed. Reconnecting...")
                         break
                     except Exception as e:
-                        logger.error(f"Error processing image: {e}")
+                        logger.error(f"Error processing message: {e}")
                         continue
                         
         except Exception as e:
