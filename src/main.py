@@ -113,8 +113,8 @@ async def process_updates(batcher, websocket):
         await asyncio.sleep(0.01)  # Small delay to prevent CPU overload
 
 async def connect_to_server():
-    uri = "wss://pixel-forge-sarv.replit.app/ws"
-    # uri = "ws://10.0.0.156:8000/ws"
+    # uri = "wss://pixel-forge-sarv.replit.app/ws"
+    uri = "ws://10.0.0.156:8000/ws"
     logger.info(f"Attempting to connect to {uri}")
     
     while True:
