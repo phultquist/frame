@@ -34,13 +34,20 @@ def display_image(image):
     # Get pixel data
     pixels_data = []
     for y in range(16):
+        row_data = []
         for x in range(16):
             r, g, b = image.getpixel((x, y))
             # Apply fixed brightness
             r = int(r * BRIGHTNESS)
             g = int(g * BRIGHTNESS)
             b = int(b * BRIGHTNESS)
-            pixels_data.append((r, g, b))
+            row_data.append((r, g, b))
+        
+        # Reverse every other row to account for snake pattern
+        if y % 2 == 1:
+            row_data = row_data[::-1]
+        
+        pixels_data.extend(row_data)
     
     # Update the display immediately
     pixels[0:256] = pixels_data
