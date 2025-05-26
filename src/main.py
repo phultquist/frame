@@ -54,7 +54,7 @@ async def connect_to_server():
                             message_type = data.get("type")
                             
                             if message_type == "error":
-                                error_msg = data.get("data", "Unknown error")
+                                error_msg = data.get("message", "Unknown error")
                                 logger.error(f"Server error: {error_msg}")
                                 continue
                                 
