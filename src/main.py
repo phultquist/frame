@@ -44,11 +44,13 @@ async def connect_to_server():
                     try:
                         # Receive JSON message
                         message = await websocket.recv()
-                        logger.info("Received message")
+                        logger.info(f"Raw message received: {message}")
                         
                         # Parse JSON message
                         try:
                             data = json.loads(message)
+                            logger.info(f"Parsed message: {json.dumps(data, indent=2)}")
+                            
                             message_type = data.get("type")
                             
                             if message_type == "error":
@@ -83,8 +85,8 @@ async def connect_to_server():
                             save_display_settings()
                             logger.info("Updated display with new image")
                             
-                        except json.JSONDecodeError:
-                            logger.error("Failed to parse JSON message")
+                        except json.JSONDecodeError as e:
+                            logger.error(f"Failed to parse JSON message: {e}")
                             continue
                         
                     except websockets.exceptions.ConnectionClosed:
