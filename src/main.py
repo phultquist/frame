@@ -10,7 +10,7 @@ from secrets import FRAME_ID
 settings.put("brightness", "10")
 
 async def connect_to_server():
-    uri = "wss://patrick.com/frame"
+    uri = "wss://496f9859-0bd6-406c-9620-cde7602a369e-00-t4vt0ini4r5m.spock.replit.dev/ws"
     while True:
         try:
             async with websockets.connect(uri) as websocket:
