@@ -163,19 +163,28 @@ async def connect_to_server():
                             continue
                             
                 except websockets.exceptions.ConnectionClosed:
-                    logger.warning("Connection closed. Reconnecting...")
+                    logger.warning("Connection closed. Will retry in 15 seconds...")
                     processor_task.cancel()
-                    break
+                    await asyncio.sleep(15)  # Wait 15 seconds before retrying
+                    continue
                 except Exception as e:
                     logger.error(f"Error processing message: {e}")
                     processor_task.cancel()
+                    await asyncio.sleep(15)  # Wait 15 seconds before retrying
                     continue
                     
         except Exception as e:
             logger.error(f"Connection error: {e}")
-            logger.info("Waiting 5 seconds before retrying...")
-            await asyncio.sleep(5)
+            logger.info("Will retry in 15 seconds...")
+            await asyncio.sleep(15)  # Wait 15 seconds before retrying
 
 if __name__ == "__main__":
     logger.info("Starting frame client...")
-    asyncio.run(connect_to_server()) 
+    try:
+        asyncio.run(connect_to_server())
+    except KeyboardInterrupt:
+        logger.info("Shutting down gracefully...")
+    except Exception as e:
+        logger.error(f"Fatal error: {e}")
+        # Restart the main loop
+        asyncio.run(connect_to_server()) 
