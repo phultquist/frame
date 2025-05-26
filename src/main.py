@@ -22,15 +22,8 @@ try:
 except ImportError:
     FRAME_ID = "frame-1"  # Default frame ID
 
-# Simple display settings
-DISPLAY_SETTINGS = {
-    "brightness": 10,
-    "imageUrl": None
-}
-
-def save_display_settings():
-    with open("display.json", "w") as f:
-        json.dump(DISPLAY_SETTINGS, f)
+# Fixed brightness at 10%
+BRIGHTNESS = 0.10
 
 def display_image(image):
     """Display the image on the NeoPixel grid"""
@@ -43,14 +36,13 @@ def display_image(image):
     for y in range(16):
         for x in range(16):
             r, g, b = image.getpixel((x, y))
-            # Apply brightness setting
-            brightness = DISPLAY_SETTINGS["brightness"] / 100.0
-            r = int(r * brightness)
-            g = int(g * brightness)
-            b = int(b * brightness)
+            # Apply fixed brightness
+            r = int(r * BRIGHTNESS)
+            g = int(g * BRIGHTNESS)
+            b = int(b * BRIGHTNESS)
             pixels_data.append((r, g, b))
     
-    # Update the display
+    # Update the display immediately
     pixels[0:256] = pixels_data
     pixels.show()
 
@@ -106,13 +98,8 @@ async def connect_to_server():
                                 logger.warning(f"Invalid image size: {image.size}. Expected 16x16")
                                 continue
                                 
-                            # Display the image on the NeoPixel grid
+                            # Display the image on the NeoPixel grid immediately
                             display_image(image)
-                            
-                            # Update display settings
-                            DISPLAY_SETTINGS["imageUrl"] = "data:image/png;base64," + base64_image
-                            save_display_settings()
-                            logger.info("Updated display with new image")
                             
                             # Send acknowledgment
                             await websocket.send(json.dumps({
@@ -138,7 +125,5 @@ async def connect_to_server():
             await asyncio.sleep(5)  # Wait before retrying
 
 if __name__ == "__main__":
-    # Initialize display settings
-    save_display_settings()
     logger.info("Starting frame client...")
     asyncio.run(connect_to_server()) 
