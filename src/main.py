@@ -114,7 +114,7 @@ async def process_updates(batcher, websocket):
 
 async def connect_to_server():
     # uri = "wss://pixel-forge-sarv.replit.app/ws"
-    uri = "ws://10.0.0.52/ws"
+    uri = "ws://10.0.0.156/ws"
     logger.info(f"Attempting to connect to {uri}")
     
     while True:
