@@ -3,21 +3,19 @@ import asyncio
 import base64
 from PIL import Image
 import io
-import settings
 from secrets import FRAME_ID
 import os
+import json
 
-# Ensure settings directory exists
-os.makedirs("./mobile/server", exist_ok=True)
+# Simple display settings
+DISPLAY_SETTINGS = {
+    "brightness": 10,
+    "imageUrl": None
+}
 
-# Initialize settings if file doesn't exist
-if not os.path.exists("./mobile/server/settings.json"):
-    with open("./mobile/server/settings.json", "w") as f:
-        f.write("{}")
-
-# Set fixed brightness to 10%
-settings.get()  # Initialize parsed
-settings.put("brightness", "10")
+def save_display_settings():
+    with open("display.json", "w") as f:
+        json.dump(DISPLAY_SETTINGS, f)
 
 async def connect_to_server():
     uri = "wss://patrick.com/frame"
@@ -45,9 +43,9 @@ async def connect_to_server():
                         if image.mode != 'RGB':
                             image = image.convert('RGB')
                             
-                        # Display the image
-                        settings.get()  # Refresh settings
-                        settings.put("imageUrl", "data:image/png;base64," + message)
+                        # Update display settings
+                        DISPLAY_SETTINGS["imageUrl"] = "data:image/png;base64," + message
+                        save_display_settings()
                         
                     except websockets.exceptions.ConnectionClosed:
                         print("Connection closed. Reconnecting...")
@@ -61,4 +59,6 @@ async def connect_to_server():
             await asyncio.sleep(5)  # Wait before retrying
 
 if __name__ == "__main__":
+    # Initialize display settings
+    save_display_settings()
     asyncio.run(connect_to_server()) 

@@ -8,7 +8,7 @@ import sys
 import exceptions
 import numbers
 import nonlinearity
-import settings
+import settings_old
 import autobrightness
 import clock
 import nightshift
@@ -30,10 +30,10 @@ brt = 0.05
 night_shift_value = 0
 
 def get_brightness():
-    brightness_setting = int(settings.get()['brightness']) / 100
+    brightness_setting = int(settings_old.get()['brightness']) / 100
     l = 45
 
-    if settings.check("autobrightness") == False or settings.check("autobrightness") == "false":
+    if settings_old.check("autobrightness") == False or settings_old.check("autobrightness") == "false":
         return brightness_setting
 
     try:
@@ -129,7 +129,7 @@ def get_pixels(imgurl=None, image=None):
 def manipulate():
     global img
 
-    contrast_setting = int(settings.get()['contrast']) / 100 + 0.5
+    contrast_setting = int(settings_old.get()['contrast']) / 100 + 0.5
     imgpx = resize.resize(img, contrast_setting)
 
     # only doing this for testing mode.
@@ -157,7 +157,7 @@ def manipulate():
             g = int(brt * g)
             b = int(brt * b)
 
-            night_shift_setting = settings.check("nightshift")
+            night_shift_setting = settings_old.check("nightshift")
             if (night_shift_setting == None):
                 night_shift_setting = 0
 
@@ -200,7 +200,7 @@ def main(last_image_url):
     # set brightness automatically
     lastbrt = brt
     last_night_shift_value = night_shift_value
-    night_shift_value = settings.check("nightshift")
+    night_shift_value = settings_old.check("nightshift")
 
     current = get_brightness()
 
@@ -213,7 +213,7 @@ def main(last_image_url):
     elif song.get('type') == "gif":
         current_item = song
         frame_number = 0
-        while settings.check("idleMode").startswith("gif") and current_item.get('type') == 'gif':
+        while settings_old.check("idleMode").startswith("gif") and current_item.get('type') == 'gif':
             configure_brightness()
             gif_id = current_item.get('raw')
             frames = fun.get_frames(gif_id)
@@ -240,9 +240,9 @@ def main(last_image_url):
         if not display_image_url.startswith("http"):
             display_image_url = "https://i.ibb.co/KNq0069/Group-30.png"
 
-        settings.put("albumName", song.get('name'))
-        settings.put("imageUrl", display_image_url)
-        settings.put("artistName", song.get('artist_names'))
+        settings_old.put("albumName", song.get('name'))
+        settings_old.put("imageUrl", display_image_url)
+        settings_old.put("artistName", song.get('artist_names'))
         # img.show()
         update_pixels(px)
 
@@ -274,7 +274,7 @@ def animate(oldpixels, newpixels):
 # Sets number of frames on the animatoin
 def set_step_count():
     global steps
-    steps = int(settings.get()['animation'])
+    steps = int(settings_old.get()['animation'])
 
 # Used for animation. Calculates the pixel color based on a linear function x1 + x((y2-y1) / dx)
 def calc_pixel(old, new, stepno, totalsteps):
