@@ -23,7 +23,7 @@ def save_display_settings():
         json.dump(DISPLAY_SETTINGS, f)
 
 async def connect_to_server():
-    uri = "wss://patrick.com/frame"
+    uri = "ws://a8380e87-affe-4e91-9cf5-16d897067889-00-3u2toyoji9vca.spock.replit.dev/ws"
     while True:
         try:
             async with websockets.connect(uri) as websocket:
