@@ -3,9 +3,14 @@ import asyncio
 import base64
 from PIL import Image
 import io
-from secrets import FRAME_ID
 import os
 import json
+
+# Default frame ID if secrets.py doesn't exist
+try:
+    from secrets import FRAME_ID
+except ImportError:
+    FRAME_ID = "frame-1"  # Default frame ID
 
 # Simple display settings
 DISPLAY_SETTINGS = {
