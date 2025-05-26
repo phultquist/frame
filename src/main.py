@@ -8,6 +8,9 @@ import json
 import logging
 import board
 import neopixel
+from collections import deque
+import time
+import numpy as np
 
 # Set up logging
 logging.basicConfig(level=logging.INFO)
@@ -25,25 +28,89 @@ except ImportError:
 # Fixed brightness at 10%
 BRIGHTNESS = 0.10
 
+# Batch processing settings
+BATCH_SIZE = 5  # Number of updates to process in one batch
+BATCH_TIMEOUT = 0.05  # Maximum time to wait for batch in seconds
+
 def display_image(image):
     """Display the image on the NeoPixel grid with correct snaking order"""
     if image.mode != 'RGB':
         image = image.convert('RGB')
 
-    pixels_data = [(0, 0, 0)] * 256  # Pre-fill with black
+    # Convert image to numpy array for faster processing
+    img_array = np.array(image)
+    
+    # Pre-allocate the pixels array
+    pixels_data = np.zeros((256, 3), dtype=np.uint8)
+    
+    # Process all pixels at once using numpy operations
     for y in range(16):
-        for x in range(16):
-            r, g, b = image.getpixel((x, y))
-            r = int(r * BRIGHTNESS)
-            g = int(g * BRIGHTNESS)
-            b = int(b * BRIGHTNESS)
-            if y % 2 == 0:
-                idx = y * 16 + x
-            else:
-                idx = y * 16 + (15 - x)
-            pixels_data[idx] = (r, g, b)
-    pixels[0:256] = pixels_data
+        row = img_array[y]
+        if y % 2 == 0:
+            pixels_data[y*16:(y+1)*16] = row
+        else:
+            pixels_data[y*16:(y+1)*16] = row[::-1]
+    
+    # Apply brightness
+    pixels_data = (pixels_data * BRIGHTNESS).astype(np.uint8)
+    
+    # Update pixels
+    pixels[0:256] = pixels_data.tolist()
     pixels.show()
+
+class UpdateBatcher:
+    def __init__(self, batch_size=BATCH_SIZE, batch_timeout=BATCH_TIMEOUT):
+        self.batch_size = batch_size
+        self.batch_timeout = batch_timeout
+        self.updates = deque()
+        self.last_update_time = time.time()
+        self.processing = False
+    
+    def add_update(self, base64_image):
+        self.updates.append(base64_image)
+        self.last_update_time = time.time()
+    
+    def should_process(self):
+        return (len(self.updates) >= self.batch_size or 
+                (len(self.updates) > 0 and 
+                 time.time() - self.last_update_time >= self.batch_timeout))
+    
+    def get_batch(self):
+        batch = []
+        while len(batch) < self.batch_size and self.updates:
+            batch.append(self.updates.popleft())
+        return batch
+
+async def process_updates(batcher, websocket):
+    """Process batched updates"""
+    while True:
+        if batcher.should_process():
+            batch = batcher.get_batch()
+            if not batch:
+                continue
+                
+            # Process the last image in the batch (most recent)
+            try:
+                image_data = base64.b64decode(batch[-1])
+                image = Image.open(io.BytesIO(image_data))
+                
+                if image.size != (16, 16):
+                    logger.warning(f"Invalid image size: {image.size}. Expected 16x16")
+                    continue
+                
+                display_image(image)
+                
+                # Send single acknowledgment for the batch
+                await websocket.send(json.dumps({
+                    "type": "ack",
+                    "data": "batch_processed",
+                    "count": len(batch)
+                }))
+                
+            except Exception as e:
+                logger.error(f"Error processing batch: {e}")
+        
+        await asyncio.sleep(0.01)  # Small delay to prevent CPU overload
 
 async def connect_to_server():
     uri = "wss://pixel-forge-sarv.replit.app/ws"
@@ -51,7 +118,7 @@ async def connect_to_server():
     
     while True:
         try:
-            async with websockets.connect(uri, ping_interval=None) as websocket:
+            async with websockets.connect(uri, ping_interval=20, ping_timeout=10, close_timeout=5) as websocket:
                 logger.info("Connected to WebSocket server")
                 
                 # Send frame ID on connection
@@ -59,14 +126,17 @@ async def connect_to_server():
                     "type": "connect",
                     "data": FRAME_ID
                 }))
-                logger.info(f"Sent frame ID: {FRAME_ID}")
                 
-                while True:
-                    try:
-                        # Receive JSON message
+                # Initialize update batcher
+                batcher = UpdateBatcher()
+                
+                # Start update processor
+                processor_task = asyncio.create_task(process_updates(batcher, websocket))
+                
+                try:
+                    while True:
                         message = await websocket.recv()
                         
-                        # Parse JSON message
                         try:
                             data = json.loads(message)
                             message_type = data.get("type")
@@ -84,40 +154,27 @@ async def connect_to_server():
                             if not base64_image:
                                 logger.warning("No image data in message")
                                 continue
-                                
-                            # Decode base64 to image
-                            image_data = base64.b64decode(base64_image)
-                            image = Image.open(io.BytesIO(image_data))
                             
-                            # Validate image size
-                            if image.size != (16, 16):
-                                logger.warning(f"Invalid image size: {image.size}. Expected 16x16")
-                                continue
-                                
-                            # Display the image on the NeoPixel grid immediately
-                            display_image(image)
-                            
-                            # Send acknowledgment
-                            await websocket.send(json.dumps({
-                                "type": "ack",
-                                "data": "image_received"
-                            }))
+                            # Add update to batch
+                            batcher.add_update(base64_image)
                             
                         except json.JSONDecodeError as e:
                             logger.error(f"Failed to parse JSON message: {e}")
                             continue
-                        
-                    except websockets.exceptions.ConnectionClosed:
-                        logger.warning("Connection closed. Reconnecting...")
-                        break
-                    except Exception as e:
-                        logger.error(f"Error processing message: {e}")
-                        continue
-                        
+                            
+                except websockets.exceptions.ConnectionClosed:
+                    logger.warning("Connection closed. Reconnecting...")
+                    processor_task.cancel()
+                    break
+                except Exception as e:
+                    logger.error(f"Error processing message: {e}")
+                    processor_task.cancel()
+                    continue
+                    
         except Exception as e:
             logger.error(f"Connection error: {e}")
             logger.info("Waiting 5 seconds before retrying...")
-            await asyncio.sleep(5)  # Wait before retrying
+            await asyncio.sleep(5)
 
 if __name__ == "__main__":
     logger.info("Starting frame client...")
