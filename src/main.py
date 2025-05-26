@@ -37,7 +37,10 @@ async def connect_to_server():
                 logger.info("Connected to WebSocket server")
                 
                 # Send frame ID on connection
-                await websocket.send(FRAME_ID)
+                await websocket.send(json.dumps({
+                    "type": "connect",
+                    "data": FRAME_ID
+                }))
                 logger.info(f"Sent frame ID: {FRAME_ID}")
                 
                 while True:
@@ -84,6 +87,13 @@ async def connect_to_server():
                             DISPLAY_SETTINGS["imageUrl"] = "data:image/png;base64," + base64_image
                             save_display_settings()
                             logger.info("Updated display with new image")
+                            
+                            # Send acknowledgment
+                            await websocket.send(json.dumps({
+                                "type": "ack",
+                                "data": "image_received"
+                            }))
+                            logger.info("Sent acknowledgment")
                             
                         except json.JSONDecodeError as e:
                             logger.error(f"Failed to parse JSON message: {e}")
