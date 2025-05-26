@@ -11,4 +11,4 @@ fi
 
 # Run the WebSocket client
 echo "Starting frame client..."
-python3 main.py
+sudo python3 main.py
