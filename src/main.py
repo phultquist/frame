@@ -26,30 +26,22 @@ except ImportError:
 BRIGHTNESS = 0.10
 
 def display_image(image):
-    """Display the image on the NeoPixel grid"""
-    # Convert image to RGB if needed
+    """Display the image on the NeoPixel grid with correct snaking order"""
     if image.mode != 'RGB':
         image = image.convert('RGB')
-    
-    # Get pixel data
-    pixels_data = []
+
+    pixels_data = [(0, 0, 0)] * 256  # Pre-fill with black
     for y in range(16):
-        row_data = []
         for x in range(16):
             r, g, b = image.getpixel((x, y))
-            # Apply fixed brightness
             r = int(r * BRIGHTNESS)
             g = int(g * BRIGHTNESS)
             b = int(b * BRIGHTNESS)
-            row_data.append((r, g, b))
-        
-        # Reverse every other row to account for snake pattern
-        if y % 2 == 1:
-            row_data = row_data[::-1]
-        
-        pixels_data.extend(row_data)
-    
-    # Update the display immediately
+            if y % 2 == 0:
+                idx = y * 16 + x
+            else:
+                idx = y * 16 + (15 - x)
+            pixels_data[idx] = (r, g, b)
     pixels[0:256] = pixels_data
     pixels.show()
 
