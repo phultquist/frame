@@ -5,5 +5,5 @@ clockColor: "91,0,166"
 idleMode: "off"
 brightness: 50
 contrast: 0
-animation: 10
+animation: 20
 # clockTiming: "12"
