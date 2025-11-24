@@ -1,0 +1,9 @@
+#clock: classic
+clockColor: "0,255,0"
+#asleep: false
+# mode: spotify
+# idleMode: clock
+brightness: 50
+contrast: 0
+animation: 10
+# clockTiming: "12"
