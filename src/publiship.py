@@ -1,6 +1,6 @@
 import ip
 import requests
-from secrets import FRAME_ID
+from frame_secrets import FRAME_ID
 
 stored_ip_address = ''
 

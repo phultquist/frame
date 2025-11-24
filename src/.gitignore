@@ -248,3 +248,7 @@ secrets.py
 
 assets/time.png
 testscripts/acrcloud.js
+
+frame_secrets.py
+.cache-*
+spotipy/.client.py.swp

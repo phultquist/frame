@@ -1,0 +1,6 @@
+[submodule "src/mobile"]
+	path = src/mobile
+	url = https://github.com/phultquist/frame-mobile-app
+[submodule "src/resize"]
+	path = src/resize
+	url = https://github.com/phultquist/resize

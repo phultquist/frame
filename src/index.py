@@ -43,10 +43,10 @@ def get_brightness():
         elif l < 0:
             l = 0
         l = (l * 10/3) / 100
-    except:
+    except Exception as e:
         # there can be an overload of brightness, in which an error is thrown
         if setLeds:
-            print('Error getting sensor value. Used 45')
+            print(f'Error getting sensor value: {type(e).__name__}: {e}. Using default 45')
     output = (l+(brightness_setting))/2
 
     # print("sensor: "+str(l), "setting: "+str(brightness_setting), "output: "+str(output))

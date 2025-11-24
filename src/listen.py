@@ -2,10 +2,11 @@ import json
 import requests
 import base64
 import sounddevice as sd
-from scipy.io.wavfile import write
+# from scipy.io.wavfile import write
 from io import BytesIO
-from secrets import AUDD_API_KEY
+from frame_secrets import AUDD_API_KEY
 import exceptions
+import soundfile as sf
 
 duration = 6  # seconds
 fs = 44100
@@ -13,6 +14,10 @@ fs = 44100
 # NOTE: This is a misnomer; I originally named it this, and will change soon.
 last_successful_song = exceptions.exc_object("off", "screen off")
 recorded_file_name = "output.mp3"
+
+def write(filename, data, samplerate):
+    sf.write(filename, data, samplerate)
+
 
 def reset_last_successful_song():
     last_successful_song = exceptions.exc_object("off", "screen off")

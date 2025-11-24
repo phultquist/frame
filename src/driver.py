@@ -2,7 +2,7 @@
 
 import spotipy
 import spotipy.util as util
-from secrets import SPOTIPY_CLIENT_ID, SPOTIPY_CLIENT_SECRET, username
+from frame_secrets import SPOTIPY_CLIENT_ID, SPOTIPY_CLIENT_SECRET, username
 import exceptions
 import os
 import json
@@ -79,6 +79,7 @@ def song():
                 return exceptions.exc_object('off', 'screen off')
         elif idle_setting == "clock":
             # a composite index, that way if anything changes the clock updates :)
+            print(settings.check("clock"), settings.check("clockColor"), settings.check("clockTiming"))
             return exceptions.exc_object('time', datetime.now().strftime("%H%M")+settings.check("clock")+settings.check("clockColor")+settings.check("clockTiming"))
         elif idle_setting.startswith("gif"):
             try:

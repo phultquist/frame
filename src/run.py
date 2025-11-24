@@ -18,7 +18,11 @@ def job():
     global num_runs
     # print('job called')
     num_runs += 1
-    last_song = index.main(last_song.get('image_url'))
+    try:
+        last_song = index.main(last_song.get('image_url'))
+    except Exception as e:
+        print(f'Error in job: {e}')
+        # Continue running despite error
 
 def send_ip_to_server():
     publiship.send_ip_to_server()
