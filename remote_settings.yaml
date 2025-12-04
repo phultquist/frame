@@ -3,7 +3,7 @@ clockColor: "91,0,166"
 #asleep: false
 # mode: spotify
 idleMode: "off"
-brightness: 50
+brightness: 0
 contrast: 0
 animation: 20
 # clockTiming: "12"
